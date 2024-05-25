@@ -1,4 +1,4 @@
-#### Animated Portfolio
+# Animated Portfolio
 
 ## 📖 Table of Contents
 **Introduction**
