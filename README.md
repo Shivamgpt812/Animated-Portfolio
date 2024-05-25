@@ -22,7 +22,7 @@ Welcome to my Animated Portfolio! This project is a personal website to showcase
 **Customizable: Easily customizable to fit your personal branding.**
 
 ### 💻 Technologies Used
-'HTML' 'CSS' 'JavaScript'
+`HTML` `CSS` `JAVA SCRIPT` `ANIMATION`
 
 ### 🛠️ Installation
 **To run this project locally, follow these steps:**
