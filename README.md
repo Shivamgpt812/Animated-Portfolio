@@ -13,9 +13,8 @@ Welcome to my Animated Portfolio! This project is a personal website to showcase
 
 ### 🛠️ Installation
 **To run this project locally, follow these steps:**
-
-### 👬🏻 Clone the repository:
-**git clone:** https://github.com/Shivamgpt812/Animated-Portfolio.git
+#
+**Clone the repository:** https://github.com/Shivamgpt812/Animated-Portfolio.git
 
 ### 🎯 Usage
 **Home Page: Introduction and brief overview.**
