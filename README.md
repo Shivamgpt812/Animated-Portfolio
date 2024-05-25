@@ -1,17 +1,4 @@
 # Animated Portfolio
-
-## 📖 Table of Contents
-Introduction**
-**Features**
-**Technologies Used**
-**Installation**
-**Usage**
-**Demo**
-**Contributing**
-**License**
-**Contact**
-
-### 🗣️ Introduction
 Welcome to my Animated Portfolio! This project is a personal website to showcase my skills, projects, and experience in a visually appealing and interactive manner. The portfolio features smooth animations and responsive design, ensuring a great experience across all devices.
 
 ### ✨ Features
