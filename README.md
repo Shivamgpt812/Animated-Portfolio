@@ -37,9 +37,7 @@ git clone https://github.com/Shivamgpt812/Animated-Portfolio.git
 **Contact: Contact form for visitors to reach out.**
 
 ### 🎬 Demo
-**Check out the live demo of the portfolio here.**
 https://github.com/Shivamgpt812/Animated-Portfolio/assets/144247614/1ad08627-dff8-4058-abc1-8a95d3721674
-
 
 ### 🤝🏻 Contributing
 Contributions are welcome! If you have suggestions or improvements, feel free to open an issue or submit a pull request.
