@@ -1,7 +1,7 @@
 # Animated Portfolio
 
 ## 📖 Table of Contents
-**Introduction**
+Introduction**
 **Features**
 **Technologies Used**
 **Installation**
