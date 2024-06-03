@@ -24333,7 +24333,7 @@ const cM = [{
     name: "Python",
     width: "60%"
 }, {
-    name: "JAVA",
+    name: "React",
     width: "40%"
 }, {
     name: "Animation & Graphics",
