@@ -24195,13 +24195,13 @@ class rM {
 }
 const oM = [{
         id: 0,
-        name: "Quotes Generator",
-        description: "Random Quotes Generator with Animated moving background",
-        image: "images/projects/Quotes Generator.jpg",
+        name: "Flexin",
+        description: "A Modern E-Commerce Platform for Fashion Lovers!",
+        image: "images/projects/Flexin.jpg",
         tags: ["javascript", "html", "css"],
-        liveview: " https://shivamgpt812.github.io/Random_Quote/",
-        github: "https://github.com/Shivamgpt812/Random_Quote",
-        alt: "Random Quotes Generator with Animated moving background portfolio project"
+        liveview: " https://flexin-ecommerce-website.netlify.app/",
+        github: "https://github.com/Shivamgpt812/Flexin---Ecommerce-Website",
+        alt: "Flexin"
     }, {
         id: 1,
         name: "Pokedex",
@@ -24213,29 +24213,29 @@ const oM = [{
         alt: "pokedex design detailed design portfolio project"
     }, {
         id: 2,
-        name: "Flappy Bird",
-        description: "JavaScript based jump game",
-        image: "images/projects/flappybird.jpg",
+        name: "Creative Personalised Portfolio",
+        description: "My Current Portfolio",
+        image: "images/projects/Portfolio.png",
         tags: ["javascript", "html", "css"],
-        liveview: "https://shivamgpt812.github.io/Flappy-Bird-Game/",
-        github: "https://github.com/Shivamgpt812/Flappy-Bird-Game",
-        alt: "JavaScript based jump game portfolio project"
+        liveview: "https://portfolio08shivam.netlify.app/",
+        github: "https://github.com/Shivamgpt812/Creative-Portfolio-Website",
+        alt: "MY PORTFOLIO"
     }, {
         id: 3,
-        name: "Clothing Website",
-        description: "Searching for something to wear? Visit our website for clothing.",
-        image: "images/projects/Clothing Website.jpg",
+        name: "Sky Wings",
+        description: "The ultimate travel platform where we elevate your travel journey to new heights! ",
+        image: "images/projects/Sky Wings.png",
         tags: ["javascript", "html", "css"],
-        liveview: "https://shivamgpt812.github.io/Responsive_Clothing_Website/",
-        github: "https://github.com/Shivamgpt812/Responsive_Clothing_Website",
-        alt: "david heckhoff portfolio project 2022 threejs blender 3d design",
+        liveview: "https://skywingswebsite.netlify.app/",
+        github: "https://github.com/Shivamgpt812/Skywings---The-Ultimate-Travel-Platform",
+        alt: "Sky Wings",
     },{
         id: 4,
         name: "Jelly Battle",
         description: "Play as Jelly and fight against three other Jellys in a multiplayer free-for-all game",
         image: "images/projects/jelly-battle.jpg",
         tags: ["webgl", "javascript", "socketio", "html", "css"],
-        twitter: "https://twitter.com",
+        twitter: "https://www.linkedin.com/in/shivam-gupta-637b94288/",
         alt: "work in progress portfolio project jelly battle strategy game flash multiplayer"
     }],
     aM = {
@@ -24336,7 +24336,7 @@ const cM = [{
     name: "React",
     width: "40%"
 }, {
-    name: "Animation & Graphics",
+    name: "Machine Learning & AI",
     width: "60%"
 }];
 class hM {
