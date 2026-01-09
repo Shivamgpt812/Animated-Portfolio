@@ -24173,7 +24173,7 @@ class rM {
         this.isCurrentSwipeElement && (e == "right" ? this.moveForward() : this.moveBack())
     }
     moveBack() {
-        this.currentItemIndex != 2 && !this.itemsAreMoving && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.currentItemIndex++, this.updatePositions())
+        this.currentItemIndex != 4 && !this.itemsAreMoving && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.currentItemIndex++, this.updatePositions())
     }
     moveForward() {
         this.currentItemIndex != 0 && !this.itemsAreMoving && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.currentItemIndex--, this.updatePositions())
@@ -24186,40 +24186,57 @@ class rM {
     updatePositions(e = !1) {
         (!this.itemsAreMoving || e) && (this.render.items.forEach(t => {
             const n = this.render.items.indexOf(t);
-            document.getElementById("work-item-" + t.id).style = this.positionStyles[n + this.currentItemIndex], n + this.currentItemIndex != 2 ? document.getElementById("work-item-" + t.id).classList.add("work-inactive-item-container") : document.getElementById("work-item-" + t.id).classList.remove("work-inactive-item-container")
+            document.getElementById("work-item-" + t.id).style = this.positionStyles[n + this.currentItemIndex], n + this.currentItemIndex != 4 ? document.getElementById("work-item-" + t.id).classList.add("work-inactive-item-container") : document.getElementById("work-item-" + t.id).classList.remove("work-inactive-item-container")
         }), this.itemsAreMoving = !0, P.delayedCall(.5, () => this.itemsAreMoving = !1), this.updateNavigation())
     }
     updateNavigation() {
-        this.currentItemIndex == 0 ? (this.domElements.nextButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : this.currentItemIndex == 2 ? (this.domElements.backButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : (this.domElements.nextButton.classList.remove("work-disabled-navigation-button"), this.domElements.backButton.classList.remove("work-disabled-navigation-button"))
+        this.currentItemIndex == 0 ? (this.domElements.nextButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : this.currentItemIndex == 4 ? (this.domElements.backButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : (this.domElements.nextButton.classList.remove("work-disabled-navigation-button"), this.domElements.backButton.classList.remove("work-disabled-navigation-button"))
     }
 }
 const oM = [{
         id: 0,
-        name: "Markrenown",
-        description: "A cutting-edge marketing platform for brand recognition.",
-        image: "images/projects/MarkRenown.png",
+        name: "Flexin",
+        description: "A Modern E-Commerce Platform for Fashion Lovers!",
+        image: "images/projects/Flexin.jpg",
         tags: ["javascript", "html", "css"],
-        liveview: "https://www.markrenown.com",
-        github: "#",
-        alt: "Markrenown"
+        liveview: " https://flexin-ecommerce-website.netlify.app/",
+        github: "https://github.com/Shivamgpt812/Flexin---Ecommerce-Website",
+        alt: "Flexin"
     }, {
         id: 1,
-        name: "TechEnsureX",
-        description: "Advanced tech security solutions.",
-        image: "images/projects/TechEnsurex.png",
+        name: "Pokedex",
+        description: "A collection and description of all 898 Pokémon",
+        image: "images/projects/pokedex.jpg",
         tags: ["javascript", "api", "html", "css"],
-        liveview: "https://www.techensurex.com",
-        github: "#",
-        alt: "TechEnsureX"
+        liveview: "https://shivamgpt812.github.io/Pokedex/",
+        github: "https://github.com/Shivamgpt812/Pokedex",
+        alt: "pokedex design detailed design portfolio project"
     }, {
         id: 2,
-        name: "Accorevacations",
-        description: "Your ultimate vacation planning companion.",
-        image: "images/projects/AccoreVacations.png",
+        name: "Creative Personalised Portfolio",
+        description: "My Current Portfolio",
+        image: "images/projects/Portfolio.png",
         tags: ["javascript", "html", "css"],
-        liveview: "https://www.accorevacations.com",
-        github: "#",
-        alt: "Accorevacations"
+        liveview: "https://portfolio08shivam.netlify.app/",
+        github: "https://github.com/Shivamgpt812/Creative-Portfolio-Website",
+        alt: "MY PORTFOLIO"
+    }, {
+        id: 3,
+        name: "Sky Wings",
+        description: "The ultimate travel platform where we elevate your travel journey to new heights! ",
+        image: "images/projects/Sky Wings.png",
+        tags: ["javascript", "html", "css"],
+        liveview: "https://skywingswebsite.netlify.app/",
+        github: "https://github.com/Shivamgpt812/Skywings---The-Ultimate-Travel-Platform",
+        alt: "Sky Wings",
+    },{
+        id: 4,
+        name: "Jelly Battle",
+        description: "Play as Jelly and fight against three other Jellys in a multiplayer free-for-all game",
+        image: "images/projects/jelly-battle.jpg",
+        tags: ["webgl", "javascript", "socketio", "html", "css"],
+        twitter: "https://www.linkedin.com/in/shivam-gupta-637b94288/",
+        alt: "work in progress portfolio project jelly battle strategy game flash multiplayer"
     }],
     aM = {
         html: '<div class="work-item-tag" style="background: white; border: 1px solid #7C8594; color: #7C8594">HTML</div>',
@@ -24296,7 +24313,7 @@ class lM {
     addEventListenersToCard(e) {
         const t = document.getElementById("work-item-" + e.id);
         t.addEventListener("click", () => {
-            t.classList.contains("work-inactive-item-container") && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.experience.ui.work.cards.currentItemIndex = -e.id + 2, this.experience.ui.work.cards.updatePositions(), this.sounds.play("buttonClick"))
+            t.classList.contains("work-inactive-item-container") && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.experience.ui.work.cards.currentItemIndex = -e.id + 4, this.experience.ui.work.cards.updatePositions(), this.sounds.play("buttonClick"))
         }), e.github ? (document.getElementById("work-item-gray-button-" + e.id).addEventListener("click", () => {
             window.open(e.github, "_blank").focus()
         }), e.liveview && document.getElementById("work-item-orange-button-" + e.id).addEventListener("click", () => {
