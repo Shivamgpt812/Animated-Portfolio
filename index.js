@@ -24195,31 +24195,31 @@ class rM {
 }
 const oM = [{
         id: 0,
-        name: "Flexin",
-        description: "A Modern E-Commerce Platform for Fashion Lovers!",
-        image: "images/projects/Flexin.jpg",
+        name: "Markrenown",
+        description: "A cutting-edge marketing platform for brand recognition.",
+        image: "images/projects/MarkRenown.png",
         tags: ["javascript", "html", "css"],
-        liveview: " https://flexin-ecommerce-website.netlify.app/",
-        github: "https://github.com/Shivamgpt812/Flexin---Ecommerce-Website",
-        alt: "Flexin"
+        liveview: "https://www.markrenown.com",
+        github: "#",
+        alt: "Markrenown"
     }, {
         id: 1,
-        name: "Pokedex",
-        description: "A collection and description of all 898 Pokémon",
-        image: "images/projects/pokedex.jpg",
+        name: "TechEnsureX",
+        description: "Advanced tech security solutions.",
+        image: "images/projects/TechEnsurex.png",
         tags: ["javascript", "api", "html", "css"],
-        liveview: "https://shivamgpt812.github.io/Pokedex/",
-        github: "https://github.com/Shivamgpt812/Pokedex",
-        alt: "pokedex design detailed design portfolio project"
+        liveview: "https://www.techensurex.com",
+        github: "#",
+        alt: "TechEnsureX"
     }, {
         id: 2,
-        name: "Creative Personalised Portfolio",
-        description: "My Current Portfolio",
-        image: "images/projects/Portfolio.png",
+        name: "Accorevacations",
+        description: "Your ultimate vacation planning companion.",
+        image: "images/projects/AccoreVacations.png",
         tags: ["javascript", "html", "css"],
-        liveview: "https://portfolio08shivam.netlify.app/",
-        github: "https://github.com/Shivamgpt812/Creative-Portfolio-Website",
-        alt: "MY PORTFOLIO"
+        liveview: "https://www.accorevacations.com",
+        github: "#",
+        alt: "Accorevacations"
     }, {
         id: 3,
         name: "Sky Wings",
