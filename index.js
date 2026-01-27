@@ -24196,47 +24196,48 @@ class rM {
 const oM = [{
         id: 0,
         name: "Markrenown",
-        description: "A cutting-edge marketing platform for brand recognition.",
+        description: "A cutting-edge marketing platform designed to boost brand recognition through data-driven insights and automated campaigns. Built with scalability and user experience in mind.",
         image: "images/projects/MarkRenown.png",
-        tags: ["javascript", "html", "css"],
+        tags: ["javascript", "react", "nodejs", "html", "css", "uiux"],
         liveview: "https://www.markrenown.com",
         github: "#",
         alt: "Markrenown"
     }, {
         id: 1,
         name: "TechEnsureX",
-        description: "Advanced tech security solutions.",
+        description: "Comprehensive security solutions protecting digital assets with advanced encryption and real-time monitoring capabilities. Ensuring safety in an interconnected world.",
         image: "images/projects/TechEnsurex.png",
-        tags: ["javascript", "api", "html", "css"],
+        tags: ["javascript", "api", "backend", "html", "css", "responsive"],
         liveview: "https://www.techensurex.com",
         github: "#",
         alt: "TechEnsureX"
     }, {
         id: 2,
         name: "Accorevacations",
-        description: "Your ultimate vacation planning companion.",
+        description: "Your ultimate vacation planning companion offering personalized itineraries, booking management, and travel recommendations. Experience seamless travel planning like never before.",
         image: "images/projects/AccoreVacations.png",
-        tags: ["javascript", "html", "css"],
+        tags: ["javascript", "react", "api", "html", "css", "uiux"],
         liveview: "https://www.accorevacations.com",
         github: "#",
         alt: "Accorevacations"
     }, {
         id: 3,
         name: "Sky Wings",
-        description: "The ultimate travel platform where we elevate your travel journey to new heights! ",
+        description: "The ultimate travel platform elevating your journey to new heights! Features flight booking, hotel reservations, and exclusive travel deals in one unified interface.",
         image: "images/projects/Sky Wings.png",
-        tags: ["javascript", "html", "css"],
+        tags: ["javascript", "react", "nodejs", "html", "css"],
         liveview: "https://skywingswebsite.netlify.app/",
         github: "https://github.com/Shivamgpt812/Skywings---The-Ultimate-Travel-Platform",
         alt: "Sky Wings",
     },{
         id: 4,
-        name: "Jelly Battle",
-        description: "Play as Jelly and fight against three other Jellys in a multiplayer free-for-all game",
-        image: "images/projects/jelly-battle.jpg",
-        tags: ["webgl", "javascript", "socketio", "html", "css"],
-        twitter: "https://www.linkedin.com/in/shivam-gupta-637b94288/",
-        alt: "work in progress portfolio project jelly battle strategy game flash multiplayer"
+        name: "Raj Laxmi Infrastructure",
+        description: "A professional construction and infrastructure company website showcasing projects, services, and company portfolio. Built to establish trust and digital presence in the real estate sector.",
+        image: "images/projects/Raj Laxmi Infrastructure.png",
+        tags: ["javascript", "html", "css", "responsive", "uiux"],
+        liveview: "https://rajlaxmiinfrastructure.com/",
+        github: "#",
+        alt: "Raj Laxmi Infrastructure Construction Website"
     }],
     aM = {
         html: '<div class="work-item-tag" style="background: white; border: 1px solid #7C8594; color: #7C8594">HTML</div>',
@@ -24245,7 +24246,11 @@ const oM = [{
         socketio: '<div class="work-item-tag" style="background: #21BAEB;">Socket.IO</div>',
         webgl: '<div class="work-item-tag" style="background: #5A69EC;">WebGL</div>',
         api: '<div class="work-item-tag" style="background: #CA49F8;">API</div>',
-        backend: '<div class="work-item-tag" style="background: #8433CC;">Backend</div>'
+        backend: '<div class="work-item-tag" style="background: #8433CC;">Backend</div>',
+        react: '<div class="work-item-tag" style="background: #61DAFB; color: #000;">React</div>',
+        nodejs: '<div class="work-item-tag" style="background: #339933;">Node.js</div>',
+        uiux: '<div class="work-item-tag" style="background: #FF61F6;">UI/UX</div>',
+        responsive: '<div class="work-item-tag" style="background: #20C997;">Responsive</div>'
     };
 class lM {
     constructor() {
@@ -24286,13 +24291,7 @@ class lM {
     renderButtons(e) {
         let t = "";
         return e.github ? t = `
-                <div id="work-item-gray-button-${e.id}" class="work-item-gray-button center gray-hover" ${e.liveview?"":'style="width: 100%"'}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"  class="code-icon">
-                        <use href="#code-path"/>
-                    </svg>
-                 ${e.liveview?"":"<span>Source Code</span>"}
-                </div>
-                 ${e.liveview?`<div id="work-item-orange-button-${e.id}" class="work-item-orange-button small-button center orange-hover">Live View</div>`:""}
+                 ${e.liveview?`<div id="work-item-orange-button-${e.id}" class="work-item-orange-button small-button center orange-hover" style="width: 100%; margin: 0;">Live View</div>`:""}
             ` : e.twitter ? t = `
             <div id="work-item-orange-button-${e.id}" class="work-item-orange-button small-button center orange-hover" style="width: 100%; margin: 0;">
                 <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="24px" height="24px" style="margin-right: 5px">    
@@ -24314,9 +24313,7 @@ class lM {
         const t = document.getElementById("work-item-" + e.id);
         t.addEventListener("click", () => {
             t.classList.contains("work-inactive-item-container") && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.experience.ui.work.cards.currentItemIndex = -e.id + 4, this.experience.ui.work.cards.updatePositions(), this.sounds.play("buttonClick"))
-        }), e.github ? (document.getElementById("work-item-gray-button-" + e.id).addEventListener("click", () => {
-            window.open(e.github, "_blank").focus()
-        }), e.liveview && document.getElementById("work-item-orange-button-" + e.id).addEventListener("click", () => {
+        }), e.github ? (e.liveview && document.getElementById("work-item-orange-button-" + e.id).addEventListener("click", () => {
             window.open(e.liveview, "_blank").focus()
         })) : e.twitter && document.getElementById("work-item-orange-button-" + e.id).addEventListener("click", () => {
             window.open(e.twitter, "_blank").focus()
@@ -24372,10 +24369,6 @@ class uM extends Ai {
             class: ".menu-item",
             type: "circle",
             color: "#FF923E"
-        }, {
-            class: ".work-item-gray-button",
-            type: "pointer",
-            color: "#091434"
         }, {
             class: ".small-button",
             type: "pointer",
