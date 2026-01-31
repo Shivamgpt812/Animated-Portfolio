@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+   <url>
+      <loc>https://shivamweb.in/</loc>
+      <lastmod>2026-01-31</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+      <image:image>
+         <image:loc>https://shivamweb.in/images/projects/Portfolio.png</image:loc>
+         <image:title>Shivamweb Creative Portfolio</image:title>
+         <image:caption>Official Portfolio of Shivam Gupta - Shivamweb.in - Creative Developer &amp; UI/UX Designer</image:caption>
+      </image:image>
+      <image:image>
+         <image:loc>https://shivamweb.in/images/projects/Raj%20Laxmi%20Infrastructure.png</image:loc>
+         <image:title>Raj Laxmi Infrastructure by Shivamweb</image:title>
+         <image:caption>Construction Website Project developed by Shivamweb</image:caption>
+      </image:image>
+      <image:image>
+         <image:loc>https://shivamweb.in/images/projects/MarkRenown.png</image:loc>
+         <image:title>MarkRenown Project - Shivamweb</image:title>
+         <image:caption>Web Development Project Showcase on Shivamweb.in</image:caption>
+      </image:image>
+      <image:image>
+         <image:loc>https://shivamweb.in/images/projects/AccoreVacations.png</image:loc>
+         <image:title>AccoreVacations Project - Shivamweb</image:title>
+         <image:caption>Travel Website Design by Shivamweb</image:caption>
+      </image:image>
+      <image:image>
+         <image:loc>https://shivamweb.in/images/projects/TechEnsurex.png</image:loc>
+         <image:title>TechEnsureX Project - Shivamweb</image:title>
+         <image:caption>Tech Solutions Website by Shivamweb</image:caption>
+      </image:image>
+      <image:image>
+         <image:loc>https://shivamweb.in/images/projects/Sky%20Wings.png</image:loc>
+         <image:title>Sky Wings Project - Shivamweb</image:title>
+         <image:caption>Aviation Website Project by Shivamweb</image:caption>
+      </image:image>
+   </url>
+</urlset>

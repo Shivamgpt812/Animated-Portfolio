@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shivamweb.in/sitemap.xml
