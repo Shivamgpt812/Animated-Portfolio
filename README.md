@@ -31,6 +31,6 @@ Contributions are welcome! If you have suggestions or improvements, feel free to
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ### 📩 Contact
-Feel free to reach out to me via email or connect with me on [LinkedIn](https://www.linkedin.com/in/shivam-gupta-637b94288/).
+Feel free to reach out to me via email or connect with me on [LinkedIn](https://www.linkedin.com/in/shivam-gupta-b816aa391/).
 
 
