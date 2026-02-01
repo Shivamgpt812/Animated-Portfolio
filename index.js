@@ -24138,18 +24138,18 @@ class sM {
 }
 class rM {
     constructor() {
-        he(this, "positionStyles", ["transform: translateX(-410%) scale(0.9);", "transform: translateX(-310%) scale(0.9); ", "transform: translateX(-210%) scale(0.9);", "transform: translateX(-110%) scale(0.9); ", "transform: translateX(0%);", "transform: translateX(110%) scale(0.9);", "transform: translateX(210%) scale(0.9)", "transform: translateX(310%) scale(0.9);", "transform: translateX(410%) scale(0.9);"]);
+        he(this, "positionStyles", ["transform: translateX(-610%) scale(0.9);", "transform: translateX(-510%) scale(0.9);", "transform: translateX(-410%) scale(0.9);", "transform: translateX(-310%) scale(0.9);", "transform: translateX(-210%) scale(0.9);", "transform: translateX(-110%) scale(0.9);", "transform: translateX(0%);", "transform: translateX(110%) scale(0.9);", "transform: translateX(210%) scale(0.9);", "transform: translateX(310%) scale(0.9);", "transform: translateX(410%) scale(0.9);", "transform: translateX(510%) scale(0.9);", "transform: translateX(610%) scale(0.9);"]);
         he(this, "domElements", {
             section: document.getElementById("work-section"),
             backButton: document.getElementById("work-back-button"),
             nextButton: document.getElementById("work-next-button")
         });
-        he(this, "currentItemIndex", 2);
+        he(this, "currentItemIndex", 6);
         he(this, "itemsAreMoving", !0);
         this.experience = new ye, this.gestures = this.experience.gestures, this.render = this.experience.ui.work.render, this.sounds = this.experience.sounds, this.scroll = this.experience.ui.scroll, this.sizes = this.experience.sizes, this.addButtonEventListeners(), this.initSwipes(), this.updatePositions(!0), this.onArrowClick(), this.sizes.on("portrait", () => this.onOrientationChange()), this.sizes.on("landscape", () => this.onOrientationChange())
     }
     onOrientationChange() {
-        this.currentItemIndex = 2, this.updatePositions()
+        this.currentItemIndex = 6, this.updatePositions()
     }
     addButtonEventListeners() {
         this.domElements.backButton.addEventListener("click", () => {
@@ -24173,7 +24173,7 @@ class rM {
         this.isCurrentSwipeElement && (e == "right" ? this.moveForward() : this.moveBack())
     }
     moveBack() {
-        this.currentItemIndex != 4 && !this.itemsAreMoving && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.currentItemIndex++, this.updatePositions())
+        this.currentItemIndex != 6 && !this.itemsAreMoving && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.currentItemIndex++, this.updatePositions())
     }
     moveForward() {
         this.currentItemIndex != 0 && !this.itemsAreMoving && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.currentItemIndex--, this.updatePositions())
@@ -24186,11 +24186,11 @@ class rM {
     updatePositions(e = !1) {
         (!this.itemsAreMoving || e) && (this.render.items.forEach(t => {
             const n = this.render.items.indexOf(t);
-            document.getElementById("work-item-" + t.id).style = this.positionStyles[n + this.currentItemIndex], n + this.currentItemIndex != 4 ? document.getElementById("work-item-" + t.id).classList.add("work-inactive-item-container") : document.getElementById("work-item-" + t.id).classList.remove("work-inactive-item-container")
+            document.getElementById("work-item-" + t.id).style = this.positionStyles[n + this.currentItemIndex], n + this.currentItemIndex != 6 ? document.getElementById("work-item-" + t.id).classList.add("work-inactive-item-container") : document.getElementById("work-item-" + t.id).classList.remove("work-inactive-item-container")
         }), this.itemsAreMoving = !0, P.delayedCall(.5, () => this.itemsAreMoving = !1), this.updateNavigation())
     }
     updateNavigation() {
-        this.currentItemIndex == 0 ? (this.domElements.nextButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : this.currentItemIndex == 4 ? (this.domElements.backButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : (this.domElements.nextButton.classList.remove("work-disabled-navigation-button"), this.domElements.backButton.classList.remove("work-disabled-navigation-button"))
+        this.currentItemIndex == 0 ? (this.domElements.nextButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : this.currentItemIndex == 6 ? (this.domElements.backButton.classList.add("work-disabled-navigation-button"), this.experience.ui.hoverIcon.setupDefault()) : (this.domElements.nextButton.classList.remove("work-disabled-navigation-button"), this.domElements.backButton.classList.remove("work-disabled-navigation-button"))
     }
 }
 const oM = [{
@@ -24229,7 +24229,7 @@ const oM = [{
         liveview: "https://skywingswebsite.netlify.app/",
         github: "https://github.com/Shivamgpt812/Skywings---The-Ultimate-Travel-Platform",
         alt: "Sky Wings",
-    },{
+    }, {
         id: 4,
         name: "Raj Laxmi Infrastructure",
         description: "A professional construction and infrastructure company website showcasing projects, services, and company portfolio. Built to establish trust and digital presence in the real estate sector.",
@@ -24238,6 +24238,24 @@ const oM = [{
         liveview: "https://rajlaxmiinfrastructure.com/",
         github: "#",
         alt: "Raj Laxmi Infrastructure Construction Website"
+    }, {
+        id: 5,
+        name: "Creative Portfolio",
+        description: "A highly interactive 3D portfolio website featuring immersive scrolling, WebGL animations, and a unique character-driven storytelling experience.",
+        image: "images/projects/Portfolio.png",
+        tags: ["javascript", "webgl", "html", "css", "uiux"],
+        liveview: "https://shivamweb.in",
+        github: "https://github.com/Shivamgpt812/Creative-Portfolio",
+        alt: "Creative Portfolio"
+    }, {
+        id: 6,
+        name: "PrimeTerraX",
+        description: "A modern real estate platform simplifying property search and management with advanced filtering, virtual tours, and secure transaction handling.",
+        image: "images/projects/PrimeTerraX.png",
+        tags: ["javascript", "react", "nodejs", "realestate", "uiux"],
+        liveview: "https://primeterrax.com",
+        github: "#",
+        alt: "PrimeTerraX"
     }],
     aM = {
         html: '<div class="work-item-tag" style="background: white; border: 1px solid #7C8594; color: #7C8594">HTML</div>',
@@ -24250,7 +24268,8 @@ const oM = [{
         react: '<div class="work-item-tag" style="background: #61DAFB; color: #000;">React</div>',
         nodejs: '<div class="work-item-tag" style="background: #339933;">Node.js</div>',
         uiux: '<div class="work-item-tag" style="background: #FF61F6;">UI/UX</div>',
-        responsive: '<div class="work-item-tag" style="background: #20C997;">Responsive</div>'
+        responsive: '<div class="work-item-tag" style="background: #20C997;">Responsive</div>',
+        realestate: '<div class="work-item-tag" style="background: #FF5733; color: #fff;">Real Estate</div>'
     };
 class lM {
     constructor() {
@@ -24312,7 +24331,7 @@ class lM {
     addEventListenersToCard(e) {
         const t = document.getElementById("work-item-" + e.id);
         t.addEventListener("click", () => {
-            t.classList.contains("work-inactive-item-container") && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.experience.ui.work.cards.currentItemIndex = -e.id + 4, this.experience.ui.work.cards.updatePositions(), this.sounds.play("buttonClick"))
+            t.classList.contains("work-inactive-item-container") && document.getElementById("work-item-0").classList.contains("work-item-container-transition") && (this.experience.ui.work.cards.currentItemIndex = -e.id + 6, this.experience.ui.work.cards.updatePositions(), this.sounds.play("buttonClick"))
         }), e.github ? (e.liveview && document.getElementById("work-item-orange-button-" + e.id).addEventListener("click", () => {
             window.open(e.liveview, "_blank").focus()
         })) : e.twitter && document.getElementById("work-item-orange-button-" + e.id).addEventListener("click", () => {
@@ -25108,18 +25127,17 @@ class yM {
     }
     async sendMail() {
         this.showContainer("loading");
-        const e = await fetch("/api/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: this.fields[0].input.value,
-                email: this.fields[1].input.value,
+        try {
+            await emailjs.send("service_vn4ya6a", "template_wpbqqbe", {
+                from_name: this.fields[0].input.value,
+                from_email: this.fields[1].input.value,
                 message: this.fields[2].input.value
-            })
-        });
-        this.showResult(e)
+            });
+            this.showResult({ status: 200 });
+        } catch (error) {
+            console.error(error);
+            this.showResult({ status: 500 });
+        }
     }
     hideAllContainers() {
         this.domElements.formContainer.classList.add("hide"), this.domElements.resultContainer.classList.add("hide"), this.domElements.loadingContainer.classList.add("hide")
@@ -25526,7 +25544,7 @@ class wM {
 class MM {
     constructor() {
         this.experience = new ye, this.resources = this.experience.resources, this.world = this.experience.world, this.sizes = this.experience.sizes, this.resources.on("ready", () => {
-            this.transition = new sM, this.scrollIcon = new qu(0), this.scrollScrollIcon = new qu(1), this.landingPage = new nM, this.scroll = new iM, this.sections = new _M, this.soundButton = new pM, this.menu = {}, this.menu.main = new fM, this.menu.items = new gM, this.about = {}, this.about.render = new hM, this.about.animations = new mM, this.about.scrollLines = new wM, this.work = {}, this.work.render = new lM, this.work.cards = new rM, this.work.scrollEvents = new bM, this.contact = {}, this.contact.form = new yM, this.contact.animationEvents = new xM, this.header = new dM, this.hoverIcon = new uM
+            this.transition = new sM, this.scrollIcon = new qu(0), this.scrollScrollIcon = new qu(1), this.landingPage = new nM, this.scroll = new iM, this.hoverIcon = new uM, this.sections = new _M, this.soundButton = new pM, this.menu = {}, this.menu.main = new fM, this.menu.items = new gM, this.about = {}, this.about.render = new hM, this.about.animations = new mM, this.about.scrollLines = new wM, this.work = {}, this.work.render = new lM, this.work.cards = new rM, this.work.scrollEvents = new bM, this.contact = {}, this.contact.form = new yM, this.contact.animationEvents = new xM, this.header = new dM
         }), this.intro = new vM
     }
     resize() {
