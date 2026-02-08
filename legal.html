@@ -33,11 +33,17 @@
             right: 0;
             margin: 0 auto;
             max-width: calc(100% - 60px);
-            width: 1440px;
+            width: 100%;
             height: auto !important;
             opacity: 1 !important;
             pointer-events: none;
             z-index: 6000;
+        }
+
+        @media (max-aspect-ratio: 12/10) {
+            #overlay-container {
+                max-width: calc(100% - 30px);
+            }
         }
 
         #header-container {
