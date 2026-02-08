@@ -1,10 +1,10 @@
 # Animated Portfolio
-Welcome to my Animated Portfolio! This project is a personal website to showcase my skills, projects, and experience in a visually appealing and interactive manner. The portfolio features smooth animations and responsive design, ensuring a great experience across all devices.
+Welcome to my Creative Portfolio! This project is a personal website to showcase my skills, work, and experience in a visually appealing and interactive manner. The portfolio features smooth animations and responsive design, ensuring a great experience across all devices.
 
 ### ✨ Features
 - **Responsive Design**: Works seamlessly on desktops, tablets, and mobile devices.
 - **Smooth Animations**: Engaging animations to enhance user experience.
-- **Interactive Elements**: Interactive projects section with detailed information on each project.
+- **Interactive Elements**: Interactive work section with detailed information on each piece.
 - **Contact Form**: Easy-to-use contact form for reaching out.
 - **Customizable**: Easily customizable to fit your personal branding.
 
@@ -18,7 +18,7 @@ Welcome to my Animated Portfolio! This project is a personal website to showcase
 ### 🎯 Usage
 - **Home Page**: Introduction and brief overview.
 - **About Me**: Detailed information about your background and skills.
-- **Projects**: Showcase of your projects with descriptions and links.
+- **Work**: Showcase of your creative work with descriptions and links.
 - **Contact**: Contact form for visitors to reach out.
 
 ### 🎬 Demo

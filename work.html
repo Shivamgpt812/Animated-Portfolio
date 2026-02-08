@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Work - Shivamweb.in</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Work by Shivam Gupta">
+    <meta name="keywords" content="webgl, threejs, portfolio, reactjs, react, frontend developer">
+    <link rel="canonical" href="https://shivamweb.in/work.html" />
+    <meta property="og:site_name" content="Shivamweb.in">
+    <meta property="og:title" content="My Work - Shivamweb.in">
+    <meta property="og:description" content="Work by Shivam">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shivamweb.in/work.html">
+    <meta property="og:image" content="https://shivamweb.in/images/projects/Portfolio.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="627">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Shivam">
+    <meta name="twitter:creator" content="@Shivam">
+    <meta name="twitter:title" content="My Work - Shivam">
+    <meta name="twitter:description" content="Work by Shivam">
+    <meta name="twitter:image" content="https://shivamweb.in/images/projects/Portfolio.png">
+    <meta name="theme-color" content="#EFE7DC">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Shivamweb.in">
+    <meta name="apple-mobile-web-app-status-bar-style" content="translucent">
+    <link rel="mask-icon" href="/head/logo.svg" color="#091434">
+    <link rel="icon" type="image/png" href="/head/favion-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/head/favion-16x16.png" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="120x120" href="/head/apple-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/head/apple-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/head/apple-180.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/head/apple-192.png">
+
+    <!-- Using the existing CSS -->
+    <link rel="stylesheet" href="/index.css">
+    <!-- Adding GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        /* Base Overrides for Static Page */
+        html,
+        body {
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            height: auto !important;
+            display: block !important;
+            background-color: #F5EFE6;
+            margin: 0;
+            padding: 0;
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Ensure Header is Visible */
+        #overlay-container {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: none !important;
+            /* Shifting logo left by allowing full width */
+            padding-left: 60px;
+            /* Some breathing room from the extreme edge */
+            height: auto !important;
+            opacity: 1 !important;
+            pointer-events: none;
+            z-index: 3000;
+        }
+
+        #header-container {
+            pointer-events: none;
+        }
+
+        /* Make logo and buttons interactive */
+        #header-logo-svg,
+        #menu-button-scale-container,
+        #logo-click-container {
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+
+        /* Hide things we don't need from the header/overlay */
+        #sound-button-scale-container,
+        .scroll-container {
+            display: none !important;
+        }
+
+        /* Fix for blue screen: Constrain logo background size */
+        #header-logo-svg,
+        #logo-click-container,
+        #logo-dark-background {
+            position: absolute;
+            top: 30px !important;
+        }
+
+        #logo-dark-background {
+            width: 56px !important;
+            height: 60px !important;
+            clip-path: url(#logo-clip-path) !important;
+            -webkit-clip-path: url(#logo-clip-path) !important;
+        }
+
+        #logo-white-background {
+            height: 100% !important;
+        }
+
+        /* Projects Layout */
+        #projects-main-content {
+            padding-top: 120px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-width {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .section-header-container {
+            font-size: 3rem;
+            color: #091434;
+            font-family: 'Electrolize', sans-serif;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .section-subheader-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .section-subheader-container hr {
+            width: 50px;
+            border: 1px solid #091434;
+            margin-right: 15px;
+        }
+
+        .section-subheader-container h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #091434;
+            margin: 0;
+        }
+
+        /* Grid System */
+        #projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #091434;
+            margin-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            color: #697484;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            margin-top: auto;
+        }
+
+        .project-button {
+            display: inline-block;
+            padding: 10px 24px;
+            background: transparent;
+            border: 2px solid #091434;
+            border-radius: 12px;
+            color: #091434;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .project-button:hover {
+            background: #091434;
+            color: white;
+        }
+
+        /* Contact Section Overrides */
+        #contact-section {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            position: relative;
+            background: #F5EFE6;
+            min-height: auto !important;
+            padding: 80px 0;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        #contact-container {
+            width: 580px;
+            max-width: 90%;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contact-header-container {
+            width: 580px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: #F5EFE6;
+            padding-bottom: 30px;
+            width: 100%;
+        }
+
+        /* Mobile Adapts */
+        @media (max-width: 768px) {
+            #projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-header-container {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Menu Styles - Replicating index.css */
+        #menu-container {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: calc(300px + (100vw - 90rem)/2);
+            /* Matches index.css */
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            max-width: 45vw;
+            /* Matches index.css */
+            box-sizing: border-box;
+            padding: 50px 50px 70px;
+            /* Matches index.css */
+            transform: translateX(100%);
+            /* Start hidden off-screen to the right */
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+        }
+
+        #menu-container.menu-active {
+            transform: translateX(0);
+            /* Slide in */
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+        }
+
+        #menu-content-container {
+            position: relative;
+            height: 100%;
+            width: 240px;
+            /* Matches index.css */
+            display: flex;
+            flex-direction: column;
+        }
+
+        #menu-items-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .menu-items-column-container {
+            width: 100%;
+        }
+
+        .menu-item {
+            border-radius: 15px;
+            margin: 15px 0;
+            font-weight: 600;
+            font-size: 1.8rem;
+            /* Matches index.css */
+            width: fit-content;
+            color: #091434;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: color 0.3s;
+        }
+
+        .menu-item:hover {
+            color: #234de6;
+        }
+
+        /* Menu Button Animation & Style */
+        .menu-button-bar {
+            width: 26px;
+            /* Matches index.css */
+            height: 4px;
+            /* Matches index.css */
+            background: #091434;
+            margin: 2.5px;
+            /* Matches index.css */
+            border-radius: 2px;
+            /* Matches index.css */
+            transition: all 0.3s ease;
+            position: relative;
+            transform-origin: center;
+        }
+
+        /* When active, transform to X */
+        .menu-button-active .menu-button-bar {
+            background-color: #091434 !important;
+            /* Ensure contrast on white menu */
+        }
+
+        .menu-button-active #menu-button-bar-0 {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-button-active #menu-button-bar-1 {
+            opacity: 0;
+        }
+
+        .menu-button-active #menu-button-bar-2 {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        #menu-social-container {
+            margin-right: 15px;
+        }
+
+        #menu-social-container .social-icon {
+            margin-right: 15px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        #menu-social-container .social-icon:hover {
+            filter: grayscale(0%);
+        }
+
+        #music-credit-container {
+            margin-bottom: 10px;
+        }
+
+        #music-credit-container span,
+        #music-credit-container a {
+            font-size: 0.9rem;
+            color: #7c8594;
+        }
+
+        @media (max-width: 768px) {
+            #menu-container {
+                width: 100vw;
+                /* Full width on mobile */
+                max-width: none;
+                padding: 30px;
+            }
+
+            .menu-item {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Custom Cursor Styles */
+        #hover-icon {
+            position: fixed;
+            border-radius: 50%;
+            border-style: solid;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: height 0.2s, width 0.2s, border-color 0.2s, border-width 0.2s;
+            opacity: 0;
+        }
+
+        /* Hover icon content (arrow) */
+        #hover-content {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hover-spread {
+            height: 16px;
+            min-width: 16px;
+            background: #234de6;
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        @keyframes spread {
+            0% {
+                height: 16px;
+                width: 16px;
+                opacity: 0.1;
+            }
+
+            100% {
+                height: 50px;
+                width: 50px;
+                opacity: 0;
+            }
+        }
+
+        /* Preloader Styles */
+        #intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #F5EFE6;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: wait;
+        }
+
+        #intro-container.hide {
+            display: none !important;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Transition Styles */
+        #transition-container {
+            position: fixed;
+            z-index: 10000;
+            width: 200vw;
+            bottom: -500%;
+            /* Ensure it starts completely off-screen to avoid 'blue screen' issue */
+            transform: rotate(20deg);
+            left: -40%;
+            pointer-events: none;
+            display: block;
+        }
+
+        #transition-container.hide {
+            display: none;
+        }
+
+        #transition-wave-svg {
+            transform: translateY(20px);
+        }
+
+        #transition-wave-svg-bottom {
+            transform: rotate(180deg) translateY(20px);
+        }
+
+        #transition-push {
+            height: 200vh;
+            background: #234de6;
+        }
+
+        .showTransition {
+            animation: showTransition ease-in 0.7s forwards;
+        }
+
+        .hideTopTransition {
+            animation: hideTopTransition ease-in 0.7s forwards;
+        }
+
+        @keyframes showTransition {
+            0% {
+                bottom: -450%;
+                left: -60%;
+            }
+
+            100% {
+                bottom: -120%;
+                left: -40%;
+            }
+        }
+
+        @keyframes hideTopTransition {
+            0% {
+                bottom: -120%;
+                left: -40%;
+            }
+
+            100% {
+                bottom: 100%;
+                left: 40%;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init("Cl5uR-dzvfwx5Pjpg");
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!--Intro-->
+    <div id="intro-container" class="center column">
+        <svg id="intro-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="120" width="120">
+            <defs>
+                <path id="logo-path"
+                    d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42">
+                </path>
+                <mask id="intro-mask">
+                    <rect fill="black" height="61" width="61"></rect>
+                    <rect fill="white" height="61" width="61" id="loading-rect" y="61"></rect>
+                </mask>
+            </defs>
+            <use href="#logo-path" fill="#091434" opacity=".1">
+            </use>
+            <use href="#logo-path" fill="#091434" mask="url(#intro-mask)"></use>
+        </svg>
+    </div>
+
+    <!--Loading Container-->
+    <div id="transition-container" class="hide">
+        <!--Top Wave-->
+        <svg id="transition-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <defs>
+                <path fill="#FF923E" id="transition-wave-path"
+                    d="M0,128L21.8,138.7C43.6,149,87,171,131,154.7C174.5,139,218,85,262,69.3C305.5,53,349,75,393,101.3C436.4,128,480,160,524,186.7C567.3,213,611,235,655,213.3C698.2,192,742,128,785,122.7C829.1,117,873,171,916,186.7C960,203,1004,181,1047,160C1090.9,139,1135,117,1178,96C1221.8,75,1265,53,1309,53.3C1352.7,53,1396,75,1418,85.3L1440,96L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z">
+                </path>
+            </defs>
+            <use href="#transition-wave-path"></use>
+        </svg>
+
+        <!--Center Fill-->
+        <div id="transition-push"></div>
+
+        <!--Bottom Wave-->
+        <svg id="transition-wave-svg-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <use href="#transition-wave-path"></use>
+        </svg>
+    </div>
+
+    <!-- Overlay Header -->
+    <div id="overlay-container" class="content-width">
+        <header id="header-container">
+            <!--Logo-->
+            <svg id="header-logo-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="60" width="56">
+                <defs>
+                    <path id="logo-path"
+                        d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42">
+                    </path>
+                    <clipPath id="logo-clip-path">
+                        <use fill="white" href="#logo-path" transform="scale(0.87)"></use>
+                    </clipPath>
+                </defs>
+            </svg>
+
+            <div id="logo-dark-background">
+                <div id="logo-white-background" style="width: 0px;"></div>
+            </div>
+
+            <div id="logo-click-container" onclick="window.location.href='index.html'"
+                style="cursor: pointer; z-index: 10;"></div>
+
+            <!-- Home Button (Restored Menu Style) -->
+            <div id="menu-button-scale-container" style="position: fixed; z-index: 9999; right: 60px; top: 30px;">
+                <div id="menu-button" class="center column overlay-button orange-hover">
+                    <div id="menu-button-bar-0" class="menu-button-bar"></div>
+                    <div id="menu-button-bar-1" class="menu-button-bar"></div>
+                    <div id="menu-button-bar-2" class="menu-button-bar"></div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Menu Container (Hidden by default) -->
+    <div id="menu-container" class="column">
+        <div id="menu-content-container" class="column">
+            <!--Menu Items-->
+            <div id="menu-items-container">
+                <div class="column menu-items-column-container">
+                    <span class="menu-item" onclick="window.location.href='index.html'">Home</span>
+                    <span class="menu-item" onclick="window.location.href='index.html#about-section'">About</span>
+                </div>
+                <div class="column menu-items-column-container">
+                    <span class="menu-item" onclick="window.location.href='index.html#work-section'">Work</span>
+                    <span class="menu-item" onclick="window.location.href='index.html#contact-section'">Contact</span>
+                </div>
+            </div>
+            <!--Social Link-->
+            <div id="menu-social-container" class="row">
+                <a tabindex="-1" target="_blank" href="https://www.twitter.com"><img class="social-icon"
+                        src="/icons/twitter-icon.png" alt="twitter Menu Icon" height="28" width="28"></img></a>
+                <a tabindex="-1" target="_blank" href="https://github.com/Shivamgpt812"><img class="social-icon"
+                        alt="Github Menu Icon" height="28" width="28" src="/icons/github-icon.png"></img></a>
+                <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/"> <img
+                        class="social-icon " alt="Linkedin Menu Icon" height="28" width="28"
+                        src="/icons/linkedin-icon.png"></img></a>
+                <a tabindex="-1" href="mailto:shivamweb.work@gmail.com"> <img class="social-icon" alt="Email Menu Icon"
+                        height="28" width="28" src="/icons/mail-icon.png"></img></a>
+            </div>
+            <hr>
+            <!--Music Credits-->
+            <div id="music-credit-container" class="row">
+                <span>
+                    Music produced by
+                    <a tabindex="-1" href="https://soundcloud.com/hmsurf" target="_blank">Vali</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Projects Content -->
+    <div id="projects-main-content" class="content-width">
+        <div class="column" style="width: 100%;">
+            <div class="section-subheader-container">
+                <hr>
+                <h5>Portfolio</h5>
+            </div>
+            <h1 class="section-header-container">
+                My Work
+            </h1>
+        </div>
+
+        <div id="projects-grid">
+            <!-- Projects will be injected here -->
+        </div>
+    </div>
+
+
+    <!--Contact Container-->
+    <section id="contact-section" class="content-width">
+        <div class="column" id="contact-header-container">
+            <div class="section-subheader-container">
+                <hr>
+                <h5>Say Hey! ✌️</h5>
+            </div>
+            <h1 class="section-header-container">
+                Contact me
+            </h1>
+        </div>
+
+        <div id="contact-container">
+            <!--Form Container-->
+            <div id="contact-form-container" class="column contact-container">
+                <div id="contact-name-input" class="input-container column">
+                    <div class="row">
+                        <label for="contact-name-input-field">Name :</label>
+                        <span class="error-label hide">Please enter your name.</span>
+                    </div>
+                    <input id="contact-name-input-field" tabindex="1">
+                </div>
+                <div id="contact-email-input" class="input-container column">
+                    <div class="row">
+                        <label for="contact-email-input-field">Email :</label>
+                        <span class="error-label hide">Please enter a valid email address.</span>
+                    </div>
+                    <input id="contact-email-input-field" type="email" tabindex="2">
+                </div>
+                <div id="contact-message-input" class="input-container column">
+                    <div class="row">
+                        <label for="contact-message-input-field">Message :</label>
+                        <span class="error-label hide">Please enter your message.</span>
+                    </div>
+                    <textarea id="contact-message-input-field" tabindex="3"></textarea>
+                </div>
+                <div class="row" id="contact-button-container">
+                    <!--Social Icons-->
+                    <a tabindex="-1" target="_blank" href="https://twitter.com"><img class="social-icon"
+                            src="/icons/twitter-icon.png" alt="twitter contact social icon small 28x28" height="28"
+                            width="28"></img></a>
+                    <a tabindex="-1" target="_blank" href="https://github.com/Shivamgpt812"><img class="social-icon"
+                            alt="github contact social icon small 28x28" height="28" width="28"
+                            src="/icons/github-icon.png"></img></a>
+                    <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/">
+                        <img class="social-icon " alt="linkedin contact social icon small 28x28" height="28" width="28"
+                            src="/icons/linkedin-icon.png"></img></a>
+                    <a tabindex="-1" href="mailto:shivamgpt812@gmail.com"> <img class="social-icon"
+                            alt="email contact social icon small 28x28" height="28" width="28"
+                            src="/icons/mail-icon.png"></img></a>
+                    <!--Submit Button-->
+                    <div id="contact-submit-button" class="small-button orange-hover">
+                        Submit
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact-loading-container" class="center contact-container hide">
+                <h4>Delivering...</h4>
+            </div>
+            <div id="contact-result-container" class="contact-container column center hide">
+                <div id="contact-result-message-container" class="center column"></div>
+                <div class="small-button orange-hover" id="contact-result-button">OK</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="row center">
+        <span>&copy; Shivam Gupta</span>
+        <div id="legal-container" class="row">
+            <a tabindex="-1" class="legal-link" href="legal.html">Legal Notice</a>
+            <a tabindex="-1" class="legal-link" href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <!--Hover Icon-->
+    <div id="hover-icon">
+        <svg id="hover-content" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" height="30" width="30"
+            fill="white">
+            <path id="arrow-path"
+                d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 255.1S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z" />
+        </svg>
+        <div class="hover-spread"></div>
+        <div class="hover-spread"></div>
+    </div>
+
+    <!-- Projects Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Custom Cursor Logic
+            // Custom Cursor Logic
+            const hoverIcon = document.getElementById('hover-icon');
+            const hoverContent = document.getElementById('hover-content');
+            const hoverSpreads = document.querySelectorAll('.hover-spread');
+
+            // Initialize cursor state with RAF for smoothness
+            let mouseX = 0;
+            let mouseY = 0;
+            let cursorX = 0;
+            let cursorY = 0;
+
+            // Initial styles
+            hoverIcon.style.opacity = '1';
+            hoverIcon.style.transform = 'translate(-50%, -50%) scale(1)';
+            hoverIcon.style.pointerEvents = 'none';
+
+            // Track mouse position
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // Smooth animation loop
+            function animateCursor() {
+                // Linear interpolation for smooth trailing effect
+                const dx = mouseX - cursorX;
+                const dy = mouseY - cursorY;
+
+                cursorX += dx * 0.1; // Slower, smoother trail
+                cursorY += dy * 0.1;
+
+                hoverIcon.style.left = cursorX + 'px';
+                hoverIcon.style.top = cursorY + 'px';
+
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Hover interactions using event delegation
+            const interactiveSelectors = 'a, button, input, textarea, .menu-item, .project-card, .overlay-button, .social-icon, .legal-link';
+
+            document.addEventListener('mouseover', (e) => {
+                const target = e.target.closest(interactiveSelectors);
+                if (target) {
+                    hoverIcon.style.width = '50px';
+                    hoverIcon.style.height = '50px';
+                    hoverIcon.style.backgroundColor = 'transparent';
+                    hoverIcon.style.border = '2px solid #234de6';
+                    hoverContent.style.opacity = '1'; // Show SVG arrow
+                }
+            });
+
+            document.addEventListener('mouseout', (e) => {
+                const target = e.target.closest(interactiveSelectors);
+                if (target) {
+                    hoverIcon.style.width = '16px';
+                    hoverIcon.style.height = '16px';
+                    hoverIcon.style.backgroundColor = '#234de6';
+                    hoverIcon.style.border = 'none';
+                    hoverContent.style.opacity = '0'; // Hide SVG arrow
+                }
+            });
+
+            // Click Effect
+            document.addEventListener('mousedown', () => {
+                hoverIcon.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            });
+
+            document.addEventListener('mouseup', () => {
+                hoverIcon.style.transform = 'translate(-50%, -50%) scale(1)';
+
+                // Create a temporary spread element for the ripple
+                const spread = document.createElement('div');
+                spread.classList.add('hover-spread');
+                // Ensure styles for dynamic spread
+                spread.style.height = '16px';
+                spread.style.minWidth = '16px';
+                spread.style.background = '#234de6';
+                spread.style.position = 'absolute';
+                spread.style.opacity = '0.1';
+                spread.style.borderRadius = '50%';
+                spread.style.animation = 'spread 0.5s ease-out forwards';
+
+                hoverIcon.appendChild(spread);
+
+                setTimeout(() => {
+                    spread.remove();
+                }, 500);
+            });
+
+            // Menu Logic
+            const menuButton = document.getElementById('menu-button');
+            const menuContainer = document.getElementById('menu-container');
+            let isMenuOpen = false;
+
+            menuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    menuContainer.classList.add('menu-active');
+                    menuButton.classList.add('menu-button-active');
+                } else {
+                    menuContainer.classList.remove('menu-active');
+                    menuButton.classList.remove('menu-button-active');
+                }
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                const isClickInsideMenu = menuContainer.contains(e.target);
+                const isClickOnButton = menuButton.contains(e.target);
+
+                if (isMenuOpen && !isClickInsideMenu && !isClickOnButton) {
+                    toggleMenu();
+                }
+            });
+
+            const projects = [
+                {
+                    title: "Accore Vacations",
+                    image: "/images/projects/AccoreVacations.png",
+                    description: "A comprehensive vacation planning platform offering curated travel experiences.",
+                    tags: ["Travel", "Booking"],
+                    color: "#FF923E",
+                    link: "https://www.accorevacations.com"
+                },
+                {
+                    title: "Mark Renown",
+                    image: "/images/projects/MarkRenown.png",
+                    description: "Brand identity and digital presence for a leading reputation management firm.",
+                    tags: ["Branding", "Corporate"],
+                    color: "#234de6",
+                    link: "https://www.markrenown.com"
+                },
+                {
+                    title: "Portfolio",
+                    image: "/images/projects/Portfolio.png",
+                    description: "My personal portfolio website showcasing creative development and 3D web experiences.",
+                    tags: ["3D", "Portfolio"],
+                    color: "#091434",
+                    link: "https://shivamweb.in"
+                },
+                {
+                    title: "PrimeTerraX",
+                    image: "/images/projects/PrimeTerraX.png",
+                    description: "Real estate platform specializing in premium land and property acquisitions.",
+                    tags: ["Real Estate", "Platform"],
+                    color: "#00b7ff",
+                    link: "https://primeterrax.com"
+                },
+                {
+                    title: "Raj Laxmi Infrastructure",
+                    image: "/images/projects/Raj Laxmi Infrastructure.png",
+                    description: "Corporate website for a major infrastructure and construction company.",
+                    tags: ["Infrastructure", "Corporate"],
+                    color: "#FF923E",
+                    link: "https://rajlaxmiinfrastructure.com/"
+                },
+                {
+                    title: "Sky Wings",
+                    image: "/images/projects/Sky Wings.png",
+                    description: "Aviation services portal for private jet booking and management.",
+                    tags: ["Aviation", "Service"],
+                    color: "#234de6",
+                    link: "https://skywingswebsite.netlify.app/"
+                },
+                {
+                    title: "TechEnsurex",
+                    image: "/images/projects/TechEnsurex.png",
+                    description: "IT support and consultancy agency website focused on enterprise solutions.",
+                    tags: ["Technology", "Agency"],
+                    color: "#091434",
+                    link: "https://www.techensurex.com"
+                }
+            ];
+
+            const grid = document.getElementById('projects-grid');
+
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                // Make the whole card clickable
+                card.style.cursor = 'pointer';
+                card.onclick = () => window.open(project.link, '_blank');
+
+                let tagsHtml = '';
+                project.tags.forEach(tag => {
+                    tagsHtml += `<span class="project-tag" style="background:${project.color}">${tag}</span>`;
+                });
+
+                card.innerHTML = `
+                    <div class="project-image-container">
+                        <img src="${project.image}" class="project-image" alt="${project.title}">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">${tagsHtml}</div>
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-links">
+                            <a href="${project.link}" target="_blank" class="project-button" style="border-color:${project.color}; color:${project.color}" 
+                               onmouseover="this.style.backgroundColor='${project.color}'; this.style.color='white'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='${project.color}'"
+                               onclick="event.stopPropagation()"> <!-- Prevent double click if card is also clickable -->
+                                Live View
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            // Simple logic for the contact form
+            // EmailJS Contact Form Logic
+            const submitBtn = document.getElementById('contact-submit-button');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', () => {
+                    const nameInput = document.getElementById('contact-name-input-field');
+                    const emailInput = document.getElementById('contact-email-input-field');
+                    const messageInput = document.getElementById('contact-message-input-field');
+
+                    const name = nameInput.value;
+                    const email = emailInput.value;
+                    const message = messageInput.value;
+
+                    // Basic Validation
+                    if (!name || !email || !message) {
+                        alert('Please fill in all fields.');
+                        return;
+                    }
+
+                    submitBtn.innerHTML = 'Sending...';
+
+                    const form = document.getElementById('contact-form-container');
+                    const loading = document.getElementById('contact-loading-container');
+                    const result = document.getElementById('contact-result-container');
+                    const resultMsg = document.getElementById('contact-result-message-container');
+
+                    form.classList.add('hide');
+                    loading.classList.remove('hide');
+
+                    // NOTE: Replace "service_ID" and "template_ID" with your actual EmailJS Service and Template IDs.
+                    // The template parameters (fields) should match what you have set up in your EmailJS dashboard.
+                    const templateParams = {
+                        from_name: name,
+                        from_email: email,
+                        message: message,
+                        to_name: "Shivam"
+                    };
+
+                    emailjs.send("service_vn4ya6a", "template_wpbqqbe", templateParams)
+                        .then(() => {
+                            loading.classList.add('hide');
+                            result.classList.remove('hide');
+                            resultMsg.innerHTML = '<h4>Message Sent!</h4><span>I will get back to you shortly.</span>';
+                        })
+                        .catch((error) => {
+                            console.error('EmailJS Error:', error);
+                            loading.classList.add('hide');
+                            form.classList.remove('hide');
+                            submitBtn.innerHTML = 'Submit';
+                            alert('Failed to send message. Please try again later.');
+                        });
+                });
+            }
+
+            const resultBtn = document.getElementById('contact-result-button');
+            if (resultBtn) {
+                resultBtn.addEventListener('click', () => {
+                    document.getElementById('contact-result-container').classList.add('hide');
+                    document.getElementById('contact-form-container').classList.remove('hide');
+
+                    // Clear inputs
+                    document.getElementById('contact-name-input-field').value = '';
+                    document.getElementById('contact-email-input-field').value = '';
+                    document.getElementById('contact-message-input-field').value = '';
+
+                    document.getElementById('contact-submit-button').innerHTML = 'Submit';
+                });
+            }
+        });
+
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const loadingRect = document.getElementById('loading-rect');
+            const introContainer = document.getElementById('intro-container');
+            const introSvg = document.getElementById('intro-svg');
+            const transitionContainer = document.getElementById('transition-container');
+
+            // 1. Animate loading bar
+            gsap.to(loadingRect, {
+                attr: { y: 0 },
+                duration: 1.5,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    // 2. Shrink logo
+                    gsap.to(introSvg, {
+                        scale: 0,
+                        duration: 0.6,
+                        ease: "back.in(2.5)",
+                        onComplete: () => {
+                            // 3. Start wave transition
+                            transitionContainer.classList.remove('hide');
+                            transitionContainer.classList.add('showTransition');
+
+                            setTimeout(() => {
+                                // 4. Hide intro, show page
+                                introContainer.classList.add('hide');
+                                transitionContainer.classList.remove('showTransition');
+                                transitionContainer.classList.add('hideTopTransition');
+
+                                setTimeout(() => {
+                                    transitionContainer.classList.add('hide');
+                                }, 700);
+                            }, 700);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

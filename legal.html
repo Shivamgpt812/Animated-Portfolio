@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Legal Notice - Shivamweb.in</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        html,
+        body {
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            height: auto !important;
+            display: block !important;
+            background-color: #F5EFE6;
+            margin: 0;
+            padding: 0;
+            scrollbar-width: none;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        #overlay-container {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            max-width: calc(100% - 60px);
+            width: 1440px;
+            height: auto !important;
+            opacity: 1 !important;
+            pointer-events: none;
+            z-index: 6000;
+        }
+
+        #header-container {
+            position: relative;
+            top: 0;
+            width: 100%;
+            padding-top: 15px;
+            pointer-events: none;
+        }
+
+        #header-logo-svg,
+        #logo-click-container,
+        #logo-dark-background {
+            position: absolute;
+            top: 15px;
+            left: 0;
+        }
+
+        #logo-click-container {
+            height: 60px;
+            width: 56px;
+            cursor: pointer;
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        #logo-dark-background {
+            width: 56px !important;
+            height: 60px !important;
+            clip-path: url(#logo-clip-path) !important;
+            -webkit-clip-path: url(#logo-clip-path) !important;
+        }
+
+        #logo-white-background {
+            height: 100% !important;
+        }
+
+        #menu-button-scale-container {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            pointer-events: auto;
+        }
+
+        .overlay-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .menu-button-bar {
+            width: 26px;
+            height: 4px;
+            background: #091434;
+            margin: 2.5px;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .menu-button-active .menu-button-bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-button-active .menu-button-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-button-active .menu-button-bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        #menu-container {
+            position: fixed;
+            right: -100%;
+            width: 400px;
+            max-width: 90%;
+            height: 100%;
+            background: white;
+            z-index: 5000;
+            box-sizing: border-box;
+            padding: 80px 40px;
+            transition: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+        }
+
+        #menu-container.menu-active {
+            right: 0;
+        }
+
+        .menu-item {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #091434;
+            margin: 15px 0;
+            cursor: pointer;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .menu-item:hover {
+            color: #234de6;
+            transform: translateX(10px);
+        }
+
+        #menu-social-container {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .legal-content-main {
+            padding: 120px 30px 80px;
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'Poppins', sans-serif;
+            color: #091434;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            font-family: 'Electrolize', sans-serif;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 25px;
+            color: #697484;
+            font-size: 1.05rem;
+        }
+
+        section {
+            display: block !important;
+            margin-bottom: 60px;
+        }
+
+        .legal-link {
+            transition: color 0.3s;
+            text-decoration: none;
+            color: #7c8594;
+            font-weight: 500;
+        }
+
+        .legal-link:hover {
+            color: #234de6;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        footer {
+            background: #F5EFE6;
+            padding: 40px 0;
+            width: 100%;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        #hover-icon {
+            position: fixed;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: height 0.2s, width 0.2s;
+            opacity: 0;
+        }
+
+        #hover-content {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Preloader Styles */
+        #intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #F5EFE6;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: wait;
+        }
+
+        #intro-container.hide {
+            display: none !important;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #transition-container {
+            position: fixed;
+            z-index: 10000;
+            width: 200vw;
+            bottom: -500%;
+            transform: rotate(20deg);
+            left: -40%;
+            pointer-events: none;
+            display: block;
+        }
+
+        #transition-container.hide {
+            display: none;
+        }
+
+        #transition-wave-svg {
+            transform: translateY(20px);
+        }
+
+        #transition-wave-svg-bottom {
+            transform: rotate(180deg) translateY(20px);
+        }
+
+        #transition-push {
+            height: 200vh;
+            background: #234de6;
+        }
+
+        .showTransition {
+            animation: showTransition ease-in 0.7s forwards;
+        }
+
+        .hideTopTransition {
+            animation: hideTopTransition ease-in 0.7s forwards;
+        }
+
+        @keyframes showTransition {
+            0% {
+                bottom: -450%;
+                left: -60%;
+            }
+
+            100% {
+                bottom: -120%;
+                left: -40%;
+            }
+        }
+
+        @keyframes hideTopTransition {
+            0% {
+                bottom: -120%;
+                left: -40%;
+            }
+
+            100% {
+                bottom: 100%;
+                left: 40%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--Intro-->
+    <div id="intro-container" class="center column">
+        <svg id="intro-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="120" width="120">
+            <defs>
+                <path id="logo-path"
+                    d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42">
+                </path>
+                <mask id="intro-mask">
+                    <rect fill="black" height="61" width="61"></rect>
+                    <rect fill="white" height="61" width="61" id="loading-rect" y="61"></rect>
+                </mask>
+            </defs>
+            <use href="#logo-path" fill="#091434" opacity=".1"></use>
+            <use href="#logo-path" fill="#091434" mask="url(#intro-mask)"></use>
+        </svg>
+    </div>
+
+    <!--Transition wave-->
+    <div id="transition-container" class="hide">
+        <svg id="transition-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <defs>
+                <path fill="#FF923E" id="transition-wave-path"
+                    d="M0,128L21.8,138.7C43.6,149,87,171,131,154.7C174.5,139,218,85,262,69.3C305.5,53,349,75,393,101.3C436.4,128,480,160,524,186.7C567.3,213,611,235,655,213.3C698.2,192,742,128,785,122.7C829.1,117,873,171,916,186.7C960,203,1004,181,1047,160C1090.9,139,1135,117,1178,96C1221.8,75,1265,53,1309,53.3C1352.7,53,1396,75,1418,85.3L1440,96L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z">
+                </path>
+            </defs>
+            <use href="#transition-wave-path"></use>
+        </svg>
+        <div id="transition-push"></div>
+        <svg id="transition-wave-svg-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <use href="#transition-wave-path"></use>
+        </svg>
+    </div>
+
+    <div id="overlay-container">
+        <header id="header-container">
+            <svg id="header-logo-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="60" width="56">
+                <defs>
+                    <path id="logo-path"
+                        d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42">
+                    </path>
+                    <clipPath id="logo-clip-path">
+                        <use fill="white" href="#logo-path" transform="scale(0.87)"></use>
+                    </clipPath>
+                </defs>
+            </svg>
+            <div id="logo-dark-background">
+                <div id="logo-white-background" style="width: 0px;"></div>
+            </div>
+            <div id="logo-click-container" onclick="window.location.href='index.html'"></div>
+
+            <div id="menu-button-scale-container">
+                <div id="menu-button" class="center column overlay-button orange-hover">
+                    <div class="menu-button-bar"></div>
+                    <div class="menu-button-bar"></div>
+                    <div class="menu-button-bar"></div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Menu Container -->
+    <div id="menu-container" class="column">
+        <div id="menu-content-container" class="column">
+            <div id="menu-items-container">
+                <span class="menu-item" onclick="window.location.href='index.html'">Home</span>
+                <span class="menu-item" onclick="window.location.href='index.html#about-section'">About</span>
+                <span class="menu-item" onclick="window.location.href='work.html'">Work</span>
+                <span class="menu-item" onclick="window.location.href='index.html#contact-section'">Contact</span>
+            </div>
+            <div id="menu-social-container">
+                <a href="https://github.com/Shivamgpt812" target="_blank"><img src="/icons/github-icon.png" width="28"
+                        height="28" class="social-icon"></a>
+                <a href="https://www.linkedin.com/in/shivam-gupta-b816aa391/" target="_blank"><img
+                        src="/icons/linkedin-icon.png" width="28" height="28" class="social-icon"></a>
+                <a href="mailto:shivamweb.work@gmail.com"><img src="/icons/mail-icon.png" width="28" height="28"
+                        class="social-icon"></a>
+            </div>
+        </div>
+    </div>
+
+    <main class="legal-content-main fade-in">
+        <h1>Legal Notice</h1>
+
+        <section>
+            <h2>General Information</h2>
+            <p>This website is the personal creative portfolio of <strong>Shivam Gupta</strong>. It serves as a showcase
+                of work, skills, and professional experience in creative development and design.</p>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p>For any inquiries, project proposals, or legal questions, please reach out via email:</p>
+            <p><strong>Email:</strong> <a href="mailto:shivamweb.work@gmail.com"
+                    style="color: #234de6; text-decoration: none;">shivamweb.work@gmail.com</a></p>
+        </section>
+
+        <section>
+            <h2>Intellectual Property & Copyright</h2>
+            <p>The content of this website, including but not limited to the text, graphics, logos, images, code, and
+                the overall design, is the property of Shivam Gupta and is protected by international copyright laws.
+            </p>
+            <p>Unauthorized use, reproduction, or redistribution of any material from this site without prior written
+                permission is strictly prohibited. All rights to the featured work remain with their respective
+                owners or Shivam Gupta as per contractual agreements.</p>
+        </section>
+
+        <section>
+            <h2>Liability for Content</h2>
+            <p>While every effort is made to ensure the accuracy of the information on this website, I cannot guarantee
+                the absolute correctness or completeness of the contents. As a creative showcase, some items may
+                contain conceptual work or prototypes.</p>
+        </section>
+
+        <section>
+            <h2>External Links</h2>
+            <p>This portfolio contains links to external websites of third parties. I have no influence over the
+                contents of these external sites and cannot assume any liability for them. The respective provider or
+                operator of the linked pages is always responsible for their content.</p>
+        </section>
+    </main>
+
+    <footer class="row center fade-in">
+        <div class="content-width row center"
+            style="display: flex; justify-content: space-between; align-items: center; width: 90%;">
+            <span>&copy; Shivam Gupta</span>
+            <div id="legal-container" style="display: flex; gap: 30px;">
+                <a class="legal-link" href="legal.html">Legal Notice</a>
+                <a class="legal-link" href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!--Hover Icon-->
+    <div id="hover-icon">
+        <svg id="hover-content" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" height="30" width="30"
+            fill="white">
+            <path id="arrow-path"
+                d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 255.1S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z" />
+        </svg>
+    </div>
+
+    <script>
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const loadingRect = document.getElementById('loading-rect');
+            const introContainer = document.getElementById('intro-container');
+            const introSvg = document.getElementById('intro-svg');
+            const transitionContainer = document.getElementById('transition-container');
+
+            gsap.to(loadingRect, {
+                attr: { y: 0 },
+                duration: 1.5,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    gsap.to(introSvg, {
+                        scale: 0,
+                        duration: 0.6,
+                        ease: "back.in(2.5)",
+                        onComplete: () => {
+                            transitionContainer.classList.remove('hide');
+                            transitionContainer.classList.add('showTransition');
+                            setTimeout(() => {
+                                introContainer.classList.add('hide');
+                                transitionContainer.classList.remove('showTransition');
+                                transitionContainer.classList.add('hideTopTransition');
+
+                                // Show content with animation
+                                gsap.to(".fade-in", {
+                                    opacity: 1,
+                                    y: 0,
+                                    duration: 1,
+                                    stagger: 0.2,
+                                    ease: "power2.out",
+                                    delay: 0.3
+                                });
+
+                                setTimeout(() => {
+                                    transitionContainer.classList.add('hide');
+                                }, 700);
+                            }, 700);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Cursor Logic
+        const hoverIcon = document.getElementById('hover-icon');
+        const hoverContent = document.getElementById('hover-content');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            hoverIcon.style.opacity = '1';
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            hoverIcon.style.left = cursorX + 'px';
+            hoverIcon.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Menu Logic
+        const menuButton = document.getElementById('menu-button');
+        const menuContainer = document.getElementById('menu-container');
+        let isMenuOpen = false;
+
+        menuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                menuContainer.classList.add('menu-active');
+                menuButton.classList.add('menu-button-active');
+            } else {
+                menuContainer.classList.remove('menu-active');
+                menuButton.classList.remove('menu-button-active');
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !menuContainer.contains(e.target) && !menuButton.contains(e.target)) {
+                toggleMenu();
+            }
+        });
+
+        document.querySelectorAll('a, .legal-link, .menu-item, .social-icon').forEach(el => {
+            el.addEventListener('mouseover', () => {
+                hoverIcon.style.width = '50px';
+                hoverIcon.style.height = '50px';
+                hoverIcon.style.backgroundColor = 'transparent';
+                hoverIcon.style.border = '2px solid #234de6';
+                hoverIcon.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+            el.addEventListener('mouseout', () => {
+                hoverIcon.style.width = '16px';
+                hoverIcon.style.height = '16px';
+                hoverIcon.style.backgroundColor = '#234de6';
+                hoverIcon.style.border = 'none';
+                hoverIcon.style.transform = 'translate(-50%, -50%) scale(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>

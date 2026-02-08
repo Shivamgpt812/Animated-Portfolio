@@ -477,6 +477,23 @@
     padding: 0
 }
 
+/* All Projects Button Override */
+#work-item-7 {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+#work-item-7.work-inactive-item-container {
+    filter: none !important; /* Keep the button colored even if it's not centered */
+    opacity: 0.8 !important;
+}
+
+#work-item-7 * {
+    pointer-events: auto !important; /* Ensure the link is always clickable */
+}
+
 .work-item-image {
     width: calc(100% - 16px);
     margin: 8px 8px 5px;
