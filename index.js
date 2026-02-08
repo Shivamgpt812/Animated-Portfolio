@@ -24357,20 +24357,20 @@ class lM {
     }
 }
 const cM = [{
-    name: "HTML + CSS",
-    width: "80%"
+    name: "React & Next.js",
+    width: "85%"
 }, {
-    name: "JavaScript",
-    width: "50%"
+    name: "Node.js & Backend",
+    width: "75%"
 }, {
-    name: "Python",
-    width: "60%"
+    name: "Sass & Advanced CSS",
+    width: "90%"
 }, {
-    name: "React",
-    width: "40%"
+    name: "Python & AI",
+    width: "70%"
 }, {
-    name: "Machine Learning & AI",
-    width: "60%"
+    name: "Three.js & 3D Web",
+    width: "65%"
 }];
 class hM {
     constructor() {
@@ -24854,7 +24854,8 @@ class mM {
             width: "0%"
         }, {
             width: this.skills[e].width,
-            duration: .3,
+            duration: 1.2,
+            ease: et.easeOut,
             delay: e / 10
         });
         P.fromTo(document.getElementById("about-skills-background"), {
