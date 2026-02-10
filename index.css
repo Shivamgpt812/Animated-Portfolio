@@ -26,6 +26,7 @@
         bottom: -120%;
         left: -40%
     }
+
     to {
         bottom: 100%;
         left: 40%
@@ -42,6 +43,7 @@
         bottom: -450%;
         left: -60%
     }
+
     to {
         bottom: -120%;
         left: -40%
@@ -183,6 +185,7 @@
 
 @media (max-width: 800px),
 (max-height: 800px) {
+
     #scroll-icon,
     #menu-button-scale-container,
     #sound-button-scale-container,
@@ -191,6 +194,7 @@
     #logo-click-container {
         transform: scale(.9)
     }
+
     #sound-button {
         right: 64px
     }
@@ -198,6 +202,7 @@
 
 @media (max-width: 550px),
 (max-height: 550px) {
+
     #scroll-icon,
     #menu-button-scale-container,
     #sound-button-scale-container,
@@ -206,6 +211,7 @@
     #logo-click-container {
         transform: scale(.8)
     }
+
     #sound-button {
         right: 60px
     }
@@ -253,11 +259,13 @@
         max-width: 94%;
         max-height: 80%
     }
+
     #landing-page {
         align-items: flex-start;
         padding-top: 45px;
         background-image: linear-gradient(180deg, #F5EFE6 45%, transparent 50%)
     }
+
     #landing-page-section {
         max-height: 40vh;
         justify-content: center;
@@ -348,7 +356,8 @@
 
 #about-skills-render-container :nth-child(even),
 #about-others-render-container :nth-child(odd) {
-    background: rgba(45, 136, 221, 0.08); /* More subtle background */
+    background: rgba(45, 136, 221, 0.08);
+    /* More subtle background */
 }
 
 .about-skill-container {
@@ -391,18 +400,21 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
     animation: skill-shimmer 2s infinite;
 }
 
 @keyframes skill-shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 #about-svg-about image {
@@ -419,14 +431,34 @@
         justify-content: center;
         padding-bottom: 3vh
     }
+
     #about-content-container {
         max-width: 100%;
         justify-content: flex-start;
         align-items: flex-start
     }
+
     #skills-svg {
         margin-top: 63vh;
         margin-bottom: 90px
+    }
+
+    .about-skill-container {
+        padding: 6px 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start
+    }
+
+    .about-skill-container span {
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 14px
+    }
+
+    .about-skill-bar-container {
+        width: 100%;
+        margin-left: 0
     }
 }
 
@@ -513,12 +545,14 @@
 }
 
 #work-item-7.work-inactive-item-container {
-    filter: none !important; /* Keep the button colored even if it's not centered */
+    filter: none !important;
+    /* Keep the button colored even if it's not centered */
     opacity: 0.8 !important;
 }
 
 #work-item-7 * {
-    pointer-events: auto !important; /* Ensure the link is always clickable */
+    pointer-events: auto !important;
+    /* Ensure the link is always clickable */
 }
 
 .work-item-image {
@@ -629,6 +663,7 @@
         align-items: center;
         justify-content: center
     }
+
     #work-header-container {
         width: 580px;
         max-width: 100%
@@ -779,10 +814,12 @@ line {
         padding: 0;
         min-height: unset
     }
+
     #contact-header-container {
         width: 580px;
         max-width: 100%
     }
+
     #contact-container {
         max-width: 100%;
         width: 580px
@@ -928,13 +965,16 @@ line {
         max-width: unset;
         align-items: center
     }
+
     .menu-items-column-container {
         align-items: center
     }
+
     #menu-social-container,
     #music-credit-container {
         justify-content: center
     }
+
     .active-menu-item:after {
         position: absolute;
         height: 3px;
@@ -947,6 +987,7 @@ line {
         transform: translateY(16px);
         border-radius: 0
     }
+
     .active-menu-item {
         transform: unset
     }
@@ -957,17 +998,21 @@ line {
         font-size: 1.3rem;
         margin: 10px 0
     }
+
     #menu-container .social-icon {
         height: 24px;
         width: 24px
     }
+
     #menu-container hr {
         margin: 15px 0
     }
+
     #music-credit-container a,
     #music-credit-container span {
         font-size: 12px
     }
+
     .menu-items-column-container {
         justify-content: center
     }
@@ -977,6 +1022,7 @@ line {
     #menu-items-container {
         flex-direction: row
     }
+
     #menu-container {
         padding: 30px 30px 45px
     }
@@ -1017,6 +1063,7 @@ footer a:hover {
     footer {
         flex-direction: column !important
     }
+
     #legal-container {
         margin-left: 0
     }
