@@ -24196,7 +24196,7 @@ class rM {
 const oM = [{
     id: 0,
     name: "Markrenown",
-    description: "A cutting-edge marketing platform designed to boost brand recognition through data-driven insights and automated campaigns. Built with scalability and user experience in mind.",
+    description: "Markrenown is a digital marketing platform developed by Shivam Gupta that helps businesses increase brand visibility through automated marketing campaigns and data analytics. This web application by ShivamWeb provides tools for social media management, email marketing, and performance tracking. Designed to boost client engagement by 40% through data-driven marketing automation.",
     image: "images/projects/MarkRenown.png",
     tags: ["javascript", "react", "nodejs", "html", "css", "uiux"],
     liveview: "https://www.markrenown.com",
@@ -24205,7 +24205,7 @@ const oM = [{
 }, {
     id: 1,
     name: "TechEnsureX",
-    description: "Comprehensive security solutions protecting digital assets with advanced encryption and real-time monitoring capabilities. Ensuring safety in an interconnected world.",
+    description: "TechEnsureX is a cybersecurity platform created by Shivam Gupta that provides comprehensive digital protection for businesses. This security solution by ShivamWeb includes real-time threat monitoring, encryption services, and vulnerability assessment tools to safeguard online assets. Protecting businesses from cyber threats with 24/7 automated security monitoring.",
     image: "images/projects/TechEnsurex.png",
     tags: ["javascript", "api", "backend", "html", "css", "responsive"],
     liveview: "https://www.techensurex.com",
@@ -24214,7 +24214,7 @@ const oM = [{
 }, {
     id: 2,
     name: "Accorevacations",
-    description: "Your ultimate vacation planning companion offering personalized itineraries, booking management, and travel recommendations. Experience seamless travel planning like never before.",
+    description: "Accorevacations is a travel planning application built by Shivam Gupta that helps users create personalized vacation itineraries. This platform by ShivamWeb offers features for flight booking, hotel reservations, and destination recommendations to simplify travel planning. Simplifying travel planning with AI-powered recommendations and seamless booking experience.",
     image: "images/projects/AccoreVacations.png",
     tags: ["javascript", "react", "api", "html", "css", "uiux"],
     liveview: "https://www.accorevacations.com",
@@ -24223,7 +24223,7 @@ const oM = [{
 }, {
     id: 3,
     name: "Sky Wings",
-    description: "The ultimate travel platform elevating your journey to new heights! Features flight booking, hotel reservations, and exclusive travel deals in one unified interface.",
+    description: "Sky Wings is a comprehensive travel booking platform developed by Shivam Gupta that combines flight reservations, hotel bookings, and travel deals in one interface. This web application by ShivamWeb demonstrates full-stack development skills with user-friendly travel management features. Designed to reduce travel booking time by 60% with integrated booking solutions.",
     image: "images/projects/Sky Wings.png",
     tags: ["javascript", "react", "nodejs", "html", "css"],
     liveview: "https://skywingswebsite.netlify.app/",
@@ -24232,7 +24232,7 @@ const oM = [{
 }, {
     id: 4,
     name: "Raj Laxmi Infrastructure",
-    description: "A professional construction and infrastructure company website showcasing projects, services, and company portfolio. Built to establish trust and digital presence in the real estate sector.",
+    description: "Raj Laxmi Infrastructure is a professional construction company website built by Shivam Gupta to showcase building projects and services. This responsive website by ShivamWeb features project galleries, service descriptions, and company information for the construction industry. Helping construction companies showcase projects and attract 50% more client inquiries.",
     image: "images/projects/Raj Laxmi Infrastructure.png",
     tags: ["javascript", "html", "css", "responsive", "uiux"],
     liveview: "https://rajlaxmiinfrastructure.com/",
@@ -24241,7 +24241,7 @@ const oM = [{
 }, {
     id: 5,
     name: "Creative Portfolio",
-    description: "A highly interactive 3D portfolio website featuring immersive scrolling, WebGL animations, and a unique character-driven storytelling experience.",
+    description: "Creative Portfolio is an interactive 3D portfolio website created by Shivam Gupta that showcases web development projects through immersive animations. This flagship project by ShivamWeb features WebGL graphics, smooth scrolling effects, and character-based storytelling to demonstrate advanced frontend skills. Demonstrating advanced 3D web capabilities to attract high-value development opportunities.",
     image: "images/projects/Portfolio.png",
     tags: ["javascript", "webgl", "html", "css", "uiux"],
     liveview: "https://shivamweb.in",
@@ -24250,7 +24250,7 @@ const oM = [{
 }, {
     id: 6,
     name: "PrimeTerraX",
-    description: "A modern real estate platform simplifying property search and management with advanced filtering, virtual tours, and secure transaction handling.",
+    description: "PrimeTerraX is a modern real estate platform developed by Shivam Gupta that simplifies property search and management. This web application by ShivamWeb includes advanced filtering options, virtual property tours, and secure transaction handling for real estate professionals and buyers. Revolutionizing real estate transactions with virtual tours and AI-powered property matching.",
     image: "images/projects/PrimeTerraX.png",
     tags: ["javascript", "react", "nodejs", "realestate", "uiux"],
     liveview: "https://primeterrax.com",
@@ -24262,8 +24262,8 @@ const oM = [{
     isLastSlide: true,
     liveview: "work.html",
     alt: "My Work"
-}],
-    aM = {
+}];
+    const aM = {
         html: '<div class="work-item-tag" style="background: white; border: 1px solid #7C8594; color: #7C8594">HTML</div>',
         css: '<div class="work-item-tag" style="background: white; border: 1px solid #7C8594; color: #7C8594">CSS</div>',
         javascript: '<div class="work-item-tag" style="background: #FFB800;">JavaScript</div>',
@@ -24357,20 +24357,14 @@ class lM {
     }
 }
 const cM = [{
-    name: "React & Next.js",
+    name: "React & Next.js - Modern Web Development",
     width: "85%"
 }, {
-    name: "Node.js & Backend",
+    name: "Node.js & Backend - API Development",
     width: "75%"
 }, {
-    name: "Sass & Advanced CSS",
+    name: "Sass & Advanced CSS - UI/UX Design",
     width: "90%"
-}, {
-    name: "Python & AI",
-    width: "70%"
-}, {
-    name: "Three.js & 3D Web",
-    width: "65%"
 }];
 class hM {
     constructor() {
