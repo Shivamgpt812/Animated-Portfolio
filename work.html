@@ -245,6 +245,7 @@
             height: 220px;
             overflow: hidden;
             background: #f0f0f0;
+            position: relative;
         }
 
         .project-image {
@@ -256,6 +257,29 @@
 
         .project-card:hover .project-image {
             transform: scale(1.05);
+        }
+
+        .project-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(9,20,52,0.18) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .project-new-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #FF923E;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(255,146,62,0.4);
         }
 
         .project-content {
@@ -1065,8 +1089,50 @@
                     tags: ["Technology", "Agency"],
                     color: "#091434",
                     link: "https://www.techensurex.com"
+                },
+                {
+                    title: "Keshav Dhiman",
+                    image: "/images/projects/keshav-dhiman.webp",
+                    description: "Personal portfolio and professional showcase for Keshav Dhiman, highlighting skills and achievements with a clean, modern design.",
+                    tags: ["Portfolio", "Personal"],
+                    color: "#7C3AED",
+                    link: "#"
+                },
+                {
+                    title: "Questiva Insights",
+                    image: "/images/projects/questiva-insights.webp",
+                    description: "A data analytics and market research platform delivering actionable business intelligence and consumer insights.",
+                    tags: ["Analytics", "Research"],
+                    color: "#0EA5E9",
+                    link: "#"
+                },
+                {
+                    title: "Supcycle",
+                    image: "/images/projects/supcycle.webp",
+                    description: "Sustainable e-commerce platform focused on upcycled and eco-friendly products, promoting circular economy values.",
+                    tags: ["E-Commerce", "Sustainable"],
+                    color: "#16A34A",
+                    link: "#"
+                },
+                {
+                    title: "Survey Panelgo",
+                    image: "/images/projects/survey-panelgo.webp",
+                    description: "Online survey and market research panel connecting brands with respondents for fast, reliable data collection.",
+                    tags: ["Surveys", "MarketResearch"],
+                    color: "#FF923E",
+                    link: "#"
+                },
+                {
+                    title: "Umonk",
+                    image: "/images/projects/umonk.webp",
+                    description: "Lifestyle and wellness brand website featuring minimalist design, guided practices, and curated mindfulness content.",
+                    tags: ["Lifestyle", "Wellness"],
+                    color: "#B45309",
+                    link: "#"
                 }
             ];
+
+            const newProjectTitles = ["Keshav Dhiman", "Questiva Insights", "Supcycle", "Survey Panelgo", "Umonk"];
 
             const grid = document.getElementById('projects-grid');
 
@@ -1075,28 +1141,36 @@
                 card.className = 'project-card';
                 // Make the whole card clickable
                 card.style.cursor = 'pointer';
-                card.onclick = () => window.open(project.link, '_blank');
+                if (project.link !== '#') {
+                    card.onclick = () => window.open(project.link, '_blank');
+                }
 
                 let tagsHtml = '';
                 project.tags.forEach(tag => {
                     tagsHtml += `<span class="project-tag" style="background:${project.color}">${tag}</span>`;
                 });
 
+                const isNew = newProjectTitles.includes(project.title);
+                const badgeHtml = isNew ? `<span class="project-new-badge">New</span>` : '';
+
                 card.innerHTML = `
                     <div class="project-image-container">
-                        <img src="${project.image}" class="project-image" alt="${project.title}">
+                        <img src="${project.image}" class="project-image" alt="${project.title}" loading="lazy">
+                        <div class="project-image-overlay"></div>
+                        ${badgeHtml}
                     </div>
                     <div class="project-content">
                         <div class="project-tags">${tagsHtml}</div>
                         <h3 class="project-title">${project.title}</h3>
                         <p class="project-description">${project.description}</p>
                         <div class="project-links">
+                            ${project.link !== '#' ? `
                             <a href="${project.link}" target="_blank" class="project-button" style="border-color:${project.color}; color:${project.color}" 
                                onmouseover="this.style.backgroundColor='${project.color}'; this.style.color='white'"
                                onmouseout="this.style.backgroundColor='transparent'; this.style.color='${project.color}'"
-                               onclick="event.stopPropagation()"> <!-- Prevent double click if card is also clickable -->
+                               onclick="event.stopPropagation()">
                                 Live View
-                            </a>
+                            </a>` : `<span class="project-button" style="border-color:#ccc; color:#aaa; cursor:default;">Coming Soon</span>`}
                         </div>
                     </div>
                 `;
