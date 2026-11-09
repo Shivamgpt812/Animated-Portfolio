@@ -4,6 +4,8 @@
   <!-- Dynamic meta tags are injected by JS below -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <meta name="theme-color" content="#EFE7DC">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -80,7 +82,10 @@
     .related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     .rel-card { background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 12px 32px rgba(0,0,0,.06); transition:transform .3s,box-shadow .3s; text-decoration:none; display:flex; flex-direction:column; }
     .rel-card:hover { transform:translateY(-6px); box-shadow:0 24px 56px rgba(0,0,0,.1); }
-    .rel-card-thumb { height:160px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
+    .rel-card-thumb { height:160px; overflow:hidden; position:relative; background:#091434; }
+    .rel-card:hover .rel-card-thumb img { transform:scale(1.06); }
+    .post-hero-image-wrap { margin-top:32px; border-radius:18px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.3); position:relative; }
+    .post-hero-img { width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block; }
     .rel-card-body { padding:20px 22px 24px; flex:1; display:flex; flex-direction:column; }
     .rel-card-body h3 { font-family:'Poppins',sans-serif; font-size:.98rem; font-weight:700; color:#091434; margin:0 0 8px; line-height:1.4; }
     .rel-card-body p  { font-family:'Poppins',sans-serif; font-size:.83rem; color:#697484; line-height:1.6; flex:1; margin:0 0 14px; }
@@ -234,10 +239,10 @@
       </div>
     </div>
     <div id="menu-social-container" class="row">
-      <a tabindex="-1" target="_blank" href="https://www.twitter.com"><img class="social-icon" src="/icons/twitter-icon.png" alt="Twitter" height="28" width="28"></a>
-      <a tabindex="-1" target="_blank" href="https://github.com/Shivamgpt812"><img class="social-icon" alt="Github" height="28" width="28" src="/icons/github-icon.png"></a>
-      <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/"><img class="social-icon" alt="LinkedIn" height="28" width="28" src="/icons/linkedin-icon.png"></a>
-      <a tabindex="-1" href="mailto:shivamweb.work@gmail.com"><img class="social-icon" alt="Email" height="28" width="28" src="/icons/mail-icon.png"></a>
+      <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://x.com/Shivamgpt812" aria-label="Shivam's X / Twitter profile"><img class="social-icon" src="/icons/twitter-icon.png" alt="Twitter" height="28" width="28"></a>
+      <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://github.com/Shivamgpt812" aria-label="Shivam's GitHub profile"><img class="social-icon" alt="Github" height="28" width="28" src="/icons/github-icon.png"></a>
+      <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/" aria-label="Shivam's LinkedIn profile"><img class="social-icon" alt="LinkedIn" height="28" width="28" src="/icons/linkedin-icon.png"></a>
+      <a tabindex="-1" href="mailto:contact@shivamweb.in" aria-label="Send email to Shivam"><img class="social-icon" alt="Email" height="28" width="28" src="/icons/mail-icon.png"></a>
     </div>
     <hr>
     <div id="music-credit-container" class="row">
@@ -298,7 +303,7 @@
 <section id="contact-section" class="content-width" aria-label="Contact section">
   <div class="column" id="contact-header-container">
     <div class="section-subheader-container"><hr><h5>Say Hey! ✌️</h5></div>
-    <h1 class="section-header-container">Contact me</h1>
+    <h2 class="section-header-container">Contact me</h2>
   </div>
   <div id="contact-container">
     <div id="contact-form-container" class="column contact-container">
@@ -313,6 +318,7 @@
       <div id="contact-message-input" class="input-container column">
         <div class="row"><label for="contact-message-input-field">Message :</label><span class="error-label hide">Please enter your message.</span></div>
         <textarea id="contact-message-input-field" tabindex="3"></textarea>
+        <input id="contact-hp" name="website_hp" type="text" style="display:none!important;" tabindex="-1" autocomplete="off">
       </div>
       <div class="row" id="contact-button-container">
         <button id="contact-submit-button" class="big-button orange-hover" tabindex="4">Submit</button>
@@ -346,7 +352,11 @@
 <script>
 // ─── Read slug from URL ───────────────────────────────────────────────────────
 const urlParams = new URLSearchParams(window.location.search);
-const slug = urlParams.get('slug') || '';
+let slug = urlParams.get('slug') || '';
+if (!slug) {
+  const match = window.location.pathname.match(/\/blogs\/([^/]+)\.html/);
+  if (match) slug = match[1];
+}
 const blog = getBlogBySlug(slug);
 
 // ─── Inject meta tags dynamically ─────────────────────────────────────────────
@@ -360,7 +370,15 @@ function injectMeta(blog) {
   };
 
   setMeta('meta[name="description"]', 'content', blog.metaDescription);
-  setMeta('link[rel="canonical"]', 'href', `https://shivamweb.in/blogs/blog-post.html?slug=${blog.slug}`);
+
+  // Fix canonical tag
+  let canEl = document.querySelector('link[rel="canonical"]');
+  if (!canEl) {
+    canEl = document.createElement('link');
+    canEl.setAttribute('rel', 'canonical');
+    document.head.appendChild(canEl);
+  }
+  canEl.setAttribute('href', `https://shivamweb.in/blogs/blog-post.html?slug=${blog.slug}`);
 
   // Open Graph
   const og = (prop, val) => setMeta(`meta[property="${prop}"]`, 'content', val);
@@ -368,14 +386,21 @@ function injectMeta(blog) {
   og('og:description', blog.metaDescription);
   og('og:type',        'article');
   og('og:url',         `https://shivamweb.in/blogs/blog-post.html?slug=${blog.slug}`);
-  og('og:image',       'https://shivamweb.in/images/projects/Portfolio.png');
+  og('og:image',       `https://shivamweb.in${blog.image || '/images/blogs/' + blog.slug + '.webp'}`);
+  og('og:image:width', '1200');
+  og('og:image:height', '630');
+  og('og:image:alt',   blog.heroImageAlt || blog.title);
   og('og:site_name',   'ShivamWeb');
 
   // Twitter
   const tw = (name, val) => setMeta(`meta[name="${name}"]`, 'content', val);
   tw('twitter:card',        'summary_large_image');
+  tw('twitter:site',        '@Shivamgpt812');
+  tw('twitter:creator',     '@Shivamgpt812');
   tw('twitter:title',       blog.metaTitle);
   tw('twitter:description', blog.metaDescription);
+  tw('twitter:image',       `https://shivamweb.in${blog.image || '/images/blogs/' + blog.slug + '.webp'}`);
+  tw('twitter:image:alt',   blog.heroImageAlt || blog.title);
 
   // JSON-LD Schema
   const schema = {
@@ -383,8 +408,9 @@ function injectMeta(blog) {
     "@type": "Article",
     "headline": blog.title,
     "description": blog.metaDescription,
-    "author": { "@type": "Organization", "name": "ShivamWeb", "url": "https://shivamweb.in" },
-    "publisher": { "@type": "Organization", "name": "ShivamWeb", "logo": { "@type": "ImageObject", "url": "https://shivamweb.in/head/favion-32x32.png" } },
+    "image": `https://shivamweb.in${blog.image || '/images/blogs/' + blog.slug + '.webp'}`,
+    "author": { "@type": "Person", "name": "Shivam Gupta", "url": "https://shivamweb.in" },
+    "publisher": { "@type": "Organization", "name": "ShivamWeb", "url": "https://shivamweb.in", "logo": { "@type": "ImageObject", "url": "https://shivamweb.in/head/favion-32x32.png" } },
     "datePublished": "2026-07-09",
     "dateModified": "2026-07-09",
     "mainEntityOfPage": { "@type": "WebPage", "@id": `https://shivamweb.in/blogs/blog-post.html?slug=${blog.slug}` }
@@ -398,6 +424,11 @@ function injectMeta(blog) {
 // ─── Render article hero ───────────────────────────────────────────────────────
 function renderHero(blog) {
   const el = document.getElementById('post-hero-slot');
+  const wordCount = (blog.content || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  const dynamicReadTime = Math.max(1, Math.ceil(wordCount / 200)) + ' min read';
+  const postUrl = encodeURIComponent(window.location.href);
+  const postTitle = encodeURIComponent(blog.title);
+
   el.innerHTML = `
     <div class="post-hero">
       <div class="post-eyebrow">
@@ -410,16 +441,68 @@ function renderHero(blog) {
         <span>${blog.date}</span>
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          ${blog.readTime}
+          ${dynamicReadTime}
         </span>
-        <span>By <strong style="color:rgba(255,255,255,.75);">ShivamWeb</strong></span>
+        <span>By <strong style="color:rgba(255,255,255,.75);">Shivam Gupta</strong></span>
+      </div>
+      <div class="post-share-bar" style="margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);font-family:'Poppins',sans-serif;font-weight:600;">Share:</span>
+        <a href="https://twitter.com/intent/tweet?text=${postTitle}&url=${postUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">Twitter / X</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">LinkedIn</a>
+        <a href="https://api.whatsapp.com/send?text=${postTitle}%20${postUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">WhatsApp</a>
+        <button id="copy-share-btn" style="background:rgba(255,255,255,0.12);color:white;border:none;cursor:pointer;padding:5px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🔗 Copy Link</button>
+      </div>
+      <div class="post-hero-image-wrap">
+        <img src="${blog.image || '/images/blogs/' + blog.slug + '.webp'}" alt="${blog.heroImageAlt || blog.title}" class="post-hero-img" loading="eager" decoding="async">
       </div>
     </div>`;
+
+  setTimeout(() => {
+    const copyBtn = document.getElementById('copy-share-btn');
+    if (copyBtn) {
+      copyBtn.onclick = () => {
+        navigator.clipboard.writeText(window.location.href);
+        copyBtn.innerText = 'Copied! ✓';
+        copyBtn.style.background = '#16A34A';
+        setTimeout(() => { copyBtn.innerText = '🔗 Copy Link'; copyBtn.style.background = 'rgba(255,255,255,0.12)'; }, 2000);
+      };
+    }
+  }, 100);
 }
 
 // ─── Render article body ──────────────────────────────────────────────────────
+function sanitizeHtml(html) {
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+  temp.querySelectorAll('script, iframe[src*="javascript:"], object, embed').forEach(e => e.remove());
+  temp.querySelectorAll('*').forEach(e => {
+    for (const a of Array.from(e.attributes)) {
+      if (a.name.startsWith('on') || a.value.startsWith('javascript:')) e.removeAttribute(a.name);
+    }
+  });
+  return temp.innerHTML;
+}
+
 function renderBody(blog) {
-  document.getElementById('post-body-slot').innerHTML = blog.content;
+  const bodySlot = document.getElementById('post-body-slot');
+  bodySlot.innerHTML = sanitizeHtml(blog.content);
+
+  // Add Copy to Clipboard buttons on pre/code blocks
+  bodySlot.querySelectorAll('pre').forEach(pre => {
+    pre.style.position = 'relative';
+    const btn = document.createElement('button');
+    btn.className = 'copy-code-btn';
+    btn.innerText = 'Copy';
+    btn.style.cssText = 'position:absolute;top:10px;right:10px;background:#234de6;color:white;border:none;padding:4px 10px;border-radius:6px;font-size:0.75rem;cursor:pointer;font-family:Poppins,sans-serif;font-weight:600;transition:background .2s;';
+    btn.onclick = () => {
+      const codeText = pre.innerText.replace(/^Copy\n?/, '').trim();
+      navigator.clipboard.writeText(codeText);
+      btn.innerText = 'Copied!';
+      btn.style.background = '#16A34A';
+      setTimeout(() => { btn.innerText = 'Copy'; btn.style.background = '#234de6'; }, 2000);
+    };
+    pre.appendChild(btn);
+  });
 }
 
 // ─── Render CTA ───────────────────────────────────────────────────────────────
@@ -446,7 +529,9 @@ function renderRelated(blog) {
 
   grid.innerHTML = related.map(r => `
     <a class="rel-card" href="/blogs/blog-post.html?slug=${r.slug}">
-      <div class="rel-card-thumb" style="background:${r.gradient}">${r.illustration}</div>
+      <div class="rel-card-thumb">
+        <img src="${r.image || '/images/blogs/' + r.slug + '.webp'}" alt="${r.heroImageAlt || r.title}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;" loading="lazy" decoding="async">
+      </div>
       <div class="rel-card-body">
         <h3>${r.title}</h3>
         <p>${r.excerpt}</p>
@@ -491,6 +576,15 @@ if (blog) {
   const submitBtn = document.getElementById('contact-submit-button');
   if (submitBtn) {
     submitBtn.addEventListener('click', () => {
+      const hp = document.getElementById('contact-hp');
+      if (hp && hp.value) { alert('Message Sent!'); return; }
+      const now = Date.now();
+      if (window._lastContactSubmit && now - window._lastContactSubmit < 30000) {
+        alert('Please wait 30 seconds before submitting again.');
+        return;
+      }
+      window._lastContactSubmit = now;
+
       const name    = document.getElementById('contact-name-input-field').value;
       const email   = document.getElementById('contact-email-input-field').value;
       const message = document.getElementById('contact-message-input-field').value;
@@ -521,38 +615,52 @@ if (blog) {
       document.getElementById('contact-submit-button').innerHTML = 'Submit';
     });
   }
-});
 
 // ─── Preloader ────────────────────────────────────────────────────────────────
-window.addEventListener('load', () => {
+let preloaderDismissed = false;
+function dismissPreloader() {
+  if (preloaderDismissed) return;
+  preloaderDismissed = true;
   const loadingRect       = document.getElementById('loading-rect');
   const introContainer    = document.getElementById('intro-container');
   const introSvg          = document.getElementById('intro-svg');
   const transitionContainer = document.getElementById('transition-container');
+  if (!introContainer) return;
 
-  gsap.to(loadingRect, {
-    attr: { y: 0 },
-    duration: 1.5,
-    ease: "power2.inOut",
-    onComplete: () => {
-      gsap.to(introSvg, {
-        scale: 0,
-        duration: 0.6,
-        ease: "back.in(2.5)",
-        onComplete: () => {
-          transitionContainer.classList.remove('hide');
-          transitionContainer.classList.add('showTransition');
-          setTimeout(() => {
-            introContainer.classList.add('hide');
-            transitionContainer.classList.remove('showTransition');
-            transitionContainer.classList.add('hideTopTransition');
-            setTimeout(() => transitionContainer.classList.add('hide'), 700);
-          }, 700);
-        }
-      });
-    }
-  });
-});
+  if (window.gsap && loadingRect && introSvg && transitionContainer) {
+    gsap.to(loadingRect, {
+      attr: { y: 0 },
+      duration: 1.2,
+      ease: "power2.inOut",
+      onComplete: () => {
+        gsap.to(introSvg, {
+          scale: 0,
+          duration: 0.5,
+          ease: "back.in(2.5)",
+          onComplete: () => {
+            transitionContainer.classList.remove('hide');
+            transitionContainer.classList.add('showTransition');
+            setTimeout(() => {
+              introContainer.classList.add('hide');
+              transitionContainer.classList.remove('showTransition');
+              transitionContainer.classList.add('hideTopTransition');
+              setTimeout(() => transitionContainer.classList.add('hide'), 700);
+            }, 700);
+          }
+        });
+      }
+    });
+  } else {
+    if (introContainer) introContainer.classList.add('hide');
+    if (transitionContainer) transitionContainer.classList.add('hide');
+  }
+}
+if (document.readyState === 'complete') {
+  dismissPreloader();
+} else {
+  window.addEventListener('load', dismissPreloader);
+  setTimeout(dismissPreloader, 3000);
+}
 </script>
 
 </body>

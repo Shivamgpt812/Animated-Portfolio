@@ -1249,7 +1249,7 @@ body {
     transition: none !important
 }
 
-h1 {
+h1, h2, .section-header-container {
     font-size: clamp(2rem, 4vw, 4.3rem);
     font-family: Poppins, sans-serif;
     line-height: 1.2;
@@ -1413,14 +1413,14 @@ section {
 
 @media (max-width: 800px),
 (max-height: 800px) {
-    h1 {
+    h1, h2, .section-header-container {
         font-size: clamp(1.8rem, 3.5vw, 3.8rem)
     }
 }
 
 @media (max-width: 480px),
 (max-height: 480px) {
-    h1 {
+    h1, h2, .section-header-container {
         font-size: clamp(1.5rem, 3vw, 3rem)
     }
 }

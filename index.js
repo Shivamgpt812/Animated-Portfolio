@@ -18677,11 +18677,13 @@ class Av extends Ai {
         t != this.touch && (this.touch = t, setTimeout(() => this.trigger(this.touch ? "touch" : "no-touch")))
     }
     getAbsoluteHeight(t) {
+        if (!t) return 0;
         const n = window.getComputedStyle(t),
             i = parseFloat(n.marginTop) + parseFloat(n.marginBottom);
         return Math.ceil(t.offsetHeight + i)
     }
     getMarginTop(t) {
+        if (!t) return 0;
         const n = window.getComputedStyle(t);
         return Math.ceil(parseFloat(n.marginTop))
     }
@@ -24197,7 +24199,7 @@ const oM = [{
     id: 0,
     name: "Markrenown",
     description: "Markrenown is a digital marketing platform developed by Shivam Gupta that helps businesses increase brand visibility through automated marketing campaigns and data analytics. This web application by ShivamWeb provides tools for social media management, email marketing, and performance tracking. Designed to boost client engagement by 40% through data-driven marketing automation.",
-    image: "images/projects/MarkRenown.png",
+    image: "images/projects/MarkRenown.webp",
     tags: ["javascript", "react", "nodejs", "html", "css", "uiux"],
     liveview: "https://www.markrenown.com",
     github: "#",
@@ -24206,7 +24208,7 @@ const oM = [{
     id: 1,
     name: "TechEnsureX",
     description: "TechEnsureX is a cybersecurity platform created by Shivam Gupta that provides comprehensive digital protection for businesses. This security solution by ShivamWeb includes real-time threat monitoring, encryption services, and vulnerability assessment tools to safeguard online assets. Protecting businesses from cyber threats with 24/7 automated security monitoring.",
-    image: "images/projects/TechEnsurex.png",
+    image: "images/projects/TechEnsurex.webp",
     tags: ["javascript", "api", "backend", "html", "css", "responsive"],
     liveview: "https://www.techensurex.com",
     github: "#",
@@ -24215,7 +24217,7 @@ const oM = [{
     id: 2,
     name: "Accorevacations",
     description: "Accorevacations is a travel planning application built by Shivam Gupta that helps users create personalized vacation itineraries. This platform by ShivamWeb offers features for flight booking, hotel reservations, and destination recommendations to simplify travel planning. Simplifying travel planning with AI-powered recommendations and seamless booking experience.",
-    image: "images/projects/AccoreVacations.png",
+    image: "images/projects/AccoreVacations.webp",
     tags: ["javascript", "react", "api", "html", "css", "uiux"],
     liveview: "https://www.accorevacations.com",
     github: "#",
@@ -24224,7 +24226,7 @@ const oM = [{
     id: 3,
     name: "Sky Wings",
     description: "Sky Wings is a comprehensive travel booking platform developed by Shivam Gupta that combines flight reservations, hotel bookings, and travel deals in one interface. This web application by ShivamWeb demonstrates full-stack development skills with user-friendly travel management features. Designed to reduce travel booking time by 60% with integrated booking solutions.",
-    image: "images/projects/Sky Wings.png",
+    image: "images/projects/Sky Wings.webp",
     tags: ["javascript", "react", "nodejs", "html", "css"],
     liveview: "https://skywingswebsite.netlify.app/",
     github: "https://github.com/Shivamgpt812/Skywings---The-Ultimate-Travel-Platform",
@@ -24233,7 +24235,7 @@ const oM = [{
     id: 4,
     name: "Raj Laxmi Infrastructure",
     description: "Raj Laxmi Infrastructure is a professional construction company website built by Shivam Gupta to showcase building projects and services. This responsive website by ShivamWeb features project galleries, service descriptions, and company information for the construction industry. Helping construction companies showcase projects and attract 50% more client inquiries.",
-    image: "images/projects/Raj Laxmi Infrastructure.png",
+    image: "images/projects/Raj Laxmi Infrastructure.webp",
     tags: ["javascript", "html", "css", "responsive", "uiux"],
     liveview: "https://rajlaxmiinfrastructure.com/",
     github: "#",
@@ -24242,7 +24244,7 @@ const oM = [{
     id: 5,
     name: "Creative Portfolio",
     description: "Creative Portfolio is an interactive 3D portfolio website created by Shivam Gupta that showcases web development projects through immersive animations. This flagship project by ShivamWeb features WebGL graphics, smooth scrolling effects, and character-based storytelling to demonstrate advanced frontend skills. Demonstrating advanced 3D web capabilities to attract high-value development opportunities.",
-    image: "images/projects/Portfolio.png",
+    image: "images/projects/Portfolio.webp",
     tags: ["javascript", "webgl", "html", "css", "uiux"],
     liveview: "https://shivamweb.in",
     github: "https://github.com/Shivamgpt812/Creative-Portfolio",
@@ -24251,7 +24253,7 @@ const oM = [{
     id: 6,
     name: "PrimeTerraX",
     description: "PrimeTerraX is a modern real estate platform developed by Shivam Gupta that simplifies property search and management. This web application by ShivamWeb includes advanced filtering options, virtual property tours, and secure transaction handling for real estate professionals and buyers. Revolutionizing real estate transactions with virtual tours and AI-powered property matching.",
-    image: "images/projects/PrimeTerraX.png",
+    image: "images/projects/PrimeTerraX.webp",
     tags: ["javascript", "react", "nodejs", "realestate", "uiux"],
     liveview: "https://primeterrax.com",
     github: "#",
@@ -24754,16 +24756,22 @@ class Ln {
         this.experience = new ye, this.scroll = this.experience.ui.scroll, this.sizes = this.experience.sizes, e.setup && !this.sizes.touch && e.setup(), this.element = e.element, this.direction = e.direction ? e.direction : "down", this.f = e.f ? e.f : () => { }, this.offset = e.offset ? e.offset : 0, this.reset = e.reset ? e.reset : () => { }, this.repeats = e.repeats ? e.repeats : !1, this.initEvent()
     }
     initEvent() {
+        if (!this.element) return;
         let e = this.getY(this.element) + this.offset;
-        this.direction == "up" && (e += window.innerHeight), this.scroll.addEvent(e, this.direction, this.f, this.repeats)
+        this.direction == "up" && (e += window.innerHeight), this.scroll && this.scroll.addEvent(e, this.direction, this.f, this.repeats)
     }
     getY(e) {
+        if (!e) return 0;
         let t = 0;
-        t += e.offsetTop;
-        let n = e.offsetParent.id,
+        t += e.offsetTop || 0;
+        let n = e.offsetParent ? e.offsetParent.id : "scroll-container",
             i = e;
-        for (; n != "scroll-container";) i = i.offsetParent, n = i.offsetParent.id, t += i.offsetTop;
-        return t - e.scrollTop + e.clientTop - window.innerHeight
+        while (i && i.offsetParent && n != "scroll-container") {
+            i = i.offsetParent;
+            n = i.offsetParent ? i.offsetParent.id : "scroll-container";
+            t += i.offsetTop || 0;
+        }
+        return t - (e.scrollTop || 0) + (e.clientTop || 0) - window.innerHeight
     }
 }
 class mM {
@@ -24962,19 +24970,19 @@ class gM {
             logoWhiteBackground: document.getElementById("logo-white-background"),
             profilePictureMaskRect: document.getElementById("about-profile-picture-mask-rect")
         });
+        const menuHome = document.getElementById("menu-item-home") || document.querySelectorAll(".menu-item")[0];
+        const menuAbout = document.getElementById("menu-item-about") || document.querySelectorAll(".menu-item")[1];
+        const menuContact = document.getElementById("menu-item-contact") || document.querySelectorAll(".menu-item")[4] || document.querySelectorAll(".menu-item")[3];
         he(this, "items", [{
             name: "home",
-            elements: [document.querySelectorAll(".menu-item")[0], document.getElementById("logo-click-container")]
+            elements: [menuHome, document.getElementById("logo-click-container")].filter(Boolean)
         }, {
             name: "about",
-            elements: [document.querySelectorAll(".menu-item")[1]],
+            elements: [menuAbout].filter(Boolean),
             onOpen: () => this.experience.ui.about.animations.playHologramAnimation(.1)
         }, {
-            name: "work",
-            elements: [document.querySelectorAll(".menu-item")[2]]
-        }, {
             name: "contact",
-            elements: [document.querySelectorAll(".menu-item")[3], document.getElementById("landing-cta-button")]
+            elements: [menuContact].filter(Boolean)
         }]);
         this.experience = new ye, this.transition = this.experience.ui.transition, this.scrollIcon = this.experience.ui.scrollIcon, this.landingPage = this.experience.ui.landingPage, this.scroll = this.experience.ui.scroll, this.renderer = this.experience.renderer, this.waypoints = this.experience.waypoints, this.character = this.experience.world.character, this.menu = this.experience.ui.menu.main, this.background = this.experience.world.background, this.room = this.experience.world.landingPage.room, this.sections = this.experience.ui.sections, this.sounds = this.experience.sounds, this.sizes = this.experience.sizes, this.contactAnimation = this.experience.world.contact.animation, this.menu.on("open", () => this.updateActiveItem()), this.addClickEventListeners()
     }
@@ -24988,15 +24996,23 @@ class gM {
         })
     }
     updateActiveItem() {
-        this.landingPage.visible ? (this.clearAllActiveItems(), document.querySelectorAll(".menu-item")[0].classList.add("active-menu-item")) : this.items.forEach(e => {
-            if (e.name !== "home") {
-                const t = this.sections.sections.find(n => n.name === e.name).y;
-                if (this.scroll.scrollY + window.innerHeight / 2 >= t) {
-                    this.clearAllActiveItems(), document.querySelectorAll(".menu-item")[this.items.indexOf(e)].classList.add("active-menu-item");
-                    return
+        if (this.landingPage.visible) {
+            this.clearAllActiveItems();
+            const homeEl = document.getElementById("menu-item-home") || document.querySelectorAll(".menu-item")[0];
+            if (homeEl) homeEl.classList.add("active-menu-item");
+        } else {
+            this.items.forEach(e => {
+                if (e.name !== "home") {
+                    const sec = this.sections.sections.find(n => n.name === e.name);
+                    if (!sec) return;
+                    const t = sec.y;
+                    if (this.scroll.scrollY + window.innerHeight / 2 >= t) {
+                        this.clearAllActiveItems();
+                        if (e.elements && e.elements[0]) e.elements[0].classList.add("active-menu-item");
+                    }
                 }
-            }
-        })
+            });
+        }
     }
     clearAllActiveItems() {
         document.querySelectorAll(".menu-item").forEach(t => t.classList.remove("active-menu-item"))
@@ -25138,6 +25154,17 @@ class yM {
         e.input.value.length >= 10 ? this.sendMail() : this.showError(e)
     }
     async sendMail() {
+        const hp = document.getElementById("contact-hp");
+        if (hp && hp.value) {
+            this.showResult({ status: 200 });
+            return;
+        }
+        const now = Date.now();
+        if (this.lastSubmitTime && now - this.lastSubmitTime < 30000) {
+            alert("Please wait 30 seconds before submitting again.");
+            return;
+        }
+        this.lastSubmitTime = now;
         this.showContainer("loading");
         try {
             await emailjs.send("service_vn4ya6a", "template_wpbqqbe", {
@@ -25301,7 +25328,12 @@ class vM {
             this.resourcesReady = !0, this.room = this.experience.world.landingPage.room, this.landingPage = this.experience.ui.landingPage, this.gestures = this.experience.gestures, this.character = this.experience.world.character, this.sounds = this.experience.sounds, this.tones = this.experience.world.landingPage.tones, this.hoverIcon = this.experience.ui.hoverIcon, this.soundButton = this.experience.ui.soundButton, P.delayedCall(1.2, () => {
                 this.close(), this.clicked && localStorage.getItem("soundActive") != "false" && this.soundButton.activate(!1)
             })
-        }), localStorage.getItem("soundActive") != "false" ? this.setupClickCTA() : this.killAnimation(), this.onWindowClick()
+        }), localStorage.getItem("soundActive") != "false" ? this.setupClickCTA() : this.killAnimation(), this.onWindowClick();
+        setTimeout(() => {
+            if (!this.closed) {
+                this.close();
+            }
+        }, 3500);
     }
     onWindowClick() {
         window.addEventListener("click", () => {

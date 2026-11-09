@@ -4,9 +4,10 @@
 <head>
     <title>Blog | Shivam Gupta - Web Development & AI Insights | ShivamWeb</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Read the latest insights on web development, AI, and technology from Shivam Gupta (ShivamWeb). Expert tutorials, industry trends, and development tips.">
-    <meta name="keywords" content="web development blog, AI blog, ShivamWeb blog, Shivam Gupta articles, programming tutorials, tech insights, web design tips">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <meta name="description" content="Read the latest insights on web development, AI, and technology from Shivam Gupta (ShivamWeb). Expert tutorials, industry trends, and development tips.">
     <link rel="canonical" href="https://shivamweb.in/blog.html" />
     <meta property="og:site_name" content="Shivamweb.in">
     <meta property="og:title" content="Blog - Shivam Gupta | Web Development & AI Insights">
@@ -14,9 +15,50 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shivamweb.in/blog.html">
     <meta property="og:image" content="https://shivamweb.in/images/projects/Portfolio.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ShivamWeb Blog - Web Development & AI Insights">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Shivamgpt812">
+    <meta name="twitter:creator" content="@Shivamgpt812">
     <meta name="twitter:title" content="Blog - Shivam Gupta | Web Development & AI Insights">
     <meta name="twitter:description" content="Read the latest insights on web development, AI, and technology from ShivamWeb.">
+    <meta name="twitter:image" content="https://shivamweb.in/images/projects/Portfolio.png">
+    <meta name="twitter:image:alt" content="ShivamWeb Blog - Web Development & AI Insights">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "ShivamWeb Insights",
+      "url": "https://shivamweb.in/blog.html",
+      "description": "Web Development, AI, and Tech Insights by Shivam Gupta",
+      "publisher": {
+        "@type": "Person",
+        "name": "Shivam Gupta",
+        "url": "https://shivamweb.in"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shivamweb.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://shivamweb.in/blog.html"
+        }
+      ]
+    }
+    </script>
     <meta name="theme-color" content="#EFE7DC">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -987,10 +1029,10 @@
                 </div>
             </div>
             <div id="menu-social-container" class="row">
-                <a tabindex="-1" target="_blank" href="https://www.twitter.com"><img class="social-icon" src="/icons/twitter-icon.png" alt="Twitter" height="28" width="28"></a>
-                <a tabindex="-1" target="_blank" href="https://github.com/Shivamgpt812"><img class="social-icon" alt="Github" height="28" width="28" src="/icons/github-icon.png"></a>
-                <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/"><img class="social-icon" alt="LinkedIn" height="28" width="28" src="/icons/linkedin-icon.png"></a>
-                <a tabindex="-1" href="mailto:shivamweb.work@gmail.com"><img class="social-icon" alt="Email" height="28" width="28" src="/icons/mail-icon.png"></a>
+                <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://x.com/Shivamgpt812" aria-label="Shivam's X / Twitter profile"><img class="social-icon" src="/icons/twitter-icon.png" alt="Twitter" height="28" width="28"></a>
+                <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://github.com/Shivamgpt812" aria-label="Shivam's GitHub profile"><img class="social-icon" alt="Github" height="28" width="28" src="/icons/github-icon.png"></a>
+                <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/" aria-label="Shivam's LinkedIn profile"><img class="social-icon" alt="LinkedIn" height="28" width="28" src="/icons/linkedin-icon.png"></a>
+                <a tabindex="-1" href="mailto:contact@shivamweb.in" aria-label="Send email to Shivam"><img class="social-icon" alt="Email" height="28" width="28" src="/icons/mail-icon.png"></a>
             </div>
             <hr>
             <div id="music-credit-container" class="row">
@@ -1080,7 +1122,7 @@
     <section id="contact-section" class="content-width" aria-label="Contact section">
         <div class="column" id="contact-header-container">
             <div class="section-subheader-container"><hr><h5>Say Hey! ✌️</h5></div>
-            <h1 class="section-header-container">Contact me</h1>
+            <h2 class="section-header-container">Contact me</h2>
         </div>
         <div id="contact-container">
             <div id="contact-form-container" class="column contact-container">
@@ -1104,6 +1146,7 @@
                         <span class="error-label hide">Please enter your message.</span>
                     </div>
                     <textarea id="contact-message-input-field" tabindex="3"></textarea>
+                    <input id="contact-hp" name="website_hp" type="text" style="display:none!important;" tabindex="-1" autocomplete="off">
                 </div>
                 <div class="row" id="contact-button-container">
                     <button id="contact-submit-button" class="big-button orange-hover" tabindex="4">Submit</button>
@@ -1138,6 +1181,7 @@
         {
             id: 1,
             slug: "website-development-cost-india-2026",
+            image: "/images/blogs/website-development-cost-india-2026.webp",
             title: "Website Development Cost in India (2026 Complete Guide)",
             excerpt: "Wondering how much a website costs in India in 2026? This complete guide breaks down pricing for every type of website — static, dynamic, ecommerce, and enterprise — with real estimates.",
             category: "web-dev",
@@ -1152,6 +1196,7 @@
         {
             id: 2,
             slug: "custom-website-vs-wordpress",
+            image: "/images/blogs/custom-website-vs-wordpress.webp",
             title: "Custom Website vs WordPress: Which One Should Your Business Choose?",
             excerpt: "Custom-coded website or WordPress? This honest comparison covers cost, performance, flexibility, SEO, and long-term value — helping Indian businesses make the right choice.",
             category: "web-dev",
@@ -1165,6 +1210,7 @@
         {
             id: 3,
             slug: "signs-your-business-needs-website-redesign",
+            image: "/images/blogs/signs-your-business-needs-website-redesign.webp",
             title: "15 Signs Your Business Needs a Website Redesign in 2026",
             excerpt: "Is your website quietly driving customers away? Discover 15 clear signs your business website needs a redesign — and what to do about each one.",
             category: "design",
@@ -1178,6 +1224,7 @@
         {
             id: 4,
             slug: "seo-guide-small-businesses-india",
+            image: "/images/blogs/seo-guide-small-businesses-india.webp",
             title: "Complete Guide to SEO for Small Businesses in India (2026)",
             excerpt: "Learn how to rank your small business on Google in India. This complete SEO guide covers local SEO, on-page SEO, technical SEO, and content strategy — step by step.",
             category: "ai",
@@ -1191,6 +1238,7 @@
         {
             id: 5,
             slug: "top-web-design-trends-2026",
+            image: "/images/blogs/top-web-design-trends-2026.webp",
             title: "Top Web Design Trends That Will Dominate 2026",
             excerpt: "From AI-generated layouts to immersive 3D experiences and bento grids — the web design trends defining 2026 and which ones are worth adopting for your business.",
             category: "design",
@@ -1204,6 +1252,7 @@
         {
             id: 6,
             slug: "how-fast-website-increases-sales",
+            image: "/images/blogs/how-fast-website-increases-sales.webp",
             title: "How a Fast Website Can Increase Your Sales and Google Rankings",
             excerpt: "Page speed directly affects your revenue and SEO rankings. Learn how to make your website faster and why it matters more than ever in 2026.",
             category: "web-dev",
@@ -1217,6 +1266,7 @@
         {
             id: 7,
             slug: "school-erp-software-guide",
+            image: "/images/blogs/school-erp-software-guide.webp",
             title: "School ERP Software: Features, Benefits & Implementation Guide",
             excerpt: "Everything school administrators need to know about ERP software — features, benefits, implementation steps, and cost in India.",
             category: "career",
@@ -1230,6 +1280,7 @@
         {
             id: 8,
             slug: "inventory-management-software-guide",
+            image: "/images/blogs/inventory-management-software-guide.webp",
             title: "Inventory Management Software: Everything Businesses Need to Know",
             excerpt: "Running out of stock? Drowning in manual reconciliation? Inventory management software fixes all of this — complete guide for Indian businesses.",
             category: "career",
@@ -1243,6 +1294,7 @@
         {
             id: 9,
             slug: "crm-software-explained",
+            image: "/images/blogs/crm-software-explained.webp",
             title: "CRM Software Explained: Benefits, Features & Best Practices",
             excerpt: "Most Indian businesses lose leads not because of bad products — but inconsistent follow-up. CRM software solves exactly this. Complete guide inside.",
             category: "career",
@@ -1256,6 +1308,7 @@
         {
             id: 10,
             slug: "ai-transforming-website-development-2026",
+            image: "/images/blogs/ai-transforming-website-development-2026.webp",
             title: "How AI Is Transforming Website Development in 2026",
             excerpt: "From AI-generated code to intelligent design systems and personalised user experiences — how artificial intelligence is reshaping website development this year.",
             category: "ai",
@@ -1269,6 +1322,7 @@
         {
             id: 11,
             slug: "website-maintenance-checklist",
+            image: "/images/blogs/website-maintenance-checklist.webp",
             title: "Website Maintenance Checklist Every Business Should Follow in 2026",
             excerpt: "A complete, actionable website maintenance checklist — covering security, performance, SEO, content, and backups on a monthly, quarterly, and annual schedule.",
             category: "web-dev",
@@ -1282,6 +1336,7 @@
         {
             id: 12,
             slug: "choosing-right-web-development-company-india",
+            image: "/images/blogs/choosing-right-web-development-company-india.webp",
             title: "Ultimate Guide to Choosing the Right Web Development Company in India",
             excerpt: "Not all web development agencies are equal. A practical framework for evaluating and choosing the right web development company for your project.",
             category: "web-dev",
@@ -1303,7 +1358,7 @@
         slot.innerHTML = `
             <div class="featured-card" onclick="openPost(${post.id})">
                 <div class="featured-image-wrap">
-                    <div style="width:100%;height:100%;background:${post.gradient};display:flex;align-items:center;justify-content:center;font-size:5rem;">${post.illustration}</div>
+                    <img src="${post.image}" alt="${post.title}" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;">
                     <div class="featured-img-overlay"></div>
                     <span class="featured-badge">⭐ Featured</span>
                 </div>
@@ -1318,7 +1373,7 @@
                     </div>
                     <h2>${post.title}</h2>
                     <p>${post.excerpt}</p>
-                    <a href="#" class="read-more-btn" onclick="event.preventDefault();openPost(${post.id})">
+                    <a href="/blogs/${post.slug}.html" class="read-more-btn" onclick="openPost(event, ${post.id})">
                         Read Article
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="white"><path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 256S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"/></svg>
                     </a>
@@ -1337,9 +1392,9 @@
         }
 
         grid.innerHTML = visible.map(post => `
-            <div class="blog-card" onclick="openPost(${post.id})">
+            <div class="blog-card" onclick="openPost(event, ${post.id})">
                 <div class="blog-card-image">
-                    <div class="blog-card-illustration" style="background:${post.gradient}">${post.illustration}</div>
+                    <img src="${post.image}" alt="${post.title}" class="blog-card-img" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;">
                     <div class="blog-card-img-overlay"></div>
                 </div>
                 <div class="blog-card-body">
@@ -1350,7 +1405,7 @@
                     <h3>${post.title}</h3>
                     <p>${post.excerpt}</p>
                     <div class="card-footer">
-                        <a href="#" class="card-read-link" onclick="event.preventDefault();openPost(${post.id})">
+                        <a href="/blogs/${post.slug}.html" class="card-read-link" onclick="openPost(event, ${post.id})">
                             Read
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512" fill="#234de6"><path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 256S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"/></svg>
                         </a>
@@ -1361,10 +1416,14 @@
     }
 
     // ─── Navigate to single blog post page ───────────────────────────────────────
-    function openPost(id) {
+    function openPost(e, id) {
+        if (e && e.target && e.target.tagName === 'A') {
+            // let standard anchor link work naturally
+            return;
+        }
         const post = posts.find(p => p.id === id);
         if (!post || !post.slug) return;
-        window.location.href = '/blogs/blog-post.html?slug=' + post.slug;
+        window.location.href = '/blogs/' + post.slug + '.html';
     }
 
     // ─── Category Buttons ────────────────────────────────────────────────────────
@@ -1385,13 +1444,21 @@
             setTimeout(() => document.getElementById('nl-email').style.borderColor = 'rgba(255,255,255,0.15)', 2000);
             return;
         }
-        document.getElementById('nl-btn').textContent = '🎉 Subscribed!';
-        document.getElementById('nl-btn').style.background = '#16A34A';
-        document.getElementById('nl-email').value = '';
-        setTimeout(() => {
-            document.getElementById('nl-btn').textContent = 'Subscribe';
-            document.getElementById('nl-btn').style.background = '#FF923E';
-        }, 3000);
+        document.getElementById('nl-btn').textContent = 'Subscribing...';
+        emailjs.send("service_vn4ya6a", "template_wpbqqbe", {
+            from_name: "Newsletter Subscriber",
+            from_email: email,
+            message: `New subscriber to ShivamWeb Blog newsletter: ${email}`,
+            to_name: "Shivam"
+        }).finally(() => {
+            document.getElementById('nl-btn').textContent = '🎉 Subscribed!';
+            document.getElementById('nl-btn').style.background = '#16A34A';
+            document.getElementById('nl-email').value = '';
+            setTimeout(() => {
+                document.getElementById('nl-btn').textContent = 'Subscribe';
+                document.getElementById('nl-btn').style.background = '#FF923E';
+            }, 3000);
+        });
     });
 
     // ─── Init ────────────────────────────────────────────────────────────────────
@@ -1420,6 +1487,15 @@
         const submitBtn = document.getElementById('contact-submit-button');
         if (submitBtn) {
             submitBtn.addEventListener('click', () => {
+                const hp = document.getElementById('contact-hp');
+                if (hp && hp.value) { alert('Message Sent!'); return; }
+                const now = Date.now();
+                if (window._lastContactSubmit && now - window._lastContactSubmit < 30000) {
+                    alert('Please wait 30 seconds before submitting again.');
+                    return;
+                }
+                window._lastContactSubmit = now;
+
                 const name = document.getElementById('contact-name-input-field').value;
                 const email = document.getElementById('contact-email-input-field').value;
                 const message = document.getElementById('contact-message-input-field').value;
@@ -1454,35 +1530,50 @@
     });
 
     // ─── Preloader ───────────────────────────────────────────────────────────────
-    window.addEventListener('load', () => {
+    let preloaderDismissed = false;
+    function dismissPreloader() {
+        if (preloaderDismissed) return;
+        preloaderDismissed = true;
         const loadingRect = document.getElementById('loading-rect');
         const introContainer = document.getElementById('intro-container');
         const introSvg = document.getElementById('intro-svg');
         const transitionContainer = document.getElementById('transition-container');
+        if (!introContainer) return;
 
-        gsap.to(loadingRect, {
-            attr: { y: 0 },
-            duration: 1.5,
-            ease: "power2.inOut",
-            onComplete: () => {
-                gsap.to(introSvg, {
-                    scale: 0,
-                    duration: 0.6,
-                    ease: "back.in(2.5)",
-                    onComplete: () => {
-                        transitionContainer.classList.remove('hide');
-                        transitionContainer.classList.add('showTransition');
-                        setTimeout(() => {
-                            introContainer.classList.add('hide');
-                            transitionContainer.classList.remove('showTransition');
-                            transitionContainer.classList.add('hideTopTransition');
-                            setTimeout(() => transitionContainer.classList.add('hide'), 700);
-                        }, 700);
-                    }
-                });
-            }
-        });
-    });
+        if (window.gsap && loadingRect && introSvg && transitionContainer) {
+            gsap.to(loadingRect, {
+                attr: { y: 0 },
+                duration: 1.2,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    gsap.to(introSvg, {
+                        scale: 0,
+                        duration: 0.5,
+                        ease: "back.in(2.5)",
+                        onComplete: () => {
+                            transitionContainer.classList.remove('hide');
+                            transitionContainer.classList.add('showTransition');
+                            setTimeout(() => {
+                                introContainer.classList.add('hide');
+                                transitionContainer.classList.remove('showTransition');
+                                transitionContainer.classList.add('hideTopTransition');
+                                setTimeout(() => transitionContainer.classList.add('hide'), 700);
+                            }, 700);
+                        }
+                    });
+                }
+            });
+        } else {
+            if (introContainer) introContainer.classList.add('hide');
+            if (transitionContainer) transitionContainer.classList.add('hide');
+        }
+    }
+    if (document.readyState === 'complete') {
+        dismissPreloader();
+    } else {
+        window.addEventListener('load', dismissPreloader);
+        setTimeout(dismissPreloader, 3000);
+    }
     </script>
 
 </body>

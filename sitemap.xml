@@ -1,40 +1,210 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-   <url>
-      <loc>https://shivamweb.in/</loc>
-      <lastmod>2026-01-31</lastmod>
-      <changefreq>daily</changefreq>
-      <priority>1.0</priority>
-      <image:image>
-         <image:loc>https://shivamweb.in/images/projects/Portfolio.png</image:loc>
-         <image:title>Shivamweb Creative Portfolio</image:title>
-         <image:caption>Official Portfolio of Shivam Gupta - Shivamweb.in - Creative Developer &amp; UI/UX Designer</image:caption>
-      </image:image>
-      <image:image>
-         <image:loc>https://shivamweb.in/images/projects/Raj%20Laxmi%20Infrastructure.png</image:loc>
-         <image:title>Raj Laxmi Infrastructure by Shivamweb</image:title>
-         <image:caption>Construction Website Project developed by Shivamweb</image:caption>
-      </image:image>
-      <image:image>
-         <image:loc>https://shivamweb.in/images/projects/MarkRenown.png</image:loc>
-         <image:title>MarkRenown Project - Shivamweb</image:title>
-         <image:caption>Web Development Project Showcase on Shivamweb.in</image:caption>
-      </image:image>
-      <image:image>
-         <image:loc>https://shivamweb.in/images/projects/AccoreVacations.png</image:loc>
-         <image:title>AccoreVacations Project - Shivamweb</image:title>
-         <image:caption>Travel Website Design by Shivamweb</image:caption>
-      </image:image>
-      <image:image>
-         <image:loc>https://shivamweb.in/images/projects/TechEnsurex.png</image:loc>
-         <image:title>TechEnsureX Project - Shivamweb</image:title>
-         <image:caption>Tech Solutions Website by Shivamweb</image:caption>
-      </image:image>
-      <image:image>
-         <image:loc>https://shivamweb.in/images/projects/Sky%20Wings.png</image:loc>
-         <image:title>Sky Wings Project - Shivamweb</image:title>
-         <image:caption>Aviation Website Project by Shivamweb</image:caption>
-      </image:image>
-   </url>
+
+  <!-- Core Pages -->
+  <url>
+    <loc>https://shivamweb.in/</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/projects/Portfolio.webp</image:loc>
+      <image:title>ShivamWeb Creative Portfolio</image:title>
+      <image:caption>Official Portfolio of Shivam Gupta - Creative Developer and AI Specialist</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/work.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/projects/Raj%20Laxmi%20Infrastructure.webp</image:loc>
+      <image:title>Raj Laxmi Infrastructure Project</image:title>
+      <image:caption>Construction Website Project developed by ShivamWeb</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/projects/MarkRenown.webp</image:loc>
+      <image:title>MarkRenown Digital Marketing Project</image:title>
+      <image:caption>Web Development Project Showcase on ShivamWeb</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/projects/AccoreVacations.webp</image:loc>
+      <image:title>AccoreVacations Travel Portal</image:title>
+      <image:caption>Travel Website Design and Development by ShivamWeb</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/projects/TechEnsurex.webp</image:loc>
+      <image:title>TechEnsureX Project</image:title>
+      <image:caption>Tech Solutions Website by ShivamWeb</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/projects/Sky%20Wings.webp</image:loc>
+      <image:title>Sky Wings Project</image:title>
+      <image:caption>Aviation Training Website Project by ShivamWeb</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/projects/PrimeTerraX.webp</image:loc>
+      <image:title>PrimeTerraX Real Estate Platform</image:title>
+      <image:caption>Modern Real Estate Portal by ShivamWeb</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blog.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 12 SEO Blog Articles -->
+  <url>
+    <loc>https://shivamweb.in/blogs/website-development-cost-india-2026.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/website-development-cost-india-2026.webp</image:loc>
+      <image:title>Website Development Cost in India (2026 Complete Guide)</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/custom-website-vs-wordpress.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/custom-website-vs-wordpress.webp</image:loc>
+      <image:title>Custom Website vs WordPress: Which One Should Your Business Choose?</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/signs-your-business-needs-website-redesign.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/signs-your-business-needs-website-redesign.webp</image:loc>
+      <image:title>15 Signs Your Business Needs a Website Redesign in 2026</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/seo-guide-small-businesses-india.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/seo-guide-small-businesses-india.webp</image:loc>
+      <image:title>Complete Guide to SEO for Small Businesses in India (2026)</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/top-web-design-trends-2026.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/top-web-design-trends-2026.webp</image:loc>
+      <image:title>Top Web Design Trends That Will Dominate 2026</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/how-fast-website-increases-sales.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/how-fast-website-increases-sales.webp</image:loc>
+      <image:title>How a Fast Website Can Increase Your Sales and Google Rankings</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/school-erp-software-guide.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/school-erp-software-guide.webp</image:loc>
+      <image:title>School ERP Software: Features, Benefits &amp; Implementation Guide</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/inventory-management-software-guide.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/inventory-management-software-guide.webp</image:loc>
+      <image:title>Inventory Management Software: Everything Businesses Need to Know</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/crm-software-explained.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/crm-software-explained.webp</image:loc>
+      <image:title>CRM Software Explained: Benefits, Features &amp; Best Practices for Indian Businesses</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/ai-transforming-website-development-2026.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/ai-transforming-website-development-2026.webp</image:loc>
+      <image:title>How AI Is Transforming Website Development in 2026</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/website-maintenance-checklist.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/website-maintenance-checklist.webp</image:loc>
+      <image:title>Website Maintenance Checklist Every Business Should Follow in 2026</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/blogs/choosing-right-web-development-company-india.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://shivamweb.in/images/blogs/choosing-right-web-development-company-india.webp</image:loc>
+      <image:title>Ultimate Guide to Choosing the Right Web Development Company in India</image:title>
+    </image:image>
+  </url>
+
+  <!-- Legal & Privacy -->
+  <url>
+    <loc>https://shivamweb.in/legal.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://shivamweb.in/privacy.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

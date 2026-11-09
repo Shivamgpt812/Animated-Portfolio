@@ -11,6 +11,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 1,
   slug: "website-development-cost-india-2026",
+  image: "/images/blogs/website-development-cost-india-2026.webp",
   title: "Website Development Cost in India (2026 Complete Guide)",
   metaTitle: "Website Development Cost in India 2026 — Full Pricing Guide | ShivamWeb",
   metaDescription: "Wondering how much a website costs in India in 2026? This complete guide breaks down pricing for every type of website — static, dynamic, ecommerce, and enterprise — with real estimates.",
@@ -165,6 +166,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 2,
   slug: "custom-website-vs-wordpress",
+  image: "/images/blogs/custom-website-vs-wordpress.webp",
   title: "Custom Website vs WordPress: Which One Should Your Business Choose?",
   metaTitle: "Custom Website vs WordPress 2026 — Which Is Better for Your Business? | ShivamWeb",
   metaDescription: "Custom-coded website or WordPress? This honest comparison covers cost, performance, flexibility, SEO, and long-term value — helping Indian businesses make the right choice.",
@@ -291,6 +293,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 3,
   slug: "signs-your-business-needs-website-redesign",
+  image: "/images/blogs/signs-your-business-needs-website-redesign.webp",
   title: "15 Signs Your Business Needs a Website Redesign in 2026",
   metaTitle: "15 Signs You Need a Website Redesign in 2026 | ShivamWeb",
   metaDescription: "Is your website quietly costing you customers? Discover 15 clear signs your business website needs a redesign — and what to do about each one.",
@@ -400,6 +403,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 4,
   slug: "seo-guide-small-businesses-india",
+  image: "/images/blogs/seo-guide-small-businesses-india.webp",
   title: "Complete Guide to SEO for Small Businesses in India (2026)",
   metaTitle: "SEO for Small Businesses in India — Complete 2026 Guide | ShivamWeb",
   metaDescription: "Learn how to rank your small business on Google in India. This complete SEO guide covers local SEO, on-page SEO, technical SEO, and content strategy — step by step.",
@@ -555,6 +559,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 5,
   slug: "top-web-design-trends-2026",
+  image: "/images/blogs/top-web-design-trends-2026.webp",
   title: "Top Web Design Trends That Will Dominate 2026",
   metaTitle: "Top Web Design Trends 2026 — What's Shaping the Web This Year | ShivamWeb",
   metaDescription: "From AI-generated layouts to immersive 3D experiences and brutalist typography — these are the web design trends defining 2026. Stay ahead of the curve.",
@@ -652,6 +657,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 6,
   slug: "how-fast-website-increases-sales",
+  image: "/images/blogs/how-fast-website-increases-sales.webp",
   title: "How a Fast Website Can Increase Your Sales and Google Rankings",
   metaTitle: "How Website Speed Increases Sales & Google Rankings | ShivamWeb",
   metaDescription: "Page speed isn't just a technical metric — it directly affects your revenue and SEO rankings. Learn how to make your website faster and why it matters more than ever in 2026.",
@@ -771,6 +777,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 7,
   slug: "school-erp-software-guide",
+  image: "/images/blogs/school-erp-software-guide.webp",
   title: "School ERP Software: Features, Benefits & Implementation Guide",
   metaTitle: "School ERP Software — Features, Benefits & How to Implement | ShivamWeb",
   metaDescription: "Everything school administrators need to know about ERP software — what features to look for, benefits for teachers and parents, implementation steps, and cost in India.",
@@ -893,6 +900,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 8,
   slug: "inventory-management-software-guide",
+  image: "/images/blogs/inventory-management-software-guide.webp",
   title: "Inventory Management Software: Everything Businesses Need to Know",
   metaTitle: "Inventory Management Software for Indian Businesses — Complete Guide | ShivamWeb",
   metaDescription: "A complete guide to inventory management software for Indian businesses — what it does, key features, benefits, and how to choose the right system for your operation.",
@@ -1008,6 +1016,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 9,
   slug: "crm-software-explained",
+  image: "/images/blogs/crm-software-explained.webp",
   title: "CRM Software Explained: Benefits, Features & Best Practices for Indian Businesses",
   metaTitle: "CRM Software for Indian Businesses — Benefits, Features & Best Practices | ShivamWeb",
   metaDescription: "What is CRM software and why does your business need it? This complete guide explains CRM features, benefits, types, and best practices — with real examples from Indian businesses.",
@@ -1119,6 +1128,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 10,
   slug: "ai-transforming-website-development-2026",
+  image: "/images/blogs/ai-transforming-website-development-2026.webp",
   title: "How AI Is Transforming Website Development in 2026",
   metaTitle: "How AI Is Changing Web Development in 2026 | ShivamWeb",
   metaDescription: "From AI-generated code to intelligent design systems and personalised user experiences — here's how artificial intelligence is reshaping website development in 2026.",
@@ -1229,6 +1239,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 11,
   slug: "website-maintenance-checklist",
+  image: "/images/blogs/website-maintenance-checklist.webp",
   title: "Website Maintenance Checklist Every Business Should Follow in 2026",
   metaTitle: "Complete Website Maintenance Checklist 2026 | ShivamWeb",
   metaDescription: "A complete, actionable website maintenance checklist for Indian businesses — covering security, performance, SEO, content, and backups on a monthly, quarterly, and annual schedule.",
@@ -1357,6 +1368,7 @@ const SHIVAMWEB_BLOGS = [
 {
   id: 12,
   slug: "choosing-right-web-development-company-india",
+  image: "/images/blogs/choosing-right-web-development-company-india.webp",
   title: "Ultimate Guide to Choosing the Right Web Development Company in India",
   metaTitle: "How to Choose the Right Web Development Company in India (2026) | ShivamWeb",
   metaDescription: "Not all web development agencies are equal. This guide gives you a practical framework for evaluating and choosing the right web development company in India for your project.",

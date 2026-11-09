@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <title>404: Page Not Found | ShivamWeb</title>
+  <meta name="description" content="The page you are looking for doesn't exist or has been moved. Explore Shivam Gupta's creative portfolio, projects, and web development articles.">
+  <meta name="robots" content="noindex, follow">
+
+  <meta name="theme-color" content="#EFE7DC">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" href="/head/favion-32x32.png" sizes="32x32">
+  <link rel="stylesheet" href="/index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    /* ── Base ── */
+    html, body {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      height: 100%;
+      min-height: 100vh;
+      background-color: #F5EFE6;
+      margin: 0;
+      padding: 0;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      font-family: 'Poppins', sans-serif;
+    }
+    html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+    /* ── Header overlay ── */
+    #overlay-container {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      max-width: calc(100% - 60px);
+      width: 100%;
+      height: auto !important;
+      opacity: 1 !important;
+      pointer-events: none;
+      z-index: 3000;
+    }
+    @media(max-width: 768px) { #overlay-container { max-width: calc(100% - 30px); } }
+    #header-container { position: relative; width: 100%; pointer-events: none; }
+    #header-logo-svg, #menu-button-scale-container, #logo-click-container { pointer-events: auto !important; cursor: pointer; }
+    #sound-button-scale-container, .scroll-container { display: none !important; }
+    #header-logo-svg, #logo-click-container, #logo-dark-background { position: absolute; top: 0 !important; left: 0; }
+    #logo-dark-background { width: 56px !important; height: 60px !important; clip-path: url(#logo-clip-path) !important; -webkit-clip-path: url(#logo-clip-path) !important; }
+    #logo-white-background { height: 100% !important; }
+
+    /* ── 404 Hero Container ── */
+    .error-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 120px 24px 60px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .error-card {
+      background: #091434;
+      border-radius: 28px;
+      padding: 70px 60px;
+      max-width: 720px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(9, 20, 52, 0.15);
+    }
+    .error-card::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(35, 77, 230, 0.45) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .error-card::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: 10%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(255, 146, 62, 0.35) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .error-code {
+      font-family: 'Electrolize', sans-serif;
+      font-size: clamp(5.5rem, 12vw, 9rem);
+      line-height: 1;
+      font-weight: 700;
+      color: #FF923E;
+      margin: 0 0 10px;
+      letter-spacing: 4px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 8px 30px rgba(255, 146, 62, 0.3);
+    }
+
+    .error-badge {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #234de6;
+      background: #EEF2FF;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .error-title {
+      font-family: 'Electrolize', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+      color: #ffffff;
+      margin: 0 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .error-description {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .error-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FF923E;
+      color: #ffffff;
+      padding: 14px 32px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: #e07a2a;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ── Quick Links below card ── */
+    .quick-links-nav {
+      margin-top: 36px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .quick-links-nav a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #091434;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .quick-links-nav a:hover {
+      color: #234de6;
+    }
+
+    /* ── Menu (consistent with site) ── */
+    #menu-container {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: calc(300px + (100vw - 90rem)/2);
+      height: 100vh;
+      background: #fff;
+      z-index: 2000;
+      max-width: 45vw;
+      box-sizing: border-box;
+      padding: 50px 50px 70px;
+      transform: translateX(100%);
+      transition: transform .6s cubic-bezier(.77,0,.175,1);
+      display: flex;
+      justify-content: center;
+    }
+    #menu-container.menu-active { transform: translateX(0); box-shadow: -10px 0 40px rgba(0,0,0,.1); }
+    #menu-content-container { position: relative; height: 100%; width: 240px; display: flex; flex-direction: column; }
+    #menu-items-container { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .menu-items-column-container { width: 100%; }
+    .menu-item { border-radius: 15px; margin: 15px 0; font-weight: 600; font-size: 1.8rem; width: fit-content; color: #091434; cursor: pointer; transition: color .3s; }
+    .menu-item:hover { color: #234de6; }
+    .menu-button-bar { width: 26px; height: 4px; background: white !important; margin: 2.5px; border-radius: 2px; transition: all .3s ease; position: relative; transform-origin: center; }
+    .menu-button-active .menu-button-bar { background-color: white !important; }
+    .menu-button-active #menu-button-bar-0 { transform: translateY(9px) rotate(45deg); }
+    .menu-button-active #menu-button-bar-1 { opacity: 0; }
+    .menu-button-active #menu-button-bar-2 { transform: translateY(-9px) rotate(-45deg); }
+    #menu-social-container { margin-right: 15px; }
+    #menu-social-container .social-icon { margin-right: 15px; filter: grayscale(100%); transition: filter .3s, transform .2s; }
+    #menu-social-container .social-icon:hover { filter: grayscale(0%); transform: scale(1.1); }
+    #music-credit-container { margin-bottom: 10px; }
+    #music-credit-container span, #music-credit-container a { font-size: .9rem; color: #7c8594; }
+
+    /* ── Custom Cursor ── */
+    #hover-icon { position: fixed; border-radius: 50%; border-style: solid; top: 0; left: 0; z-index: 99999; transform: translate(-50%,-50%) scale(0); pointer-events: none; display: flex; justify-content: center; align-items: center; box-sizing: content-box; transition: height .2s ease, width .2s ease, border-color .2s ease, border-width .2s ease, background-color .2s ease; opacity: 0; }
+    #hover-content { width: 30px; height: 30px; max-width: 30px; max-height: 30px; }
+    #hover-content.hide { display: none !important; }
+    @media (max-width: 768px), (pointer: coarse) { #hover-icon { display: none !important; } }
+
+    /* ── Preloader ── */
+    #intro-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #F5EFE6; z-index: 9999; display: flex; justify-content: center; align-items: center; cursor: wait; }
+    #intro-container.hide { display: none !important; }
+    .center { display: flex; justify-content: center; align-items: center; }
+    .column { display: flex; flex-direction: column; }
+
+    /* ── Transition ── */
+    #transition-container { position: fixed; z-index: 10000; width: 200vw; bottom: -500%; transform: rotate(20deg); left: -40%; pointer-events: none; display: block; }
+    #transition-container.hide { display: none; }
+    #transition-wave-svg { transform: translateY(20px); }
+    #transition-wave-svg-bottom { transform: rotate(180deg) translateY(20px); }
+    #transition-push { height: 200vh; background: #234de6; }
+    .showTransition { animation: showTransition ease-in .7s forwards; }
+    .hideTopTransition { animation: hideTopTransition ease-in .7s forwards; }
+    @keyframes showTransition { 0% { bottom: -450%; left: -60%; } 100% { bottom: -120%; left: -40%; } }
+    @keyframes hideTopTransition { 0% { bottom: -120%; left: -40%; } 100% { bottom: 100%; left: 40%; } }
+
+    @media(max-width: 768px) {
+      .error-card { padding: 48px 24px; border-radius: 20px; }
+      #menu-container { width: 100vw !important; max-width: none !important; padding: 40px 30px; align-items: center; }
+      #menu-content-container { align-items: center; }
+      .menu-items-column-container { align-items: center; }
+      .menu-item { font-size: clamp(1.4rem, 4vw, 2rem); margin: 12px 0; }
+      #menu-social-container, #music-credit-container { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="intro-container" class="center column">
+  <svg id="intro-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="120" width="120">
+    <defs>
+      <path id="logo-path" d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42"/>
+      <mask id="intro-mask">
+        <rect fill="black" height="61" width="61"></rect>
+        <rect fill="white" height="61" width="61" id="loading-rect" y="61"></rect>
+      </mask>
+    </defs>
+    <use href="#logo-path" fill="#091434" opacity=".1"></use>
+    <use href="#logo-path" fill="#091434" mask="url(#intro-mask)"></use>
+  </svg>
+</div>
+
+<!-- Page Transition -->
+<div id="transition-container" class="hide">
+  <svg id="transition-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <defs><path fill="#FF923E" id="transition-wave-path" d="M0,128L21.8,138.7C43.6,149,87,171,131,154.7C174.5,139,218,85,262,69.3C305.5,53,349,75,393,101.3C436.4,128,480,160,524,186.7C567.3,213,611,235,655,213.3C698.2,192,742,128,785,122.7C829.1,117,873,171,916,186.7C960,203,1004,181,1047,160C1090.9,139,1135,117,1178,96C1221.8,75,1265,53,1309,53.3C1352.7,53,1396,75,1418,85.3L1440,96L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z"/></defs>
+    <use href="#transition-wave-path"></use>
+  </svg>
+  <div id="transition-push"></div>
+  <svg id="transition-wave-svg-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <use href="#transition-wave-path"></use>
+  </svg>
+</div>
+
+<!-- Overlay Header -->
+<div id="overlay-container">
+  <header id="header-container" aria-label="Main navigation header">
+    <svg id="header-logo-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="60" width="56">
+      <defs>
+        <path id="logo-path-header" d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42"/>
+        <clipPath id="logo-clip-path">
+          <use fill="white" href="#logo-path-header" transform="scale(0.87)"></use>
+        </clipPath>
+      </defs>
+    </svg>
+    <div id="logo-dark-background"><div id="logo-white-background" style="width:0px;"></div></div>
+    <div id="logo-click-container" onclick="window.location.href='/index.html'" style="cursor:pointer;z-index:10;"></div>
+    <div id="menu-button-scale-container" style="position:absolute;z-index:9999;right:0;top:0;">
+      <div id="menu-button" class="center column overlay-button orange-hover">
+        <div id="menu-button-bar-0" class="menu-button-bar"></div>
+        <div id="menu-button-bar-1" class="menu-button-bar"></div>
+        <div id="menu-button-bar-2" class="menu-button-bar"></div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- Menu -->
+<div id="menu-container" class="column">
+  <div id="menu-content-container" class="column">
+    <div id="menu-items-container">
+      <div class="column menu-items-column-container">
+        <span class="menu-item" onclick="window.location.href='/index.html'">Home</span>
+        <span class="menu-item" onclick="window.location.href='/index.html#about-section'">About</span>
+        <span class="menu-item" onclick="window.location.href='/blog.html'">Blog</span>
+      </div>
+      <div class="column menu-items-column-container">
+        <span class="menu-item" onclick="window.location.href='/work.html'">Work</span>
+        <span class="menu-item" onclick="window.location.href='/index.html#contact-section'">Contact</span>
+      </div>
+    </div>
+    <div id="menu-social-container" class="row">
+      <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://x.com/Shivamgpt812" aria-label="Shivam's X / Twitter profile"><img class="social-icon" src="/icons/twitter-icon.png" alt="Twitter" height="28" width="28"></a>
+      <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://github.com/Shivamgpt812" aria-label="Shivam's GitHub profile"><img class="social-icon" alt="Github" height="28" width="28" src="/icons/github-icon.png"></a>
+      <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/" aria-label="Shivam's LinkedIn profile"><img class="social-icon" alt="LinkedIn" height="28" width="28" src="/icons/linkedin-icon.png"></a>
+      <a tabindex="-1" href="mailto:contact@shivamweb.in" aria-label="Send email to Shivam"><img class="social-icon" alt="Email" height="28" width="28" src="/icons/mail-icon.png"></a>
+    </div>
+    <hr>
+    <div id="music-credit-container" class="row">
+      <span>Music produced by <a tabindex="-1" href="https://soundcloud.com/hmsurf" target="_blank">Vali</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Cursor -->
+<div id="hover-icon">
+  <svg id="hover-content" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" height="30" width="30" fill="white">
+    <path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 256S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"/>
+  </svg>
+  <div class="hover-spread"></div>
+  <div class="hover-spread"></div>
+</div>
+<script src="/cursor.js"></script>
+
+<!-- Main Error Layout -->
+<main class="error-page-wrapper">
+  <div class="error-card">
+    <div class="error-badge">404 Error</div>
+    <h1 class="error-code">404</h1>
+    <h2 class="error-title">Houston, We're Lost in Space</h2>
+    <p class="error-description">
+      The coordinates you followed don't lead to an active page. It might have been relocated, deleted, or never existed in this dimension.
+    </p>
+    <div class="error-actions">
+      <a href="/index.html" class="btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Return to Home
+      </a>
+      <a href="/work.html" class="btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        View Projects
+      </a>
+      <a href="/blog.html" class="btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+        Read Articles
+      </a>
+    </div>
+  </div>
+
+  <nav class="quick-links-nav" aria-label="Quick links">
+    <a href="/index.html#about-section">About Shivam</a>
+    <span style="color:#a0aec0;">•</span>
+    <a href="/work.html">Featured Work</a>
+    <span style="color:#a0aec0;">•</span>
+    <a href="/blog.html">Web Development Guides</a>
+    <span style="color:#a0aec0;">•</span>
+    <a href="/index.html#contact-section">Contact Me</a>
+  </nav>
+</main>
+
+<script>
+  // ── Menu ──────────────────────────────────────────────────────────────────
+  const menuButton    = document.getElementById('menu-button');
+  const menuContainer = document.getElementById('menu-container');
+  let isMenuOpen = false;
+  if (menuButton && menuContainer) {
+    menuButton.addEventListener('click', e => { e.stopPropagation(); toggleMenu(); });
+    function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+      menuContainer.classList.toggle('menu-active', isMenuOpen);
+      menuButton.classList.toggle('menu-button-active', isMenuOpen);
+    }
+    document.addEventListener('click', e => {
+      if (isMenuOpen && !menuContainer.contains(e.target) && !menuButton.contains(e.target)) toggleMenu();
+    });
+  }
+
+  // ── Preloader ─────────────────────────────────────────────────────────────
+  let preloaderDismissed = false;
+  function dismissPreloader() {
+    if (preloaderDismissed) return;
+    preloaderDismissed = true;
+    const loadingRect         = document.getElementById('loading-rect');
+    const introContainer      = document.getElementById('intro-container');
+    const introSvg            = document.getElementById('intro-svg');
+    const transitionContainer = document.getElementById('transition-container');
+    if (!introContainer) return;
+
+    if (window.gsap && loadingRect && introSvg && transitionContainer) {
+      gsap.to(loadingRect, {
+        attr: { y: 0 },
+        duration: 1.2,
+        ease: "power2.inOut",
+        onComplete: () => {
+          gsap.to(introSvg, {
+            scale: 0,
+            duration: 0.5,
+            ease: "back.in(2.5)",
+            onComplete: () => {
+              transitionContainer.classList.remove('hide');
+              transitionContainer.classList.add('showTransition');
+              setTimeout(() => {
+                introContainer.classList.add('hide');
+                transitionContainer.classList.remove('showTransition');
+                transitionContainer.classList.add('hideTopTransition');
+                setTimeout(() => transitionContainer.classList.add('hide'), 700);
+              }, 700);
+            }
+          });
+        }
+      });
+    } else {
+      if (introContainer) introContainer.classList.add('hide');
+      if (transitionContainer) transitionContainer.classList.add('hide');
+    }
+  }
+  if (document.readyState === 'complete') {
+    dismissPreloader();
+  } else {
+    window.addEventListener('load', dismissPreloader);
+    setTimeout(dismissPreloader, 3000);
+  }
+</script>
+
+</body>
+</html>
