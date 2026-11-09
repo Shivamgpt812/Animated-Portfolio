@@ -211,25 +211,39 @@
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
+        /* ─── Cursor matching index.html ─── */
         #hover-icon {
             position: fixed;
             border-radius: 50%;
+            border-style: solid;
             top: 0;
             left: 0;
-            z-index: 999;
+            z-index: 99999;
             transform: translate(-50%, -50%) scale(0);
             pointer-events: none;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: height 0.2s, width 0.2s;
+            box-sizing: content-box;
+            transition: height 0.2s ease, width 0.2s ease, border-color 0.2s ease, border-width 0.2s ease, background-color 0.2s ease;
             opacity: 0;
         }
 
         #hover-content {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            width: 30px;
+            height: 30px;
+            max-width: 30px;
+            max-height: 30px;
+        }
+
+        #hover-content.hide {
+            display: none !important;
+        }
+
+        @media (max-width: 768px), (pointer: coarse) {
+            #hover-icon {
+                display: none !important;
+            }
         }
 
         /* Preloader Styles */
@@ -465,6 +479,7 @@
                 d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 255.1S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z" />
         </svg>
     </div>
+    <script src="cursor.js"></script>
 
     <script>
         // Preloader Logic
@@ -510,26 +525,6 @@
                 }
             });
         });
-
-        // Cursor Logic
-        const hoverIcon = document.getElementById('hover-icon');
-        const hoverContent = document.getElementById('hover-content');
-        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            hoverIcon.style.opacity = '1';
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.1;
-            cursorY += (mouseY - cursorY) * 0.1;
-            hoverIcon.style.left = cursorX + 'px';
-            hoverIcon.style.top = cursorY + 'px';
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
 
         // Menu Logic
         const menuButton = document.getElementById('menu-button');

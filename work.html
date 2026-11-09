@@ -156,7 +156,7 @@
         #logo-click-container,
         #logo-dark-background {
             position: absolute;
-            top: 30px !important;
+            top: 0 !important;
             left: 0;
         }
 
@@ -178,6 +178,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            #projects-main-content {
+                padding-top: 90px;
+            }
         }
 
         .content-width {
@@ -467,17 +473,32 @@
             color: #234de6;
         }
 
+        .active-menu-item {
+            position: relative;
+            cursor: unset !important;
+            transform: translate(28px);
+        }
+
+        .active-menu-item:after {
+            position: absolute;
+            height: 14px;
+            width: 14px;
+            display: flex;
+            border-radius: 50%;
+            content: "";
+            background: #234de6;
+            left: -10px;
+            top: 50%;
+            transform: translate(-16px, -50%);
+        }
+
         /* Menu Button Animation & Style */
         .menu-button-bar {
             width: 26px;
-            /* Matches index.css */
             height: 4px;
-            /* Matches index.css */
-            background: #091434;
+            background: white !important;
             margin: 2.5px;
-            /* Matches index.css */
             border-radius: 2px;
-            /* Matches index.css */
             transition: all 0.3s ease;
             position: relative;
             transform-origin: center;
@@ -485,8 +506,7 @@
 
         /* When active, transform to X */
         .menu-button-active .menu-button-bar {
-            background-color: #091434 !important;
-            /* Ensure contrast on white menu */
+            background-color: white !important;
         }
 
         .menu-button-active #menu-button-bar-0 {
@@ -508,11 +528,12 @@
         #menu-social-container .social-icon {
             margin-right: 15px;
             filter: grayscale(100%);
-            transition: filter 0.3s;
+            transition: filter 0.3s, transform 0.2s;
         }
 
         #menu-social-container .social-icon:hover {
             filter: grayscale(0%);
+            transform: scale(1.1);
         }
 
         #music-credit-container {
@@ -525,63 +546,84 @@
             color: #7c8594;
         }
 
-        @media (max-width: 768px) {
+        @media (max-aspect-ratio: 12/10), (max-width: 768px) {
             #menu-container {
-                width: 100vw;
-                /* Full width on mobile */
-                max-width: none;
-                padding: 30px;
+                width: 100vw !important;
+                max-width: none !important;
+                padding: 40px 30px;
+                align-items: center;
+            }
+
+            #menu-content-container {
+                align-items: center;
+            }
+
+            .menu-items-column-container {
+                align-items: center;
             }
 
             .menu-item {
-                font-size: 2.2rem;
+                font-size: clamp(1.4rem, 4vw, 2rem);
+                margin: 12px 0;
+            }
+
+            #menu-social-container,
+            #music-credit-container {
+                justify-content: center;
+            }
+
+            .active-menu-item {
+                transform: none !important;
+                position: relative;
+            }
+
+            .active-menu-item:after {
+                position: absolute;
+                height: 4px;
+                width: 100%;
+                margin: 0 auto;
+                content: "";
+                background: #234de6;
+                bottom: -2px;
+                left: 0;
+                top: unset;
+                transform: unset;
+                border-radius: 2px;
             }
         }
 
-        /* Custom Cursor Styles */
+        /* Custom Cursor Styles matching index.html */
         #hover-icon {
             position: fixed;
             border-radius: 50%;
             border-style: solid;
             top: 0;
             left: 0;
-            z-index: 999;
+            z-index: 99999;
             transform: translate(-50%, -50%) scale(0);
             pointer-events: none;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: height 0.2s, width 0.2s, border-color 0.2s, border-width 0.2s;
+            box-sizing: content-box;
+            transition: height 0.2s ease, width 0.2s ease, border-color 0.2s ease, border-width 0.2s ease, background-color 0.2s ease;
             opacity: 0;
         }
 
-        /* Hover icon content (arrow) */
         #hover-content {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            width: 30px;
+            height: 30px;
+            max-width: 30px;
+            max-height: 30px;
         }
 
-        .hover-spread {
-            height: 16px;
-            min-width: 16px;
-            background: #234de6;
-            position: absolute;
-            opacity: 0.1;
-            border-radius: 50%;
+        #hover-content.hide {
+            display: none !important;
         }
 
-        @keyframes spread {
-            0% {
-                height: 16px;
-                width: 16px;
-                opacity: 0.1;
-            }
-
-            100% {
-                height: 50px;
-                width: 50px;
-                opacity: 0;
+        @media (max-width: 768px), (pointer: coarse) {
+            #hover-icon {
+                display: none !important;
             }
         }
 
@@ -750,7 +792,7 @@
                 style="cursor: pointer; z-index: 10;"></div>
 
             <!-- Home Button (Restored Menu Style) -->
-            <div id="menu-button-scale-container" style="position: absolute; z-index: 9999; right: 0; top: 30px;">
+            <div id="menu-button-scale-container" style="position: absolute; z-index: 9999; right: 0; top: 0;">
                 <div id="menu-button" class="center column overlay-button orange-hover">
                     <div id="menu-button-bar-0" class="menu-button-bar"></div>
                     <div id="menu-button-bar-1" class="menu-button-bar"></div>
@@ -771,7 +813,7 @@
                     <span class="menu-item" onclick="window.location.href='blog.html'">Blog</span>
                 </div>
                 <div class="column menu-items-column-container">
-                    <span class="menu-item" onclick="window.location.href='index.html#work-section'">Work</span>
+                    <span class="menu-item active-menu-item" onclick="window.location.href='work.html'">Work</span>
                     <span class="menu-item" onclick="window.location.href='index.html#contact-section'">Contact</span>
                 </div>
             </div>
@@ -908,100 +950,12 @@
         <div class="hover-spread"></div>
     </div>
 
+    <!-- Custom Cursor Script matching index.html -->
+    <script src="cursor.js"></script>
+
     <!-- Projects Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // Custom Cursor Logic
-            // Custom Cursor Logic
-            const hoverIcon = document.getElementById('hover-icon');
-            const hoverContent = document.getElementById('hover-content');
-            const hoverSpreads = document.querySelectorAll('.hover-spread');
-
-            // Initialize cursor state with RAF for smoothness
-            let mouseX = 0;
-            let mouseY = 0;
-            let cursorX = 0;
-            let cursorY = 0;
-
-            // Initial styles
-            hoverIcon.style.opacity = '1';
-            hoverIcon.style.transform = 'translate(-50%, -50%) scale(1)';
-            hoverIcon.style.pointerEvents = 'none';
-
-            // Track mouse position
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            // Smooth animation loop
-            function animateCursor() {
-                // Linear interpolation for smooth trailing effect
-                const dx = mouseX - cursorX;
-                const dy = mouseY - cursorY;
-
-                cursorX += dx * 0.1; // Slower, smoother trail
-                cursorY += dy * 0.1;
-
-                hoverIcon.style.left = cursorX + 'px';
-                hoverIcon.style.top = cursorY + 'px';
-
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
-
-            // Hover interactions using event delegation
-            const interactiveSelectors = 'a, button, input, textarea, .menu-item, .project-card, .overlay-button, .social-icon, .legal-link';
-
-            document.addEventListener('mouseover', (e) => {
-                const target = e.target.closest(interactiveSelectors);
-                if (target) {
-                    hoverIcon.style.width = '50px';
-                    hoverIcon.style.height = '50px';
-                    hoverIcon.style.backgroundColor = 'transparent';
-                    hoverIcon.style.border = '2px solid #234de6';
-                    hoverContent.style.opacity = '1'; // Show SVG arrow
-                }
-            });
-
-            document.addEventListener('mouseout', (e) => {
-                const target = e.target.closest(interactiveSelectors);
-                if (target) {
-                    hoverIcon.style.width = '16px';
-                    hoverIcon.style.height = '16px';
-                    hoverIcon.style.backgroundColor = '#234de6';
-                    hoverIcon.style.border = 'none';
-                    hoverContent.style.opacity = '0'; // Hide SVG arrow
-                }
-            });
-
-            // Click Effect
-            document.addEventListener('mousedown', () => {
-                hoverIcon.style.transform = 'translate(-50%, -50%) scale(0.8)';
-            });
-
-            document.addEventListener('mouseup', () => {
-                hoverIcon.style.transform = 'translate(-50%, -50%) scale(1)';
-
-                // Create a temporary spread element for the ripple
-                const spread = document.createElement('div');
-                spread.classList.add('hover-spread');
-                // Ensure styles for dynamic spread
-                spread.style.height = '16px';
-                spread.style.minWidth = '16px';
-                spread.style.background = '#234de6';
-                spread.style.position = 'absolute';
-                spread.style.opacity = '0.1';
-                spread.style.borderRadius = '50%';
-                spread.style.animation = 'spread 0.5s ease-out forwards';
-
-                hoverIcon.appendChild(spread);
-
-                setTimeout(() => {
-                    spread.remove();
-                }, 500);
-            });
 
             // Menu Logic
             const menuButton = document.getElementById('menu-button');

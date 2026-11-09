@@ -288,18 +288,23 @@
 }
 
 .landing-subheading {
-    font-size: clamp(0.9rem, 2vw, 17px);
-    fill: #7c8594;
+    font-size: 18px;
+    fill: #6d7888;
     transform-origin: left;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    line-height: 1.3;
+    line-height: 1.35;
 }
 
 @media (max-aspect-ratio: 12/10) {
     #landing-content-svg {
         max-width: 94%;
         max-height: 80%
+    }
+
+    .landing-subheading {
+        font-size: 19px;
+        fill: #556070;
     }
 
     #landing-page {
@@ -396,11 +401,16 @@
 
 .about-text {
     font-weight: 700;
-    font-size: clamp(0.85rem, 1.5vw, 15px);
+    font-size: clamp(0.8rem, 1.3vw, 14px);
     fill: #34bfff;
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.3;
+}
+
+.about-question {
+    fill: #ffffff;
+    font-weight: 700;
 }
 
 #about-skills-container {
@@ -939,8 +949,19 @@ line {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: height .2s, width .2s, border-color .2s, border-width .2s;
+    box-sizing: content-box;
+    transition: height .2s, width .2s, border-color .2s, border-width .2s, background-color .2s;
     opacity: 0
+}
+
+#hover-content.hide {
+    display: none !important;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+    #hover-icon {
+        display: none !important;
+    }
 }
 
 .clickCTA:after {

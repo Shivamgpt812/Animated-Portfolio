@@ -22,7 +22,7 @@
     #header-container { position:relative; width:100%; pointer-events:none; }
     #header-logo-svg, #menu-button-scale-container, #logo-click-container { pointer-events:auto!important; cursor:pointer; }
     #sound-button-scale-container, .scroll-container { display:none!important; }
-    #header-logo-svg, #logo-click-container, #logo-dark-background { position:absolute; top:30px!important; left:0; }
+    #header-logo-svg, #logo-click-container, #logo-dark-background { position:absolute; top:0!important; left:0; }
     #logo-dark-background { width:56px!important; height:60px!important; clip-path:url(#logo-clip-path)!important; -webkit-clip-path:url(#logo-clip-path)!important; }
     #logo-white-background { height:100%!important; }
 
@@ -32,6 +32,7 @@
 
     /* ── Main wrapper ── */
     #post-main { padding-top:120px; padding-bottom:80px; }
+    @media(max-width:768px){ #post-main { padding-top:90px; } }
 
     /* ── Back link ── */
     .back-link { display:inline-flex; align-items:center; gap:8px; color:#234de6; font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:600; text-decoration:none; margin-bottom:32px; transition:gap .2s; }
@@ -105,21 +106,24 @@
     .menu-items-column-container { width:100%; }
     .menu-item { border-radius:15px; margin:15px 0; font-weight:600; font-size:1.8rem; width:fit-content; color:#091434; cursor:pointer; font-family:'Poppins',sans-serif; transition:color .3s; }
     .menu-item:hover { color:#234de6; }
-    .menu-button-bar { width:26px; height:4px; background:#091434; margin:2.5px; border-radius:2px; transition:all .3s ease; position:relative; transform-origin:center; }
+    .active-menu-item { position:relative; cursor:unset!important; transform:translate(28px); }
+    .active-menu-item:after { position:absolute; height:14px; width:14px; display:flex; border-radius:50%; content:""; background:#234de6; left:-10px; top:50%; transform:translate(-16px,-50%); }
+    .menu-button-bar { width:26px; height:4px; background:white!important; margin:2.5px; border-radius:2px; transition:all .3s ease; position:relative; transform-origin:center; }
+    .menu-button-active .menu-button-bar { background-color:white!important; }
     .menu-button-active #menu-button-bar-0 { transform:translateY(9px) rotate(45deg); }
     .menu-button-active #menu-button-bar-1 { opacity:0; }
     .menu-button-active #menu-button-bar-2 { transform:translateY(-9px) rotate(-45deg); }
     #menu-social-container { margin-right:15px; }
-    #menu-social-container .social-icon { margin-right:15px; filter:grayscale(100%); transition:filter .3s; }
-    #menu-social-container .social-icon:hover { filter:grayscale(0%); }
+    #menu-social-container .social-icon { margin-right:15px; filter:grayscale(100%); transition:filter .3s, transform .2s; }
+    #menu-social-container .social-icon:hover { filter:grayscale(0%); transform:scale(1.1); }
     #music-credit-container { margin-bottom:10px; }
     #music-credit-container span, #music-credit-container a { font-size:.9rem; color:#7c8594; }
 
-    /* ── Cursor ── */
-    #hover-icon { position:fixed; border-radius:50%; border-style:solid; top:0; left:0; z-index:999; transform:translate(-50%,-50%) scale(0); pointer-events:none; display:flex; justify-content:center; align-items:center; transition:height .2s,width .2s,border-color .2s,border-width .2s; opacity:0; }
-    #hover-content { width:100%; height:100%; object-fit:contain; }
-    .hover-spread { height:16px; min-width:16px; background:#234de6; position:absolute; opacity:.1; border-radius:50%; }
-    @keyframes spread { 0%{height:16px;width:16px;opacity:.1} 100%{height:50px;width:50px;opacity:0} }
+    /* ── Cursor matching index.html ── */
+    #hover-icon { position:fixed; border-radius:50%; border-style:solid; top:0; left:0; z-index:99999; transform:translate(-50%,-50%) scale(0); pointer-events:none; display:flex; justify-content:center; align-items:center; box-sizing:content-box; transition:height .2s ease,width .2s ease,border-color .2s ease,border-width .2s ease,background-color .2s ease; opacity:0; }
+    #hover-content { width:30px; height:30px; max-width:30px; max-height:30px; }
+    #hover-content.hide { display:none!important; }
+    @media (max-width:768px), (pointer:coarse) { #hover-icon { display:none!important; } }
 
     /* ── Preloader ── */
     #intro-container { position:fixed; top:0; left:0; width:100vw; height:100vh; background:#F5EFE6; z-index:9999; display:flex; justify-content:center; align-items:center; cursor:wait; }
@@ -151,8 +155,13 @@
       .post-body{padding:32px 24px;}
       .cta-block{padding:40px 28px;}
       .related-grid{grid-template-columns:1fr;gap:18px;}
-      #menu-container{width:100vw;max-width:none;padding:30px;}
-      .menu-item{font-size:2.2rem;}
+      #menu-container{width:100vw!important;max-width:none!important;padding:40px 30px;align-items:center;}
+      #menu-content-container{align-items:center;}
+      .menu-items-column-container{align-items:center;}
+      .menu-item{font-size:clamp(1.4rem,4vw,2rem);margin:12px 0;}
+      #menu-social-container,#music-credit-container{justify-content:center;}
+      .active-menu-item{transform:none!important;position:relative;}
+      .active-menu-item:after{position:absolute;height:4px;width:100%;margin:0 auto;content:"";background:#234de6;bottom:-2px;left:0;top:unset;transform:unset;border-radius:2px;}
       #contact-section{padding:40px 0!important;margin-top:20px!important;}
     }
     @media(max-width:480px){ .post-hero{padding:32px 18px;} .post-body{padding:28px 18px;} }
@@ -200,7 +209,7 @@
     </svg>
     <div id="logo-dark-background"><div id="logo-white-background" style="width:0px;"></div></div>
     <div id="logo-click-container" onclick="window.location.href='/index.html'" style="cursor:pointer;z-index:10;"></div>
-    <div id="menu-button-scale-container" style="position:absolute;z-index:9999;right:0;top:30px;">
+    <div id="menu-button-scale-container" style="position:absolute;z-index:9999;right:0;top:0;">
       <div id="menu-button" class="center column overlay-button orange-hover">
         <div id="menu-button-bar-0" class="menu-button-bar"></div>
         <div id="menu-button-bar-1" class="menu-button-bar"></div>
@@ -245,6 +254,8 @@
   <div class="hover-spread"></div>
   <div class="hover-spread"></div>
 </div>
+<script src="/cursor.js"></script>
+<script src="../cursor.js"></script>
 
 <!-- ═══ MAIN CONTENT ═══ -->
 <main id="post-main" aria-label="Blog article">
@@ -461,58 +472,6 @@ if (blog) {
   document.getElementById('post-body-slot').style.display = 'none';
   document.getElementById('post-cta-slot').style.display  = 'none';
 }
-
-// ─── Cursor ───────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  const hoverIcon    = document.getElementById('hover-icon');
-  const hoverContent = document.getElementById('hover-content');
-  if (!hoverIcon) return;
-
-  hoverIcon.style.width           = '16px';
-  hoverIcon.style.height          = '16px';
-  hoverIcon.style.backgroundColor = '#234de6';
-  hoverIcon.style.border          = 'none';
-  hoverContent.style.opacity      = '0';
-
-  let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-  hoverIcon.style.opacity   = '1';
-  hoverIcon.style.transform = 'translate(-50%,-50%) scale(1)';
-
-  document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-  (function animCursor() {
-    cursorX += (mouseX - cursorX) * 0.1;
-    cursorY += (mouseY - cursorY) * 0.1;
-    hoverIcon.style.left = cursorX + 'px';
-    hoverIcon.style.top  = cursorY + 'px';
-    requestAnimationFrame(animCursor);
-  })();
-
-  const sel = 'a,button,input,textarea,.menu-item,.rel-card,.overlay-button,.social-icon';
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest(sel)) {
-      hoverIcon.style.width = '50px'; hoverIcon.style.height = '50px';
-      hoverIcon.style.backgroundColor = 'transparent';
-      hoverIcon.style.border = '2px solid #234de6';
-      hoverContent.style.opacity = '1';
-    }
-  });
-  document.addEventListener('mouseout', e => {
-    if (e.target.closest(sel)) {
-      hoverIcon.style.width = '16px'; hoverIcon.style.height = '16px';
-      hoverIcon.style.backgroundColor = '#234de6';
-      hoverIcon.style.border = 'none';
-      hoverContent.style.opacity = '0';
-    }
-  });
-  document.addEventListener('mousedown', () => hoverIcon.style.transform = 'translate(-50%,-50%) scale(0.8)');
-  document.addEventListener('mouseup',   () => {
-    hoverIcon.style.transform = 'translate(-50%,-50%) scale(1)';
-    const s = document.createElement('div');
-    s.classList.add('hover-spread');
-    Object.assign(s.style, { height:'16px', minWidth:'16px', background:'#234de6', position:'absolute', opacity:'0.1', borderRadius:'50%', animation:'spread 0.5s ease-out forwards' });
-    hoverIcon.appendChild(s);
-    setTimeout(() => s.remove(), 500);
-  });
 
   // ── Menu ──────────────────────────────────────────────────────────────────
   const menuButton    = document.getElementById('menu-button');

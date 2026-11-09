@@ -281,13 +281,12 @@
                     <tspan x="10" dy="0">I build websites, software & AI solutions that deliver results.</tspan>
                 </text>
                 <text class="landing-subheading" x="10" y="255">
-                    <tspan x="10" dy="0">With real-world projects like NavMaze and Garbage Detection AI, plus internship</tspan>
-                    <tspan x="10" dy="25">experience, I transform ideas into powerful digital solutions. From responsive websites</tspan>
-                    <tspan x="10" dy="25">to intelligent applications, I deliver scalable results that solve real problems.</tspan>
-                    <tspan x="10" dy="25">Open to freelance projects and collaborations.</tspan>
+                    <tspan x="10" dy="0">With real-world projects like NavMaze & Garbage Detection AI,</tspan>
+                    <tspan x="10" dy="28">I transform ideas into responsive, scalable digital solutions.</tspan>
+                    <tspan x="10" dy="28">Open to freelance projects and collaborations.</tspan>
                 </text>
 
-                <foreignObject x="8" y="365" height="100" width="300" requiredExtensions="http://www.w3.org/1999/xhtml">
+                <foreignObject x="8" y="360" height="100" width="300" requiredExtensions="http://www.w3.org/1999/xhtml">
                     <div id="landing-cta-button" class="big-button orange-hover">Explore <a href="#work-section" style="color: inherit; text-decoration: none;">My Work</a></div>
                 </foreignObject>
             </svg>
@@ -370,7 +369,7 @@
                             <text x="0" y="0" font-size="12" class="about-header-upper-text">Name :</text>
                             <text x="0" y="20" font-size="18" class="about-header-lower-text">Shivam Gupta</text>
                             <text x="135" y="0" font-size="12" class="about-header-upper-text">Age :</text>
-                            <text x="135" y="20" font-size="18" class="about-header-lower-text">20</text>
+                            <text x="135" y="20" font-size="18" class="about-header-lower-text" id="about-age-value">23</text>
                             <text x="220" y="0" font-size="12" class="about-header-upper-text">From :</text>
                             <text x="220" y="20" font-size="18" class="about-header-lower-text">India</text>
                         </g>
@@ -452,8 +451,9 @@
                                 href="/icons/baby-pixel.png" x="6" y="7" />
 
                             <!--First Text-->
-                            <text x="88" y="33" class="about-text">Who is Shivam Gupta? Shivam Gupta is a Web Developer</text>
-                            <text x="88" y="50" class="about-text">and AI Enthusiast who founded ShivamWeb at age 17.</text>
+                            <text x="88" y="22" class="about-text about-question">Who is Shivam Gupta?</text>
+                            <text x="88" y="42" class="about-text">Shivam Gupta is a Web Developer and AI</text>
+                            <text x="88" y="60" class="about-text">Enthusiast who founded ShivamWeb at age 17.</text>
                         </g>
 
                         <!--Second Content-->
@@ -471,8 +471,9 @@
                             <g id="about-icon-1" transform="translate(417 5) scale(0.8)"> </g>
 
                             <!--Second Text-->
-                            <text x="5" y="33" class="about-text">What are Shivam Gupta's specialties? ShivamWeb focuses on</text>
-                            <text x="5" y="50" class="about-text">AI & Web Development as an AI Developer Student.</text>
+                            <text x="5" y="22" class="about-text about-question">What are Shivam Gupta's specialties?</text>
+                            <text x="5" y="42" class="about-text">ShivamWeb focuses on AI & Web Development</text>
+                            <text x="5" y="60" class="about-text">as an AI Developer Student.</text>
                         </g>
 
                         <!--Third Content-->
@@ -491,8 +492,9 @@
                                 href="/icons/rocket-pixel.png" x="6" y="7" />
 
                             <!--Third Text-->
-                            <text x="88" y="33" class="about-text">How did Shivam Gupta learn web development? ShivamWeb's</text>
-                            <text x="88" y="50" class="about-text">expertise comes from self-study through internet resources.</text>
+                            <text x="88" y="22" class="about-text about-question">How did Shivam Gupta learn web development?</text>
+                            <text x="88" y="42" class="about-text">ShivamWeb's expertise comes from self-study</text>
+                            <text x="88" y="60" class="about-text">through internet resources.</text>
                         </g>
                     </g>
 
@@ -660,6 +662,26 @@
         </footer>
     </div>
 
+    <!--Dynamic Age Calculation from Birthdate (08 Dec 2002)-->
+    <script>
+        (function () {
+            function updateAge() {
+                var birthDate = new Date(2002, 11, 8); // Dec 8, 2002
+                var today = new Date();
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                var el = document.getElementById("about-age-value");
+                if (el) el.textContent = age;
+            }
+            updateAge();
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", updateAge);
+            }
+        })();
+    </script>
 </body>
 
 </html>
