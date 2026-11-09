@@ -703,17 +703,29 @@
 
         /* Preloader Styles */
         #intro-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #F5EFE6;
-            z-index: 9999;
+            position: fixed !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            width: 100vw !important;
+            height: 100% !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            min-height: 100% !important;
+            min-height: 100vh !important;
+            min-height: 100dvh !important;
+            min-height: -webkit-fill-available !important;
+            background: #F5EFE6 !important;
+            z-index: 99999 !important;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: wait;
+            margin: 0 !important;
+            padding: 0 !important;
+            touch-action: none;
         }
 
         #intro-container.hide {
