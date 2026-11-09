@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Blog | Shivam Gupta - Web Development & AI Insights | ShivamWeb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Read the latest insights on web development, AI, and technology from Shivam Gupta (ShivamWeb). Expert tutorials, industry trends, and development tips.">
+    <meta name="keywords" content="web development blog, AI blog, ShivamWeb blog, Shivam Gupta articles, programming tutorials, tech insights, web design tips">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://shivamweb.in/blog.html" />
+    <meta property="og:site_name" content="Shivamweb.in">
+    <meta property="og:title" content="Blog - Shivam Gupta | Web Development & AI Insights">
+    <meta property="og:description" content="Explore web development, AI, and technology insights from Shivam Gupta (ShivamWeb).">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shivamweb.in/blog.html">
+    <meta property="og:image" content="https://shivamweb.in/images/projects/Portfolio.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog - Shivam Gupta | Web Development & AI Insights">
+    <meta name="twitter:description" content="Read the latest insights on web development, AI, and technology from ShivamWeb.">
+    <meta name="theme-color" content="#EFE7DC">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="/head/favion-32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        /* Base Overrides for Static Page */
+        html,
+        body {
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            height: auto !important;
+            display: block !important;
+            background-color: #F5EFE6;
+            margin: 0;
+            padding: 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Header Overlay */
+        #overlay-container {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            max-width: calc(100% - 60px);
+            width: 100%;
+            height: auto !important;
+            opacity: 1 !important;
+            pointer-events: none;
+            z-index: 3000;
+        }
+
+        @media (max-width: 768px) {
+            #overlay-container { max-width: calc(100% - 30px); }
+        }
+
+        #header-container {
+            position: relative;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        #header-logo-svg,
+        #menu-button-scale-container,
+        #logo-click-container {
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+
+        #sound-button-scale-container,
+        .scroll-container {
+            display: none !important;
+        }
+
+        #header-logo-svg,
+        #logo-click-container,
+        #logo-dark-background {
+            position: absolute;
+            top: 30px !important;
+            left: 0;
+        }
+
+        #logo-dark-background {
+            width: 56px !important;
+            height: 60px !important;
+            clip-path: url(#logo-clip-path) !important;
+            -webkit-clip-path: url(#logo-clip-path) !important;
+        }
+
+        #logo-white-background { height: 100% !important; }
+
+        /* ─── Layout ─── */
+        .content-width {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        #blog-main-content {
+            padding-top: 130px;
+            padding-bottom: 80px;
+        }
+
+        /* ─── Hero Banner ─── */
+        #blog-hero {
+            width: 100%;
+            background: #091434;
+            border-radius: 28px;
+            padding: 64px 60px;
+            box-sizing: border-box;
+            margin-bottom: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 340px; height: 340px;
+            background: radial-gradient(circle, rgba(35,77,230,0.55) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        #blog-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: 30%;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(255,146,62,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .hero-eyebrow hr {
+            width: 40px;
+            border: 1.5px solid rgba(255,146,62,0.8);
+            margin: 0;
+        }
+
+        .hero-eyebrow span {
+            color: #FF923E;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        #blog-hero h1 {
+            font-family: 'Electrolize', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: white;
+            margin: 0 0 18px;
+            line-height: 1.15;
+            position: relative;
+            z-index: 1;
+        }
+
+        #blog-hero p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.65);
+            max-width: 520px;
+            line-height: 1.7;
+            margin: 0 0 34px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-family: 'Electrolize', sans-serif;
+            font-size: 2rem;
+            color: white;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.45);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ─── Section Headers ─── */
+        .section-subheader-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .section-subheader-container hr {
+            width: 50px;
+            border: 1px solid #091434;
+            margin-right: 15px;
+        }
+
+        .section-subheader-container h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #091434;
+            margin: 0;
+        }
+
+        .section-header-container {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: #091434;
+            font-family: 'Electrolize', sans-serif;
+            text-align: left;
+            width: 100%;
+            margin: 0 0 40px;
+        }
+
+        /* ─── Category Filter ─── */
+        #category-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+            align-items: center;
+        }
+
+        .cat-btn {
+            padding: 9px 22px;
+            border-radius: 30px;
+            border: 2px solid #091434;
+            background: transparent;
+            color: #091434;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .cat-btn:hover,
+        .cat-btn.active {
+            background: #091434;
+            color: white;
+        }
+
+        /* ─── Featured Post ─── */
+        #featured-post-wrapper {
+            margin-bottom: 60px;
+        }
+
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.07);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+        }
+
+        .featured-image-wrap {
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+        }
+
+        .featured-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .featured-card:hover .featured-image-wrap img {
+            transform: scale(1.05);
+        }
+
+        .featured-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(35,77,230,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 18px; left: 18px;
+            background: #FF923E;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(255,146,62,0.45);
+        }
+
+        .featured-content {
+            padding: 48px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .post-category {
+            font-size: 0.72rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .post-date {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            color: #9aa3af;
+        }
+
+        .post-read-time {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            color: #9aa3af;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .featured-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            font-weight: 700;
+            color: #091434;
+            margin: 0 0 14px;
+            line-height: 1.3;
+        }
+
+        .featured-content p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: #697484;
+            line-height: 1.7;
+            margin: 0 0 28px;
+        }
+
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 26px;
+            border-radius: 14px;
+            background: #091434;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            width: fit-content;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .read-more-btn:hover {
+            background: #234de6;
+            transform: translateX(4px);
+        }
+
+        .read-more-btn svg { transition: transform 0.25s ease; }
+        .read-more-btn:hover svg { transform: translateX(4px); }
+
+        /* ─── Blog Grid ─── */
+        #posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 70px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 60px rgba(0,0,0,0.1);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: #e8e8e8;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-card-image img { transform: scale(1.06); }
+
+        .blog-card-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(9,20,52,0.15) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        /* Illustrated placeholder for posts without images */
+        .blog-card-illustration {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .blog-card-body {
+            padding: 24px 24px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-card-body h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #091434;
+            margin: 0 0 10px;
+            line-height: 1.4;
+        }
+
+        .blog-card-body p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.88rem;
+            color: #697484;
+            line-height: 1.65;
+            flex-grow: 1;
+            margin: 0 0 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .card-read-link {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #234de6;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
+        }
+
+        .card-read-link:hover { gap: 10px; }
+
+        .card-read-time {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.78rem;
+            color: #b0bbc7;
+        }
+
+        /* ─── Newsletter / CTA Banner ─── */
+        #newsletter-section {
+            background: linear-gradient(135deg, #091434 0%, #0d1f5e 100%);
+            border-radius: 28px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -40px;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(255,146,62,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .newsletter-text { position: relative; z-index: 1; }
+
+        .newsletter-text h2 {
+            font-family: 'Electrolize', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: white;
+            margin: 0 0 10px;
+        }
+
+        .newsletter-text p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.55);
+            margin: 0;
+            max-width: 380px;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .newsletter-input {
+            padding: 14px 22px;
+            border-radius: 14px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            width: 260px;
+            outline: none;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            transition: border-color 0.25s;
+        }
+
+        .newsletter-input::placeholder { color: rgba(255,255,255,0.35); }
+        .newsletter-input:focus { border-color: #FF923E; }
+
+        .newsletter-btn {
+            padding: 14px 28px;
+            border-radius: 14px;
+            border: none;
+            background: #FF923E;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.25s, transform 0.2s;
+        }
+
+        .newsletter-btn:hover {
+            background: #e07a2a;
+            transform: translateY(-2px);
+        }
+
+        /* ─── Contact Section ─── */
+        #contact-section {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            position: relative;
+            background: #F5EFE6;
+            min-height: auto !important;
+            padding: 80px 0;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        #contact-container {
+            width: 580px;
+            max-width: 90%;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+            height: auto !important;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+        }
+
+        #contact-header-container {
+            width: 580px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: #F5EFE6;
+            padding-bottom: 30px;
+            width: 100%;
+        }
+
+        /* ─── Menu ─── */
+        #menu-container {
+            position: fixed;
+            right: 0; top: 0;
+            width: calc(300px + (100vw - 90rem)/2);
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            max-width: 45vw;
+            box-sizing: border-box;
+            padding: 50px 50px 70px;
+            transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.77,0,0.175,1);
+            display: flex;
+            justify-content: center;
+        }
+
+        #menu-container.menu-active {
+            transform: translateX(0);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+        }
+
+        #menu-content-container {
+            position: relative;
+            height: 100%;
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #menu-items-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .menu-items-column-container { width: 100%; }
+
+        .menu-item {
+            border-radius: 15px;
+            margin: 15px 0;
+            font-weight: 600;
+            font-size: 1.8rem;
+            width: fit-content;
+            color: #091434;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: color 0.3s;
+        }
+
+        .menu-item:hover { color: #234de6; }
+
+        .menu-button-bar {
+            width: 26px;
+            height: 4px;
+            background: #091434;
+            margin: 2.5px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-origin: center;
+        }
+
+        .menu-button-active #menu-button-bar-0 { transform: translateY(9px) rotate(45deg); }
+        .menu-button-active #menu-button-bar-1 { opacity: 0; }
+        .menu-button-active #menu-button-bar-2 { transform: translateY(-9px) rotate(-45deg); }
+
+        #menu-social-container { margin-right: 15px; }
+
+        #menu-social-container .social-icon {
+            margin-right: 15px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        #menu-social-container .social-icon:hover { filter: grayscale(0%); }
+        #music-credit-container { margin-bottom: 10px; }
+
+        #music-credit-container span,
+        #music-credit-container a {
+            font-size: 0.9rem;
+            color: #7c8594;
+        }
+
+        /* ─── Cursor ─── */
+        #hover-icon {
+            position: fixed;
+            border-radius: 50%;
+            border-style: solid;
+            top: 0; left: 0;
+            z-index: 999;
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: height 0.2s, width 0.2s, border-color 0.2s, border-width 0.2s;
+            opacity: 0;
+        }
+
+        #hover-content { width: 100%; height: 100%; object-fit: contain; }
+
+        .hover-spread {
+            height: 16px;
+            min-width: 16px;
+            background: #234de6;
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        @keyframes spread {
+            0%   { height: 16px; width: 16px; opacity: 0.1; }
+            100% { height: 50px; width: 50px; opacity: 0; }
+        }
+
+        /* ─── Preloader ─── */
+        #intro-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: #F5EFE6;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: wait;
+        }
+
+        #intro-container.hide { display: none !important; }
+
+        .center { display: flex; justify-content: center; align-items: center; }
+        .column { display: flex; flex-direction: column; }
+
+        /* ─── Transition ─── */
+        #transition-container {
+            position: fixed;
+            z-index: 10000;
+            width: 200vw;
+            bottom: -500%;
+            transform: rotate(20deg);
+            left: -40%;
+            pointer-events: none;
+            display: block;
+        }
+
+        #transition-container.hide { display: none; }
+        #transition-wave-svg { transform: translateY(20px); }
+        #transition-wave-svg-bottom { transform: rotate(180deg) translateY(20px); }
+        #transition-push { height: 200vh; background: #234de6; }
+
+        .showTransition { animation: showTransition ease-in 0.7s forwards; }
+        .hideTopTransition { animation: hideTopTransition ease-in 0.7s forwards; }
+
+        @keyframes showTransition {
+            0%   { bottom: -450%; left: -60%; }
+            100% { bottom: -120%; left: -40%; }
+        }
+
+        @keyframes hideTopTransition {
+            0%   { bottom: -120%; left: -40%; }
+            100% { bottom: 100%; left: 40%; }
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 1024px) {
+            #posts-grid { grid-template-columns: repeat(2, 1fr); }
+            .featured-card { grid-template-columns: 1fr; }
+            .featured-image-wrap { min-height: 260px; }
+        }
+
+        @media (max-width: 768px) {
+            #blog-hero { padding: 44px 28px; border-radius: 20px; }
+            #blog-hero h1 { font-size: 2rem; }
+            .hero-stats { gap: 24px; }
+            #posts-grid { grid-template-columns: 1fr; gap: 24px; }
+            #newsletter-section {
+                flex-direction: column;
+                padding: 40px 28px;
+                text-align: center;
+            }
+            .newsletter-form { flex-direction: column; width: 100%; }
+            .newsletter-input { width: 100%; box-sizing: border-box; }
+            .featured-content { padding: 28px 24px; }
+            #menu-container { width: 100vw; max-width: none; padding: 30px; }
+            .menu-item { font-size: 2.2rem; }
+            #contact-section { padding: 40px 0 !important; margin-top: 20px !important; }
+        }
+
+        @media (max-width: 480px) {
+            #blog-hero { padding: 36px 20px; }
+            .hero-stats { gap: 18px; }
+            .hero-stat-number { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="intro-container" class="center column">
+        <svg id="intro-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="120" width="120">
+            <defs>
+                <path id="logo-path"
+                    d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42">
+                </path>
+                <mask id="intro-mask">
+                    <rect fill="black" height="61" width="61"></rect>
+                    <rect fill="white" height="61" width="61" id="loading-rect" y="61"></rect>
+                </mask>
+            </defs>
+            <use href="#logo-path" fill="#091434" opacity=".1"></use>
+            <use href="#logo-path" fill="#091434" mask="url(#intro-mask)"></use>
+        </svg>
+    </div>
+
+    <!-- Page Transition -->
+    <div id="transition-container" class="hide">
+        <svg id="transition-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <defs>
+                <path fill="#FF923E" id="transition-wave-path"
+                    d="M0,128L21.8,138.7C43.6,149,87,171,131,154.7C174.5,139,218,85,262,69.3C305.5,53,349,75,393,101.3C436.4,128,480,160,524,186.7C567.3,213,611,235,655,213.3C698.2,192,742,128,785,122.7C829.1,117,873,171,916,186.7C960,203,1004,181,1047,160C1090.9,139,1135,117,1178,96C1221.8,75,1265,53,1309,53.3C1352.7,53,1396,75,1418,85.3L1440,96L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z">
+                </path>
+            </defs>
+            <use href="#transition-wave-path"></use>
+        </svg>
+        <div id="transition-push"></div>
+        <svg id="transition-wave-svg-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <use href="#transition-wave-path"></use>
+        </svg>
+    </div>
+
+    <!-- Overlay Header -->
+    <div id="overlay-container" class="content-width">
+        <header id="header-container" aria-label="Main navigation header">
+            <svg id="header-logo-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="60" width="56">
+                <defs>
+                    <path id="logo-path-header"
+                        d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42">
+                    </path>
+                    <clipPath id="logo-clip-path">
+                        <use fill="white" href="#logo-path-header" transform="scale(0.87)"></use>
+                    </clipPath>
+                </defs>
+            </svg>
+            <div id="logo-dark-background">
+                <div id="logo-white-background" style="width: 0px;"></div>
+            </div>
+            <div id="logo-click-container" onclick="window.location.href='index.html'" style="cursor:pointer;z-index:10;"></div>
+            <div id="menu-button-scale-container" style="position:absolute;z-index:9999;right:0;top:30px;">
+                <div id="menu-button" class="center column overlay-button orange-hover">
+                    <div id="menu-button-bar-0" class="menu-button-bar"></div>
+                    <div id="menu-button-bar-1" class="menu-button-bar"></div>
+                    <div id="menu-button-bar-2" class="menu-button-bar"></div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Menu -->
+    <div id="menu-container" class="column">
+        <div id="menu-content-container" class="column">
+            <div id="menu-items-container">
+                <div class="column menu-items-column-container">
+                    <span class="menu-item" onclick="window.location.href='index.html'">Home</span>
+                    <span class="menu-item" onclick="window.location.href='index.html#about-section'">About</span>
+                    <span class="menu-item active-menu-item" onclick="window.location.href='blog.html'">Blog</span>
+                </div>
+                <div class="column menu-items-column-container">
+                    <span class="menu-item" onclick="window.location.href='work.html'">Work</span>
+                    <span class="menu-item" onclick="window.location.href='index.html#contact-section'">Contact</span>
+                </div>
+            </div>
+            <div id="menu-social-container" class="row">
+                <a tabindex="-1" target="_blank" href="https://www.twitter.com"><img class="social-icon" src="/icons/twitter-icon.png" alt="Twitter" height="28" width="28"></a>
+                <a tabindex="-1" target="_blank" href="https://github.com/Shivamgpt812"><img class="social-icon" alt="Github" height="28" width="28" src="/icons/github-icon.png"></a>
+                <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/shivam-gupta-b816aa391/"><img class="social-icon" alt="LinkedIn" height="28" width="28" src="/icons/linkedin-icon.png"></a>
+                <a tabindex="-1" href="mailto:shivamweb.work@gmail.com"><img class="social-icon" alt="Email" height="28" width="28" src="/icons/mail-icon.png"></a>
+            </div>
+            <hr>
+            <div id="music-credit-container" class="row">
+                <span>Music produced by <a tabindex="-1" href="https://soundcloud.com/hmsurf" target="_blank">Vali</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="hover-icon">
+        <svg id="hover-content" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" height="30" width="30" fill="white">
+            <path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 255.1S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"/>
+        </svg>
+        <div class="hover-spread"></div>
+        <div class="hover-spread"></div>
+    </div>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main id="blog-main-content" class="content-width" aria-label="Blog - Web development and AI insights by Shivam Gupta">
+
+        <!-- Hero Banner -->
+        <div id="blog-hero">
+            <div class="hero-eyebrow">
+                <hr>
+                <span>ShivamWeb Blog</span>
+            </div>
+            <h1>Thoughts on Web,<br>AI & Beyond.</h1>
+            <p>Real talk on building for the web — from creative 3D experiences to AI integrations, code breakdowns, and lessons from client work.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number" id="stat-posts">12</span>
+                    <span class="hero-stat-label">Articles</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">5</span>
+                    <span class="hero-stat-label">Topics</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">∞</span>
+                    <span class="hero-stat-label">Ideas</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Post -->
+        <div id="featured-post-wrapper">
+            <div class="section-subheader-container">
+                <hr>
+                <h5>Featured</h5>
+            </div>
+            <div id="featured-post-slot"></div>
+        </div>
+
+        <!-- Category Filter + Grid -->
+        <div class="section-subheader-container">
+            <hr>
+            <h5>All Posts</h5>
+        </div>
+        <h2 class="section-header-container">Browse by Topic</h2>
+
+        <div id="category-filter">
+            <button class="cat-btn active" data-cat="all">All</button>
+            <button class="cat-btn" data-cat="web-dev">Web Dev</button>
+            <button class="cat-btn" data-cat="ai">AI & Tech</button>
+            <button class="cat-btn" data-cat="design">Design</button>
+            <button class="cat-btn" data-cat="career">Software</button>
+        </div>
+
+        <div id="posts-grid"></div>
+
+        <!-- Newsletter Banner -->
+        <div id="newsletter-section">
+            <div class="newsletter-text">
+                <h2>Stay in the loop.</h2>
+                <p>Get new articles on web development, AI projects, and creative coding delivered straight to your inbox. No spam, ever.</p>
+            </div>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="your@email.com" id="nl-email" autocomplete="email">
+                <button class="newsletter-btn" id="nl-btn">Subscribe</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="content-width" aria-label="Contact section">
+        <div class="column" id="contact-header-container">
+            <div class="section-subheader-container"><hr><h5>Say Hey! ✌️</h5></div>
+            <h1 class="section-header-container">Contact me</h1>
+        </div>
+        <div id="contact-container">
+            <div id="contact-form-container" class="column contact-container">
+                <div id="contact-name-input" class="input-container column">
+                    <div class="row">
+                        <label for="contact-name-input-field">Name :</label>
+                        <span class="error-label hide">Please enter your name.</span>
+                    </div>
+                    <input id="contact-name-input-field" tabindex="1">
+                </div>
+                <div id="contact-email-input" class="input-container column">
+                    <div class="row">
+                        <label for="contact-email-input-field">Email :</label>
+                        <span class="error-label hide">Please enter a valid email address.</span>
+                    </div>
+                    <input id="contact-email-input-field" type="email" tabindex="2">
+                </div>
+                <div id="contact-message-input" class="input-container column">
+                    <div class="row">
+                        <label for="contact-message-input-field">Message :</label>
+                        <span class="error-label hide">Please enter your message.</span>
+                    </div>
+                    <textarea id="contact-message-input-field" tabindex="3"></textarea>
+                </div>
+                <div class="row" id="contact-button-container">
+                    <button id="contact-submit-button" class="big-button orange-hover" tabindex="4">Submit</button>
+                </div>
+            </div>
+            <div id="contact-loading-container" class="column contact-container hide">
+                <div class="center" style="padding: 40px 0;">
+                    <svg viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg" height="60" width="60">
+                        <use href="#logo-path" fill="#091434" opacity=".2"></use>
+                    </svg>
+                </div>
+            </div>
+            <div id="contact-result-container" class="column contact-container hide">
+                <div id="contact-result-message-container" class="center column" style="padding: 30px 0; gap: 10px; text-align:center;"></div>
+                <div class="row" id="contact-result-button-container">
+                    <button id="contact-result-button" class="big-button orange-hover">Send Another</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer></footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () { emailjs.init("Cl5uR-dzvfwx5Pjpg"); })();
+    </script>
+
+    <script>
+    // ─── Blog Data ──────────────────────────────────────────────────────────────
+    const posts = [
+        {
+            id: 1,
+            slug: "website-development-cost-india-2026",
+            title: "Website Development Cost in India (2026 Complete Guide)",
+            excerpt: "Wondering how much a website costs in India in 2026? This complete guide breaks down pricing for every type of website — static, dynamic, ecommerce, and enterprise — with real estimates.",
+            category: "web-dev",
+            categoryLabel: "Web Dev",
+            categoryColor: "#0EA5E9",
+            date: "Jul 9, 2026",
+            readTime: "11 min read",
+            featured: true,
+            illustration: "💻",
+            gradient: "linear-gradient(135deg,#0a1e2e 0%,#0c4a6e 100%)"
+        },
+        {
+            id: 2,
+            slug: "custom-website-vs-wordpress",
+            title: "Custom Website vs WordPress: Which One Should Your Business Choose?",
+            excerpt: "Custom-coded website or WordPress? This honest comparison covers cost, performance, flexibility, SEO, and long-term value — helping Indian businesses make the right choice.",
+            category: "web-dev",
+            categoryLabel: "Web Dev",
+            categoryColor: "#0EA5E9",
+            date: "Jul 9, 2026",
+            readTime: "9 min read",
+            illustration: "⚖️",
+            gradient: "linear-gradient(135deg,#0a1628 0%,#1a3a8a 100%)"
+        },
+        {
+            id: 3,
+            slug: "signs-your-business-needs-website-redesign",
+            title: "15 Signs Your Business Needs a Website Redesign in 2026",
+            excerpt: "Is your website quietly driving customers away? Discover 15 clear signs your business website needs a redesign — and what to do about each one.",
+            category: "design",
+            categoryLabel: "Design",
+            categoryColor: "#7C3AED",
+            date: "Jul 9, 2026",
+            readTime: "8 min read",
+            illustration: "🔄",
+            gradient: "linear-gradient(135deg,#1a0a2e 0%,#4a1a8a 100%)"
+        },
+        {
+            id: 4,
+            slug: "seo-guide-small-businesses-india",
+            title: "Complete Guide to SEO for Small Businesses in India (2026)",
+            excerpt: "Learn how to rank your small business on Google in India. This complete SEO guide covers local SEO, on-page SEO, technical SEO, and content strategy — step by step.",
+            category: "ai",
+            categoryLabel: "SEO",
+            categoryColor: "#16A34A",
+            date: "Jul 9, 2026",
+            readTime: "13 min read",
+            illustration: "🔍",
+            gradient: "linear-gradient(135deg,#0a2818 0%,#155724 100%)"
+        },
+        {
+            id: 5,
+            slug: "top-web-design-trends-2026",
+            title: "Top Web Design Trends That Will Dominate 2026",
+            excerpt: "From AI-generated layouts to immersive 3D experiences and bento grids — the web design trends defining 2026 and which ones are worth adopting for your business.",
+            category: "design",
+            categoryLabel: "Design",
+            categoryColor: "#7C3AED",
+            date: "Jul 9, 2026",
+            readTime: "8 min read",
+            illustration: "🎨",
+            gradient: "linear-gradient(135deg,#1a0a2e 0%,#5a1a9a 100%)"
+        },
+        {
+            id: 6,
+            slug: "how-fast-website-increases-sales",
+            title: "How a Fast Website Can Increase Your Sales and Google Rankings",
+            excerpt: "Page speed directly affects your revenue and SEO rankings. Learn how to make your website faster and why it matters more than ever in 2026.",
+            category: "web-dev",
+            categoryLabel: "Web Dev",
+            categoryColor: "#0EA5E9",
+            date: "Jul 9, 2026",
+            readTime: "7 min read",
+            illustration: "⚡",
+            gradient: "linear-gradient(135deg,#0a1e2e 0%,#1e4a8a 100%)"
+        },
+        {
+            id: 7,
+            slug: "school-erp-software-guide",
+            title: "School ERP Software: Features, Benefits & Implementation Guide",
+            excerpt: "Everything school administrators need to know about ERP software — features, benefits, implementation steps, and cost in India.",
+            category: "career",
+            categoryLabel: "Software",
+            categoryColor: "#FF923E",
+            date: "Jul 9, 2026",
+            readTime: "10 min read",
+            illustration: "🏫",
+            gradient: "linear-gradient(135deg,#2e1a0a 0%,#8a4a1a 100%)"
+        },
+        {
+            id: 8,
+            slug: "inventory-management-software-guide",
+            title: "Inventory Management Software: Everything Businesses Need to Know",
+            excerpt: "Running out of stock? Drowning in manual reconciliation? Inventory management software fixes all of this — complete guide for Indian businesses.",
+            category: "career",
+            categoryLabel: "Software",
+            categoryColor: "#FF923E",
+            date: "Jul 9, 2026",
+            readTime: "9 min read",
+            illustration: "📦",
+            gradient: "linear-gradient(135deg,#1a2e0a 0%,#3a6a1a 100%)"
+        },
+        {
+            id: 9,
+            slug: "crm-software-explained",
+            title: "CRM Software Explained: Benefits, Features & Best Practices",
+            excerpt: "Most Indian businesses lose leads not because of bad products — but inconsistent follow-up. CRM software solves exactly this. Complete guide inside.",
+            category: "career",
+            categoryLabel: "Software",
+            categoryColor: "#FF923E",
+            date: "Jul 9, 2026",
+            readTime: "9 min read",
+            illustration: "🤝",
+            gradient: "linear-gradient(135deg,#2e0a1a 0%,#8a1a4a 100%)"
+        },
+        {
+            id: 10,
+            slug: "ai-transforming-website-development-2026",
+            title: "How AI Is Transforming Website Development in 2026",
+            excerpt: "From AI-generated code to intelligent design systems and personalised user experiences — how artificial intelligence is reshaping website development this year.",
+            category: "ai",
+            categoryLabel: "AI & Tech",
+            categoryColor: "#16A34A",
+            date: "Jul 9, 2026",
+            readTime: "9 min read",
+            illustration: "🤖",
+            gradient: "linear-gradient(135deg,#0a2818 0%,#155724 100%)"
+        },
+        {
+            id: 11,
+            slug: "website-maintenance-checklist",
+            title: "Website Maintenance Checklist Every Business Should Follow in 2026",
+            excerpt: "A complete, actionable website maintenance checklist — covering security, performance, SEO, content, and backups on a monthly, quarterly, and annual schedule.",
+            category: "web-dev",
+            categoryLabel: "Web Dev",
+            categoryColor: "#0EA5E9",
+            date: "Jul 9, 2026",
+            readTime: "8 min read",
+            illustration: "✅",
+            gradient: "linear-gradient(135deg,#0a1e2e 0%,#0c4a6e 100%)"
+        },
+        {
+            id: 12,
+            slug: "choosing-right-web-development-company-india",
+            title: "Ultimate Guide to Choosing the Right Web Development Company in India",
+            excerpt: "Not all web development agencies are equal. A practical framework for evaluating and choosing the right web development company for your project.",
+            category: "web-dev",
+            categoryLabel: "Web Dev",
+            categoryColor: "#0EA5E9",
+            date: "Jul 9, 2026",
+            readTime: "10 min read",
+            illustration: "🏆",
+            gradient: "linear-gradient(135deg,#091434 0%,#0d2460 100%)"
+        }
+    ];
+
+    // ─── Render Featured Post ────────────────────────────────────────────────────
+    function renderFeatured() {
+        const post = posts.find(p => p.featured);
+        if (!post) return;
+
+        const slot = document.getElementById('featured-post-slot');
+        slot.innerHTML = `
+            <div class="featured-card" onclick="openPost(${post.id})">
+                <div class="featured-image-wrap">
+                    <div style="width:100%;height:100%;background:${post.gradient};display:flex;align-items:center;justify-content:center;font-size:5rem;">${post.illustration}</div>
+                    <div class="featured-img-overlay"></div>
+                    <span class="featured-badge">⭐ Featured</span>
+                </div>
+                <div class="featured-content">
+                    <div class="post-meta">
+                        <span class="post-category" style="background:${post.categoryColor}">${post.categoryLabel}</span>
+                        <span class="post-date">${post.date}</span>
+                        <span class="post-read-time">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            ${post.readTime}
+                        </span>
+                    </div>
+                    <h2>${post.title}</h2>
+                    <p>${post.excerpt}</p>
+                    <a href="#" class="read-more-btn" onclick="event.preventDefault();openPost(${post.id})">
+                        Read Article
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="white"><path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 256S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"/></svg>
+                    </a>
+                </div>
+            </div>`;
+    }
+
+    // ─── Render Grid ─────────────────────────────────────────────────────────────
+    function renderGrid(filter = 'all') {
+        const grid = document.getElementById('posts-grid');
+        const visible = posts.filter(p => !p.featured && (filter === 'all' || p.category === filter));
+
+        if (visible.length === 0) {
+            grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 0;font-family:'Poppins',sans-serif;color:#9aa3af;font-size:1rem;">No posts in this category yet. Check back soon!</div>`;
+            return;
+        }
+
+        grid.innerHTML = visible.map(post => `
+            <div class="blog-card" onclick="openPost(${post.id})">
+                <div class="blog-card-image">
+                    <div class="blog-card-illustration" style="background:${post.gradient}">${post.illustration}</div>
+                    <div class="blog-card-img-overlay"></div>
+                </div>
+                <div class="blog-card-body">
+                    <div class="post-meta" style="margin-bottom:12px;">
+                        <span class="post-category" style="background:${post.categoryColor};font-size:0.68rem;">${post.categoryLabel}</span>
+                        <span class="post-date">${post.date}</span>
+                    </div>
+                    <h3>${post.title}</h3>
+                    <p>${post.excerpt}</p>
+                    <div class="card-footer">
+                        <a href="#" class="card-read-link" onclick="event.preventDefault();openPost(${post.id})">
+                            Read
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512" fill="#234de6"><path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 256S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"/></svg>
+                        </a>
+                        <span class="card-read-time">${post.readTime}</span>
+                    </div>
+                </div>
+            </div>`).join('');
+    }
+
+    // ─── Navigate to single blog post page ───────────────────────────────────────
+    function openPost(id) {
+        const post = posts.find(p => p.id === id);
+        if (!post || !post.slug) return;
+        window.location.href = '/blogs/blog-post.html?slug=' + post.slug;
+    }
+
+    // ─── Category Buttons ────────────────────────────────────────────────────────
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderGrid(btn.dataset.cat);
+        });
+    });
+
+    // ─── Newsletter ──────────────────────────────────────────────────────────────
+    document.getElementById('nl-btn').addEventListener('click', () => {
+        const email = document.getElementById('nl-email').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('nl-email').style.borderColor = '#ef4444';
+            setTimeout(() => document.getElementById('nl-email').style.borderColor = 'rgba(255,255,255,0.15)', 2000);
+            return;
+        }
+        document.getElementById('nl-btn').textContent = '🎉 Subscribed!';
+        document.getElementById('nl-btn').style.background = '#16A34A';
+        document.getElementById('nl-email').value = '';
+        setTimeout(() => {
+            document.getElementById('nl-btn').textContent = 'Subscribe';
+            document.getElementById('nl-btn').style.background = '#FF923E';
+        }, 3000);
+    });
+
+    // ─── Init ────────────────────────────────────────────────────────────────────
+    renderFeatured();
+    renderGrid('all');
+
+    // ─── Cursor ─────────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        const hoverIcon = document.getElementById('hover-icon');
+        const hoverContent = document.getElementById('hover-content');
+        if (!hoverIcon) return;
+
+        hoverIcon.style.width = '16px';
+        hoverIcon.style.height = '16px';
+        hoverIcon.style.backgroundColor = '#234de6';
+        hoverIcon.style.border = 'none';
+        hoverContent.style.opacity = '0';
+
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+        hoverIcon.style.opacity = '1';
+        hoverIcon.style.transform = 'translate(-50%, -50%) scale(1)';
+
+        document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+        (function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            hoverIcon.style.left = cursorX + 'px';
+            hoverIcon.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        })();
+
+        const sel = 'a,button,input,textarea,.menu-item,.blog-card,.featured-card,.overlay-button,.social-icon,.cat-btn';
+        document.addEventListener('mouseover', e => {
+            if (e.target.closest(sel)) {
+                hoverIcon.style.width = '50px'; hoverIcon.style.height = '50px';
+                hoverIcon.style.backgroundColor = 'transparent';
+                hoverIcon.style.border = '2px solid #234de6';
+                hoverContent.style.opacity = '1';
+            }
+        });
+        document.addEventListener('mouseout', e => {
+            if (e.target.closest(sel)) {
+                hoverIcon.style.width = '16px'; hoverIcon.style.height = '16px';
+                hoverIcon.style.backgroundColor = '#234de6';
+                hoverIcon.style.border = 'none';
+                hoverContent.style.opacity = '0';
+            }
+        });
+        document.addEventListener('mousedown', () => hoverIcon.style.transform = 'translate(-50%,-50%) scale(0.8)');
+        document.addEventListener('mouseup', () => {
+            hoverIcon.style.transform = 'translate(-50%,-50%) scale(1)';
+            const s = document.createElement('div');
+            s.classList.add('hover-spread');
+            Object.assign(s.style, { height:'16px', minWidth:'16px', background:'#234de6', position:'absolute', opacity:'0.1', borderRadius:'50%', animation:'spread 0.5s ease-out forwards' });
+            hoverIcon.appendChild(s);
+            setTimeout(() => s.remove(), 500);
+        });
+
+        // ─── Menu Logic ──────────────────────────────────────────────────────────
+        const menuButton = document.getElementById('menu-button');
+        const menuContainer = document.getElementById('menu-container');
+        let isMenuOpen = false;
+
+        menuButton.addEventListener('click', e => { e.stopPropagation(); toggleMenu(); });
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            menuContainer.classList.toggle('menu-active', isMenuOpen);
+            menuButton.classList.toggle('menu-button-active', isMenuOpen);
+        }
+
+        document.addEventListener('click', e => {
+            if (isMenuOpen && !menuContainer.contains(e.target) && !menuButton.contains(e.target)) toggleMenu();
+        });
+
+        // ─── Contact Form ────────────────────────────────────────────────────────
+        const submitBtn = document.getElementById('contact-submit-button');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                const name = document.getElementById('contact-name-input-field').value;
+                const email = document.getElementById('contact-email-input-field').value;
+                const message = document.getElementById('contact-message-input-field').value;
+                if (!name || !email || !message) { alert('Please fill in all fields.'); return; }
+                submitBtn.innerHTML = 'Sending...';
+                document.getElementById('contact-form-container').classList.add('hide');
+                document.getElementById('contact-loading-container').classList.remove('hide');
+                emailjs.send("service_vn4ya6a", "template_wpbqqbe", { from_name: name, from_email: email, message, to_name: "Shivam" })
+                    .then(() => {
+                        document.getElementById('contact-loading-container').classList.add('hide');
+                        document.getElementById('contact-result-container').classList.remove('hide');
+                        document.getElementById('contact-result-message-container').innerHTML = '<h4>Message Sent!</h4><span>I will get back to you shortly.</span>';
+                    })
+                    .catch(() => {
+                        document.getElementById('contact-loading-container').classList.add('hide');
+                        document.getElementById('contact-form-container').classList.remove('hide');
+                        submitBtn.innerHTML = 'Submit';
+                        alert('Failed to send. Please try again.');
+                    });
+            });
+        }
+
+        const resultBtn = document.getElementById('contact-result-button');
+        if (resultBtn) {
+            resultBtn.addEventListener('click', () => {
+                document.getElementById('contact-result-container').classList.add('hide');
+                document.getElementById('contact-form-container').classList.remove('hide');
+                ['contact-name-input-field','contact-email-input-field','contact-message-input-field'].forEach(id => document.getElementById(id).value = '');
+                document.getElementById('contact-submit-button').innerHTML = 'Submit';
+            });
+        }
+    });
+
+    // ─── Preloader ───────────────────────────────────────────────────────────────
+    window.addEventListener('load', () => {
+        const loadingRect = document.getElementById('loading-rect');
+        const introContainer = document.getElementById('intro-container');
+        const introSvg = document.getElementById('intro-svg');
+        const transitionContainer = document.getElementById('transition-container');
+
+        gsap.to(loadingRect, {
+            attr: { y: 0 },
+            duration: 1.5,
+            ease: "power2.inOut",
+            onComplete: () => {
+                gsap.to(introSvg, {
+                    scale: 0,
+                    duration: 0.6,
+                    ease: "back.in(2.5)",
+                    onComplete: () => {
+                        transitionContainer.classList.remove('hide');
+                        transitionContainer.classList.add('showTransition');
+                        setTimeout(() => {
+                            introContainer.classList.add('hide');
+                            transitionContainer.classList.remove('showTransition');
+                            transitionContainer.classList.add('hideTopTransition');
+                            setTimeout(() => transitionContainer.classList.add('hide'), 700);
+                        }, 700);
+                    }
+                });
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>
