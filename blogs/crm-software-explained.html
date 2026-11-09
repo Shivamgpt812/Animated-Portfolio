@@ -91,13 +91,24 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="icon" type="image/png" href="/head/favion-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/head/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/index.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <style>
     /* ── Base ── */
-    html, body { overflow-x:hidden!important; overflow-y:auto!important; height:auto!important; display:block!important; background-color:#F5EFE6; margin:0; padding:0; -ms-overflow-style:none; scrollbar-width:none; }
+    html, body { overflow-x:hidden!important; overflow-y:auto!important; height:auto!important; display:block!important; background-color:#F5EFE6; margin:0; padding:0; -ms-overflow-style:none; scrollbar-width:none; scroll-behavior:smooth; }
     html::-webkit-scrollbar, body::-webkit-scrollbar { display:none; }
+
+    /* ── Reading Progress Bar ── */
+    #reading-progress-bar { position:fixed; top:0; left:0; width:0%; height:3.5px; background:linear-gradient(90deg, #234de6 0%, #FF923E 100%); z-index:10001; pointer-events:none; transition:width .1s linear; }
+
+    /* ── Heading Anchor Link & Offset ── */
+    #post-body-slot [id] { scroll-margin-top:105px; }
+    .heading-anchor { color:#FF923E; text-decoration:none; font-weight:600; margin-left:-22px; padding-right:6px; opacity:0; transition:opacity .2s ease; display:inline-block; }
+    #post-body-slot h2:hover .heading-anchor, #post-body-slot h3:hover .heading-anchor { opacity:1; }
+    @media (max-width:768px){ .heading-anchor { margin-left:0; padding-right:6px; opacity:.4; } }
 
     /* ── Header overlay ── */
     #overlay-container { position:fixed!important; top:0; left:0; right:0; margin:0 auto; max-width:calc(100% - 60px); width:100%; height:auto!important; opacity:1!important; pointer-events:none; z-index:3000; }
@@ -105,13 +116,48 @@
     #header-container { position:relative; width:100%; pointer-events:none; }
     #header-logo-svg, #menu-button-scale-container, #sound-button-scale-container, #logo-click-container { pointer-events:auto!important; cursor:pointer; }
     .scroll-container { display:none!important; }
-    #header-logo-svg, #logo-click-container, #logo-dark-background { position:absolute; top:0!important; left:0; }
+    #header-logo-svg, #logo-click-container { position:absolute; top:0; left:0; } #logo-dark-background { position:absolute; top:15px!important; left:0; }
     #logo-dark-background { width:56px!important; height:60px!important; clip-path:url(#logo-clip-path)!important; -webkit-clip-path:url(#logo-clip-path)!important; }
     #logo-white-background { height:100%!important; }
 
     /* ── Layout ── */
     .content-width { max-width:1200px; width:90%; margin:0 auto; }
     .post-width   { max-width:800px;  width:90%; margin:0 auto; }
+
+    /* ── Article Layout Container with Sticky Sidebar ── */
+    .article-layout-container { max-width:1160px; width:92%; margin:0 auto; display:flex; gap:36px; align-items:flex-start; justify-content:center; }
+    .article-main-column { max-width:800px; width:100%; min-width:0; flex:1; }
+
+    /* ── Sticky Sidebar ToC (Desktop >= 1140px) ── */
+    .toc-sticky-sidebar { width:280px; flex-shrink:0; position:sticky; top:100px; max-height:calc(100vh - 120px); overflow-y:auto; background:#fff; border-radius:18px; padding:22px 20px; box-shadow:0 10px 30px rgba(0,0,0,.04); border:1px solid rgba(9,20,52,.06); scrollbar-width:thin; scrollbar-color:rgba(35,77,230,.3) transparent; }
+    .toc-sticky-sidebar::-webkit-scrollbar { width:4px; }
+    .toc-sticky-sidebar::-webkit-scrollbar-thumb { background:rgba(35,77,230,.3); border-radius:4px; }
+    .toc-sidebar-header { display:flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-size:.84rem; font-weight:700; color:#091434; text-transform:uppercase; letter-spacing:.8px; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #f0edf8; }
+    .toc-sidebar-list { list-style:none; padding:0; margin:0 0 16px; display:flex; flex-direction:column; gap:4px; }
+    .toc-sidebar-link { display:block; padding:6px 10px; font-family:'Poppins',sans-serif; font-size:.82rem; line-height:1.45; color:#5a6679; text-decoration:none; border-radius:8px; border-left:2px solid transparent; transition:all .2s ease; }
+    .toc-sidebar-link:hover { color:#234de6; background:rgba(35,77,230,.04); }
+    .toc-sidebar-link.active-toc { color:#234de6; font-weight:600; background:rgba(35,77,230,.08); border-left-color:#234de6; }
+    .toc-sidebar-footer { padding-top:10px; border-top:1px solid #f0edf8; }
+    .toc-back-to-top { display:inline-flex; align-items:center; gap:6px; font-family:'Poppins',sans-serif; font-size:.78rem; font-weight:600; color:#7c8594; text-decoration:none; transition:color .2s; }
+    .toc-back-to-top:hover { color:#234de6; }
+
+    @media (max-width:1140px){
+      .toc-sticky-sidebar { display:none!important; }
+      .article-layout-container { max-width:800px; display:block; }
+    }
+
+    /* ── In-Article ToC (Collapsible / Inline) ── */
+    .post-toc-inline { background:#f8f6f2; border:1px solid rgba(35,77,230,0.12); border-left:4px solid #234de6; border-radius:14px; padding:22px 24px; margin:0 0 36px; font-family:'Poppins',sans-serif; }
+    .toc-inline-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(0,0,0,0.06); }
+    .toc-inline-title { display:flex; align-items:center; gap:8px; font-size:.98rem; font-weight:700; color:#091434; }
+    .toc-inline-count { font-size:.75rem; font-weight:600; color:#234de6; background:rgba(35,77,230,0.1); padding:3px 10px; border-radius:12px; }
+    .toc-inline-list { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr; gap:8px; }
+    .toc-inline-list li { margin:0; }
+    .toc-inline-list a.toc-link { display:flex; align-items:baseline; gap:8px; color:#3b4555; text-decoration:none; font-size:.88rem; line-height:1.45; padding:4px 6px; border-radius:6px; transition:background .2s, color .2s; }
+    .toc-inline-list a.toc-link:hover { color:#234de6; background:rgba(35,77,230,0.06); text-decoration:none; }
+    .toc-inline-list a.toc-link.active-toc { color:#234de6; font-weight:600; background:rgba(35,77,230,0.08); }
+    .toc-index { color:#234de6; font-weight:600; font-size:.84rem; flex-shrink:0; }
+    @media (min-width:650px){ .toc-inline-list { grid-template-columns:1fr 1fr; column-gap:20px; } }
 
     /* ── Main wrapper ── */
     #post-main { padding-top:120px; padding-bottom:80px; }
@@ -347,57 +393,136 @@
 <script src="/cursor.js"></script>
 
 <!-- ═══ MAIN CONTENT ═══ -->
+<div id="reading-progress-bar"></div>
 <main id="post-main" aria-label="Blog article">
-  <div class="post-width">
+  <div class="article-layout-container">
+    <div class="article-main-column">
 
-    <!-- Back to blog -->
-    <a href="/blog.html" class="back-link">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512" fill="#234de6"><path d="M9.4 278.6l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3z"/></svg>
-      Back to Blog
-    </a>
+      <!-- Back to blog -->
+      <a href="/blog.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512" fill="#234de6"><path d="M9.4 278.6l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3z"/></svg>
+        Back to Blog
+      </a>
 
-    <!-- Article hero -->
-    <div id="post-hero-slot">
-      <div class="post-hero">
-        <div class="post-eyebrow">
-          <hr>
-          <span>ShivamWeb Blog</span>
-        </div>
-        <h1>CRM Software Explained: Benefits, Features &amp; Best Practices for Indian Businesses</h1>
-        <div class="post-meta-bar">
-          <span class="post-cat-badge" style="background:#FF923E">Software</span>
-          <span>July 9, 2026</span>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5 min read
-          </span>
-          <span>By <strong style="color:rgba(255,255,255,.75);">Shivam Gupta</strong></span>
-        </div>
-        <div class="post-share-bar" style="margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);font-family:'Poppins',sans-serif;font-weight:600;">Share:</span>
-          <a href="https://twitter.com/intent/tweet?text=CRM%20Software%20Explained%3A%20Benefits%2C%20Features%20%26%20Best%20Practices%20for%20Indian%20Businesses&url=https%3A%2F%2Fshivamweb.in%2Fblogs%2Fcrm-software-explained.html" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">Twitter / X</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fshivamweb.in%2Fblogs%2Fcrm-software-explained.html" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">LinkedIn</a>
-          <a href="https://api.whatsapp.com/send?text=CRM%20Software%20Explained%3A%20Benefits%2C%20Features%20%26%20Best%20Practices%20for%20Indian%20Businesses%20https%3A%2F%2Fshivamweb.in%2Fblogs%2Fcrm-software-explained.html" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">WhatsApp</a>
-          <button id="copy-share-btn" style="background:rgba(255,255,255,0.12);color:white;border:none;cursor:pointer;padding:5px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🔗 Copy Link</button>
-        </div>
-        <div class="post-hero-image-wrap">
-          <img src="/images/blogs/crm-software-explained.webp" alt="Sales team in India using CRM software on laptops to manage customer relationships and track leads" class="post-hero-img" loading="eager" decoding="async">
+      <!-- Article hero -->
+      <div id="post-hero-slot">
+        <div class="post-hero">
+          <div class="post-eyebrow">
+            <hr>
+            <span>ShivamWeb Blog</span>
+          </div>
+          <h1>CRM Software Explained: Benefits, Features &amp; Best Practices for Indian Businesses</h1>
+          <div class="post-meta-bar">
+            <span class="post-cat-badge" style="background:#FF923E">Software</span>
+            <span>July 9, 2026</span>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 min read
+            </span>
+            <span>By <a href="/" style="color:rgba(255,255,255,.9);font-weight:600;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.4);transition:all .2s;" title="Shivam Gupta – Web & AI Developer">Shivam Gupta</a></span>
+          </div>
+          <div class="post-share-bar" style="margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);font-family:'Poppins',sans-serif;font-weight:600;">Share:</span>
+            <a href="https://twitter.com/intent/tweet?text=CRM%20Software%20Explained%3A%20Benefits%2C%20Features%20%26%20Best%20Practices%20for%20Indian%20Businesses&url=https%3A%2F%2Fshivamweb.in%2Fblogs%2Fcrm-software-explained.html" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">Twitter / X</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fshivamweb.in%2Fblogs%2Fcrm-software-explained.html" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">LinkedIn</a>
+            <a href="https://api.whatsapp.com/send?text=CRM%20Software%20Explained%3A%20Benefits%2C%20Features%20%26%20Best%20Practices%20for%20Indian%20Businesses%20https%3A%2F%2Fshivamweb.in%2Fblogs%2Fcrm-software-explained.html" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">WhatsApp</a>
+            <button id="copy-share-btn" style="background:rgba(255,255,255,0.12);color:white;border:none;cursor:pointer;padding:5px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🔗 Copy Link</button>
+          </div>
+          <div class="post-hero-image-wrap">
+            <img src="/images/blogs/crm-software-explained.webp" alt="Sales team in India using CRM software on laptops to manage customer relationships and track leads" class="post-hero-img" loading="eager" decoding="async">
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Article body -->
-    <article id="post-body-slot" class="post-body">
-      
-<h2>The Real Reason Businesses Lose Leads</h2>
+      <!-- Article body -->
+      <article id="post-body-slot" class="post-body">
+        
+    <nav class="post-toc-inline" aria-label="Table of Contents">
+      <div class="toc-inline-header">
+        <div class="toc-inline-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#234de6" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+          <span>Table of Contents</span>
+        </div>
+        <span class="toc-inline-count">9 sections</span>
+      </div>
+      <ol class="toc-inline-list">
+        
+          <li>
+            <a href="#the-real-reason-businesses-lose-leads" class="toc-link" data-target="the-real-reason-businesses-lose-leads">
+              <span class="toc-index">1.</span>
+              <span class="toc-text">The Real Reason Businesses Lose Leads</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#what-is-crm-software" class="toc-link" data-target="what-is-crm-software">
+              <span class="toc-index">2.</span>
+              <span class="toc-text">What Is CRM Software?</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#core-features-of-a-good-crm" class="toc-link" data-target="core-features-of-a-good-crm">
+              <span class="toc-index">3.</span>
+              <span class="toc-text">Core Features of a Good CRM</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#types-of-crm-systems" class="toc-link" data-target="types-of-crm-systems">
+              <span class="toc-index">4.</span>
+              <span class="toc-text">Types of CRM Systems</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#who-benefits-most-from-crm-in-india" class="toc-link" data-target="who-benefits-most-from-crm-in-india">
+              <span class="toc-index">5.</span>
+              <span class="toc-text">Who Benefits Most From CRM in India?</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#crm-best-practices-for-indian-businesses" class="toc-link" data-target="crm-best-practices-for-indian-businesses">
+              <span class="toc-index">6.</span>
+              <span class="toc-text">CRM Best Practices for Indian Businesses</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#crm-software-cost-in-india" class="toc-link" data-target="crm-software-cost-in-india">
+              <span class="toc-index">7.</span>
+              <span class="toc-text">CRM Software Cost in India</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#frequently-asked-questions" class="toc-link" data-target="frequently-asked-questions">
+              <span class="toc-index">8.</span>
+              <span class="toc-text">Frequently Asked Questions</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="#summary" class="toc-link" data-target="summary">
+              <span class="toc-index">9.</span>
+              <span class="toc-text">Summary</span>
+            </a>
+          </li>
+        
+      </ol>
+    </nav>
+  
+        
+<h2 id="the-real-reason-businesses-lose-leads"><a href="#the-real-reason-businesses-lose-leads" class="heading-anchor" aria-label="Direct link to The Real Reason Businesses Lose Leads">#</a>The Real Reason Businesses Lose Leads</h2>
 <p>A potential customer fills your enquiry form. Your salesperson calls once, gets no answer, and moves on. Two weeks later, the same customer signs with your competitor because they followed up three times. This story repeats itself across millions of Indian businesses every day — not due to a lack of product quality, but due to inconsistent follow-up and no systematic way to track relationships.</p>
 <p>That's exactly the gap CRM software fills.</p>
 
-<h2>What Is CRM Software?</h2>
+<h2 id="what-is-crm-software"><a href="#what-is-crm-software" class="heading-anchor" aria-label="Direct link to What Is CRM Software?">#</a>What Is CRM Software?</h2>
 <p>CRM stands for Customer Relationship Management. CRM software is a platform that helps businesses manage their interactions with current and potential customers. It centralises all customer information, tracks every interaction, automates follow-ups, and gives sales teams a clear picture of their pipeline at any moment.</p>
 <p>Think of it as a shared, intelligent memory for your entire sales, marketing, and support operation.</p>
 
-<h2>Core Features of a Good CRM</h2>
+<h2 id="core-features-of-a-good-crm"><a href="#core-features-of-a-good-crm" class="heading-anchor" aria-label="Direct link to Core Features of a Good CRM">#</a>Core Features of a Good CRM</h2>
 <h3>Contact and Lead Management</h3>
 <p>Every prospect and customer gets a complete profile — contact details, company information, all previous interactions, notes from calls, emails sent, deals in progress, and documents shared. Everyone on the team sees the same information, eliminating "I didn't know they'd already been contacted" situations.</p>
 
@@ -419,7 +544,7 @@
 <h3>Customer Support / Ticketing</h3>
 <p>Some CRMs extend beyond sales into customer service — with support ticket management, SLA tracking, and customer satisfaction measurement. This creates a complete 360-degree view of every customer relationship.</p>
 
-<h2>Types of CRM Systems</h2>
+<h2 id="types-of-crm-systems"><a href="#types-of-crm-systems" class="heading-anchor" aria-label="Direct link to Types of CRM Systems">#</a>Types of CRM Systems</h2>
 <table style="width:100%;border-collapse:collapse;margin:1.5rem 0;font-family:'Poppins',sans-serif;font-size:0.9rem;">
   <thead><tr style="background:#091434;color:white;"><th style="padding:12px 16px;text-align:left;">Type</th><th style="padding:12px 16px;text-align:left;">Best For</th><th style="padding:12px 16px;text-align:left;">Examples</th></tr></thead>
   <tbody>
@@ -430,7 +555,7 @@
   </tbody>
 </table>
 
-<h2>Who Benefits Most From CRM in India?</h2>
+<h2 id="who-benefits-most-from-crm-in-india"><a href="#who-benefits-most-from-crm-in-india" class="heading-anchor" aria-label="Direct link to Who Benefits Most From CRM in India?">#</a>Who Benefits Most From CRM in India?</h2>
 <ul>
   <li><strong>Real estate companies:</strong> Managing hundreds of property enquiries, site visits, and follow-ups</li>
   <li><strong>Coaching institutes:</strong> Admission enquiries, counselling sessions, and student conversion tracking</li>
@@ -440,7 +565,7 @@
   <li><strong>Digital agencies:</strong> Project pipeline, client communication, and renewal tracking</li>
 </ul>
 
-<h2>CRM Best Practices for Indian Businesses</h2>
+<h2 id="crm-best-practices-for-indian-businesses"><a href="#crm-best-practices-for-indian-businesses" class="heading-anchor" aria-label="Direct link to CRM Best Practices for Indian Businesses">#</a>CRM Best Practices for Indian Businesses</h2>
 <ol>
   <li><strong>Make data entry fast and easy</strong> — if logging a call takes 5 minutes, salespeople won't do it. Choose a CRM with quick-log features and mobile apps.</li>
   <li><strong>Define your pipeline stages clearly</strong> — generic stages like "In Progress" are useless. Be specific: "Price Quoted," "Site Visit Done," "Agreement Sent."</li>
@@ -450,7 +575,7 @@
 </ol>
 <div style="background:#fff8f0;border-left:4px solid #FF923E;border-radius:0 12px 12px 0;padding:16px 20px;margin:1.5rem 0;"><p style="margin:0;"><strong>Real example:</strong> A Pune-based real estate company was handling 200+ monthly enquiries across three projects in Excel. After implementing a custom CRM, they increased their conversion rate from 3% to 8.5% in four months — not by changing their sales pitch, but by following up consistently and at the right time.</p></div>
 
-<h2>CRM Software Cost in India</h2>
+<h2 id="crm-software-cost-in-india"><a href="#crm-software-cost-in-india" class="heading-anchor" aria-label="Direct link to CRM Software Cost in India">#</a>CRM Software Cost in India</h2>
 <table style="width:100%;border-collapse:collapse;margin:1.5rem 0;font-family:'Poppins',sans-serif;font-size:0.9rem;">
   <thead><tr style="background:#091434;color:white;"><th style="padding:12px 16px;text-align:left;">Option</th><th style="padding:12px 16px;text-align:left;">Cost</th><th style="padding:12px 16px;text-align:left;">Best For</th></tr></thead>
   <tbody>
@@ -461,28 +586,101 @@
   </tbody>
 </table>
 
-<h2>Frequently Asked Questions</h2>
+<h2 id="frequently-asked-questions"><a href="#frequently-asked-questions" class="heading-anchor" aria-label="Direct link to Frequently Asked Questions">#</a>Frequently Asked Questions</h2>
 <div style="border-top:1px solid #f0f0f0;margin-top:1rem;">
   <div style="padding:1.2rem 0;border-bottom:1px solid #f0f0f0;"><strong>Do small businesses in India really need CRM software?</strong><p style="margin:0.5rem 0 0;color:#697484;">If you have more than 5–10 leads per week and a sales team of more than 2 people, the answer is almost certainly yes. CRM pays for itself quickly in recovered deals and reduced administrative overhead.</p></div>
   <div style="padding:1.2rem 0;border-bottom:1px solid #f0f0f0;"><strong>What is the best CRM software for Indian businesses?</strong><p style="margin:0.5rem 0 0;color:#697484;">Zoho CRM is a popular choice for Indian SMBs due to its pricing, localisation, and GST features. HubSpot is excellent for marketing-heavy businesses. Freshsales is strong for telecalling-intensive sales. Custom CRM suits businesses with unique needs.</p></div>
   <div style="padding:1.2rem 0;"><strong>How long does it take to implement a CRM?</strong><p style="margin:0.5rem 0 0;color:#697484;">A basic SaaS CRM can be set up and usable in 1–2 days. A full custom CRM implementation with data migration, training, and integrations typically takes 4–12 weeks.</p></div>
 </div>
 
-<h2>Summary</h2>
+<h2 id="summary"><a href="#summary" class="heading-anchor" aria-label="Direct link to Summary">#</a>Summary</h2>
 <p>CRM software is one of the highest-ROI investments a sales-driven Indian business can make. The businesses that win are rarely the ones with the best product alone — they're the ones who follow up consistently, know their customer deeply, and use data to improve their process. That's exactly what CRM enables.</p>
 
-    </article>
+      </article>
 
-    <!-- CTA -->
-    <div id="post-cta-slot">
-      <div class="cta-block">
-        <h2>Want a CRM Built Exactly for Your Business?</h2>
-        <p>ShivamWeb builds custom CRM systems for Indian businesses — tailored to your sales process, integrated with your existing tools, and built to scale.</p>
-        <a href="https://shivamweb.in/#contact-section" class="cta-btn" target="_blank" rel="noopener">
-          Request a Free Consultation →
-        </a>
+      <!-- CTA -->
+      <div id="post-cta-slot">
+        <div class="cta-block">
+          <h2>Want a CRM Built Exactly for Your Business?</h2>
+          <p>ShivamWeb builds custom CRM systems for Indian businesses — tailored to your sales process, integrated with your existing tools, and built to scale.</p>
+          <a href="https://shivamweb.in/#contact-section" class="cta-btn" target="_blank" rel="noopener">
+            Request a Free Consultation →
+          </a>
+        </div>
       </div>
     </div>
+
+    
+    <aside class="toc-sticky-sidebar" aria-label="Table of Contents sidebar">
+      <div class="toc-sidebar-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#234de6" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+        <span>Table of Contents</span>
+      </div>
+      <ol class="toc-sidebar-list">
+        
+          <li>
+            <a href="#the-real-reason-businesses-lose-leads" class="toc-sidebar-link" data-target="the-real-reason-businesses-lose-leads">
+              The Real Reason Businesses Lose Leads
+            </a>
+          </li>
+        
+          <li>
+            <a href="#what-is-crm-software" class="toc-sidebar-link" data-target="what-is-crm-software">
+              What Is CRM Software?
+            </a>
+          </li>
+        
+          <li>
+            <a href="#core-features-of-a-good-crm" class="toc-sidebar-link" data-target="core-features-of-a-good-crm">
+              Core Features of a Good CRM
+            </a>
+          </li>
+        
+          <li>
+            <a href="#types-of-crm-systems" class="toc-sidebar-link" data-target="types-of-crm-systems">
+              Types of CRM Systems
+            </a>
+          </li>
+        
+          <li>
+            <a href="#who-benefits-most-from-crm-in-india" class="toc-sidebar-link" data-target="who-benefits-most-from-crm-in-india">
+              Who Benefits Most From CRM in India?
+            </a>
+          </li>
+        
+          <li>
+            <a href="#crm-best-practices-for-indian-businesses" class="toc-sidebar-link" data-target="crm-best-practices-for-indian-businesses">
+              CRM Best Practices for Indian Businesses
+            </a>
+          </li>
+        
+          <li>
+            <a href="#crm-software-cost-in-india" class="toc-sidebar-link" data-target="crm-software-cost-in-india">
+              CRM Software Cost in India
+            </a>
+          </li>
+        
+          <li>
+            <a href="#frequently-asked-questions" class="toc-sidebar-link" data-target="frequently-asked-questions">
+              Frequently Asked Questions
+            </a>
+          </li>
+        
+          <li>
+            <a href="#summary" class="toc-sidebar-link" data-target="summary">
+              Summary
+            </a>
+          </li>
+        
+      </ol>
+      <div class="toc-sidebar-footer">
+        <a href="#post-main" class="toc-back-to-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+          Back to top
+        </a>
+      </div>
+    </aside>
+  
   </div>
 
   <!-- Related Posts -->
@@ -700,6 +898,37 @@
     });
   }
 
+  // ── Scrollspy & Reading Progress Bar ────────────────────────────────────
+  const progressBar = document.getElementById('reading-progress-bar');
+  const headingElements = document.querySelectorAll('#post-body-slot h2[id]');
+  const tocLinks = document.querySelectorAll('.toc-sidebar-link, .toc-link');
+
+  window.addEventListener('scroll', () => {
+    if (progressBar) {
+      const totalH = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = totalH > 0 ? (window.scrollY / totalH) * 100 : 0;
+      progressBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+    }
+
+    let currentId = '';
+    headingElements.forEach(h => {
+      const top = h.getBoundingClientRect().top;
+      if (top <= 140) {
+        currentId = h.id;
+      }
+    });
+
+    if (currentId) {
+      tocLinks.forEach(link => {
+        if (link.getAttribute('data-target') === currentId || link.getAttribute('href') === '#' + currentId) {
+          link.classList.add('active-toc');
+        } else {
+          link.classList.remove('active-toc');
+        }
+      });
+    }
+  }, { passive: true });
+
   // ── Preloader ─────────────────────────────────────────────────────────────
   let preloaderDismissed = false;
   function dismissPreloader() {
@@ -744,6 +973,15 @@
   } else {
     window.addEventListener('load', dismissPreloader);
     setTimeout(dismissPreloader, 3000);
+  }
+</script>
+
+<!-- PWA Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(err => console.debug('SW reg failed', err));
+    });
   }
 </script>
 

@@ -63,6 +63,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/png" href="/head/favion-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="/head/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="/index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
@@ -124,10 +126,15 @@
         }
 
         #header-logo-svg,
-        #logo-click-container,
+        #logo-click-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         #logo-dark-background {
             position: absolute;
-            top: 0 !important;
+            top: 15px !important;
             left: 0;
         }
 
@@ -1657,5 +1664,13 @@
     }
     </script>
 
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.debug('SW reg failed', err));
+            });
+        }
+    </script>
 </body>
 </html>

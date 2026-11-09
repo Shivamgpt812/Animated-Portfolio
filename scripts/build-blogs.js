@@ -26,6 +26,79 @@ SHIVAMWEB_BLOGS.forEach(blog => {
   const encodedUrl = encodeURIComponent(postUrl);
   const encodedTitle = encodeURIComponent(postTitle);
 
+  // ── Heading extraction & slug generation for Table of Contents ──
+  const seenSlugs = {};
+  const headings = [];
+  function slugify(text) {
+    return text
+      .toLowerCase()
+      .replace(/<[^>]+>/g, '')
+      .replace(/[^\w\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+  }
+
+  const modifiedContent = (blog.content || '').replace(/<h2([^>]*)>(.*?)<\/h2>/gi, (match, attrs, innerText) => {
+    const plainText = innerText.replace(/<[^>]+>/g, '').trim();
+    let slug = slugify(plainText);
+    if (!slug) slug = 'section';
+    if (seenSlugs[slug]) {
+      seenSlugs[slug]++;
+      slug = `${slug}-${seenSlugs[slug]}`;
+    } else {
+      seenSlugs[slug] = 1;
+    }
+    headings.push({ id: slug, text: plainText });
+    return `<h2 id="${slug}"${attrs}><a href="#${slug}" class="heading-anchor" aria-label="Direct link to ${escapeHtmlAttr(plainText)}">#</a>${innerText}</h2>`;
+  });
+
+  const inlineTocHtml = headings.length > 0 ? `
+    <nav class="post-toc-inline" aria-label="Table of Contents">
+      <div class="toc-inline-header">
+        <div class="toc-inline-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#234de6" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+          <span>Table of Contents</span>
+        </div>
+        <span class="toc-inline-count">${headings.length} sections</span>
+      </div>
+      <ol class="toc-inline-list">
+        ${headings.map((h, i) => `
+          <li>
+            <a href="#${h.id}" class="toc-link" data-target="${h.id}">
+              <span class="toc-index">${i + 1}.</span>
+              <span class="toc-text">${escapeHtmlAttr(h.text)}</span>
+            </a>
+          </li>
+        `).join('')}
+      </ol>
+    </nav>
+  ` : '';
+
+  const stickySidebarTocHtml = headings.length > 0 ? `
+    <aside class="toc-sticky-sidebar" aria-label="Table of Contents sidebar">
+      <div class="toc-sidebar-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#234de6" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+        <span>Table of Contents</span>
+      </div>
+      <ol class="toc-sidebar-list">
+        ${headings.map((h, i) => `
+          <li>
+            <a href="#${h.id}" class="toc-sidebar-link" data-target="${h.id}">
+              ${escapeHtmlAttr(h.text)}
+            </a>
+          </li>
+        `).join('')}
+      </ol>
+      <div class="toc-sidebar-footer">
+        <a href="#post-main" class="toc-back-to-top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+          Back to top
+        </a>
+      </div>
+    </aside>
+  ` : '';
+
   const related = getRelatedBlogs(blog, 3);
   const relatedHtml = related.map(r => `
     <a class="rel-card" href="/blogs/${r.slug}.html">
@@ -139,13 +212,24 @@ ${JSON.stringify(breadcrumbsSchema, null, 2)}
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="icon" type="image/png" href="/head/favion-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/head/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/index.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <style>
     /* ── Base ── */
-    html, body { overflow-x:hidden!important; overflow-y:auto!important; height:auto!important; display:block!important; background-color:#F5EFE6; margin:0; padding:0; -ms-overflow-style:none; scrollbar-width:none; }
+    html, body { overflow-x:hidden!important; overflow-y:auto!important; height:auto!important; display:block!important; background-color:#F5EFE6; margin:0; padding:0; -ms-overflow-style:none; scrollbar-width:none; scroll-behavior:smooth; }
     html::-webkit-scrollbar, body::-webkit-scrollbar { display:none; }
+
+    /* ── Reading Progress Bar ── */
+    #reading-progress-bar { position:fixed; top:0; left:0; width:0%; height:3.5px; background:linear-gradient(90deg, #234de6 0%, #FF923E 100%); z-index:10001; pointer-events:none; transition:width .1s linear; }
+
+    /* ── Heading Anchor Link & Offset ── */
+    #post-body-slot [id] { scroll-margin-top:105px; }
+    .heading-anchor { color:#FF923E; text-decoration:none; font-weight:600; margin-left:-22px; padding-right:6px; opacity:0; transition:opacity .2s ease; display:inline-block; }
+    #post-body-slot h2:hover .heading-anchor, #post-body-slot h3:hover .heading-anchor { opacity:1; }
+    @media (max-width:768px){ .heading-anchor { margin-left:0; padding-right:6px; opacity:.4; } }
 
     /* ── Header overlay ── */
     #overlay-container { position:fixed!important; top:0; left:0; right:0; margin:0 auto; max-width:calc(100% - 60px); width:100%; height:auto!important; opacity:1!important; pointer-events:none; z-index:3000; }
@@ -153,13 +237,48 @@ ${JSON.stringify(breadcrumbsSchema, null, 2)}
     #header-container { position:relative; width:100%; pointer-events:none; }
     #header-logo-svg, #menu-button-scale-container, #sound-button-scale-container, #logo-click-container { pointer-events:auto!important; cursor:pointer; }
     .scroll-container { display:none!important; }
-    #header-logo-svg, #logo-click-container, #logo-dark-background { position:absolute; top:0!important; left:0; }
+    #header-logo-svg, #logo-click-container { position:absolute; top:0; left:0; } #logo-dark-background { position:absolute; top:15px!important; left:0; }
     #logo-dark-background { width:56px!important; height:60px!important; clip-path:url(#logo-clip-path)!important; -webkit-clip-path:url(#logo-clip-path)!important; }
     #logo-white-background { height:100%!important; }
 
     /* ── Layout ── */
     .content-width { max-width:1200px; width:90%; margin:0 auto; }
     .post-width   { max-width:800px;  width:90%; margin:0 auto; }
+
+    /* ── Article Layout Container with Sticky Sidebar ── */
+    .article-layout-container { max-width:1160px; width:92%; margin:0 auto; display:flex; gap:36px; align-items:flex-start; justify-content:center; }
+    .article-main-column { max-width:800px; width:100%; min-width:0; flex:1; }
+
+    /* ── Sticky Sidebar ToC (Desktop >= 1140px) ── */
+    .toc-sticky-sidebar { width:280px; flex-shrink:0; position:sticky; top:100px; max-height:calc(100vh - 120px); overflow-y:auto; background:#fff; border-radius:18px; padding:22px 20px; box-shadow:0 10px 30px rgba(0,0,0,.04); border:1px solid rgba(9,20,52,.06); scrollbar-width:thin; scrollbar-color:rgba(35,77,230,.3) transparent; }
+    .toc-sticky-sidebar::-webkit-scrollbar { width:4px; }
+    .toc-sticky-sidebar::-webkit-scrollbar-thumb { background:rgba(35,77,230,.3); border-radius:4px; }
+    .toc-sidebar-header { display:flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-size:.84rem; font-weight:700; color:#091434; text-transform:uppercase; letter-spacing:.8px; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #f0edf8; }
+    .toc-sidebar-list { list-style:none; padding:0; margin:0 0 16px; display:flex; flex-direction:column; gap:4px; }
+    .toc-sidebar-link { display:block; padding:6px 10px; font-family:'Poppins',sans-serif; font-size:.82rem; line-height:1.45; color:#5a6679; text-decoration:none; border-radius:8px; border-left:2px solid transparent; transition:all .2s ease; }
+    .toc-sidebar-link:hover { color:#234de6; background:rgba(35,77,230,.04); }
+    .toc-sidebar-link.active-toc { color:#234de6; font-weight:600; background:rgba(35,77,230,.08); border-left-color:#234de6; }
+    .toc-sidebar-footer { padding-top:10px; border-top:1px solid #f0edf8; }
+    .toc-back-to-top { display:inline-flex; align-items:center; gap:6px; font-family:'Poppins',sans-serif; font-size:.78rem; font-weight:600; color:#7c8594; text-decoration:none; transition:color .2s; }
+    .toc-back-to-top:hover { color:#234de6; }
+
+    @media (max-width:1140px){
+      .toc-sticky-sidebar { display:none!important; }
+      .article-layout-container { max-width:800px; display:block; }
+    }
+
+    /* ── In-Article ToC (Collapsible / Inline) ── */
+    .post-toc-inline { background:#f8f6f2; border:1px solid rgba(35,77,230,0.12); border-left:4px solid #234de6; border-radius:14px; padding:22px 24px; margin:0 0 36px; font-family:'Poppins',sans-serif; }
+    .toc-inline-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(0,0,0,0.06); }
+    .toc-inline-title { display:flex; align-items:center; gap:8px; font-size:.98rem; font-weight:700; color:#091434; }
+    .toc-inline-count { font-size:.75rem; font-weight:600; color:#234de6; background:rgba(35,77,230,0.1); padding:3px 10px; border-radius:12px; }
+    .toc-inline-list { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr; gap:8px; }
+    .toc-inline-list li { margin:0; }
+    .toc-inline-list a.toc-link { display:flex; align-items:baseline; gap:8px; color:#3b4555; text-decoration:none; font-size:.88rem; line-height:1.45; padding:4px 6px; border-radius:6px; transition:background .2s, color .2s; }
+    .toc-inline-list a.toc-link:hover { color:#234de6; background:rgba(35,77,230,0.06); text-decoration:none; }
+    .toc-inline-list a.toc-link.active-toc { color:#234de6; font-weight:600; background:rgba(35,77,230,0.08); }
+    .toc-index { color:#234de6; font-weight:600; font-size:.84rem; flex-shrink:0; }
+    @media (min-width:650px){ .toc-inline-list { grid-template-columns:1fr 1fr; column-gap:20px; } }
 
     /* ── Main wrapper ── */
     #post-main { padding-top:120px; padding-bottom:80px; }
@@ -395,60 +514,66 @@ ${JSON.stringify(breadcrumbsSchema, null, 2)}
 <script src="/cursor.js"></script>
 
 <!-- ═══ MAIN CONTENT ═══ -->
+<div id="reading-progress-bar"></div>
 <main id="post-main" aria-label="Blog article">
-  <div class="post-width">
+  <div class="article-layout-container">
+    <div class="article-main-column">
 
-    <!-- Back to blog -->
-    <a href="/blog.html" class="back-link">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512" fill="#234de6"><path d="M9.4 278.6l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3z"/></svg>
-      Back to Blog
-    </a>
+      <!-- Back to blog -->
+      <a href="/blog.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512" fill="#234de6"><path d="M9.4 278.6l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3z"/></svg>
+        Back to Blog
+      </a>
 
-    <!-- Article hero -->
-    <div id="post-hero-slot">
-      <div class="post-hero">
-        <div class="post-eyebrow">
-          <hr>
-          <span>ShivamWeb Blog</span>
+      <!-- Article hero -->
+      <div id="post-hero-slot">
+        <div class="post-hero">
+          <div class="post-eyebrow">
+            <hr>
+            <span>ShivamWeb Blog</span>
+          </div>
+          <h1>${escapeHtmlAttr(blog.title)}</h1>
+          <div class="post-meta-bar">
+            <span class="post-cat-badge" style="background:${blog.categoryColor}">${escapeHtmlAttr(blog.category)}</span>
+            <span>${escapeHtmlAttr(blog.date)}</span>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ${dynamicReadTime}
+            </span>
+            <span>By <a href="/" style="color:rgba(255,255,255,.9);font-weight:600;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.4);transition:all .2s;" title="Shivam Gupta – Web & AI Developer">Shivam Gupta</a></span>
+          </div>
+          <div class="post-share-bar" style="margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);font-family:'Poppins',sans-serif;font-weight:600;">Share:</span>
+            <a href="https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">Twitter / X</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">LinkedIn</a>
+            <a href="https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">WhatsApp</a>
+            <button id="copy-share-btn" style="background:rgba(255,255,255,0.12);color:white;border:none;cursor:pointer;padding:5px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🔗 Copy Link</button>
+          </div>
+          <div class="post-hero-image-wrap">
+            <img src="${blog.image || '/images/blogs/' + blog.slug + '.webp'}" alt="${escapeHtmlAttr(blog.heroImageAlt || blog.title)}" class="post-hero-img" loading="eager" decoding="async">
+          </div>
         </div>
-        <h1>${escapeHtmlAttr(blog.title)}</h1>
-        <div class="post-meta-bar">
-          <span class="post-cat-badge" style="background:${blog.categoryColor}">${escapeHtmlAttr(blog.category)}</span>
-          <span>${escapeHtmlAttr(blog.date)}</span>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            ${dynamicReadTime}
-          </span>
-          <span>By <strong style="color:rgba(255,255,255,.75);">Shivam Gupta</strong></span>
-        </div>
-        <div class="post-share-bar" style="margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);font-family:'Poppins',sans-serif;font-weight:600;">Share:</span>
-          <a href="https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">Twitter / X</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">LinkedIn</a>
-          <a href="https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);color:white;padding:5px 12px;border-radius:20px;font-size:0.75rem;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s;">WhatsApp</a>
-          <button id="copy-share-btn" style="background:rgba(255,255,255,0.12);color:white;border:none;cursor:pointer;padding:5px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🔗 Copy Link</button>
-        </div>
-        <div class="post-hero-image-wrap">
-          <img src="${blog.image || '/images/blogs/' + blog.slug + '.webp'}" alt="${escapeHtmlAttr(blog.heroImageAlt || blog.title)}" class="post-hero-img" loading="eager" decoding="async">
+      </div>
+
+      <!-- Article body -->
+      <article id="post-body-slot" class="post-body">
+        ${inlineTocHtml}
+        ${modifiedContent}
+      </article>
+
+      <!-- CTA -->
+      <div id="post-cta-slot">
+        <div class="cta-block">
+          <h2>${escapeHtmlAttr(blog.cta.heading)}</h2>
+          <p>${escapeHtmlAttr(blog.cta.body)}</p>
+          <a href="${escapeHtmlAttr(blog.cta.btnLink)}" class="cta-btn" target="${blog.cta.btnLink.startsWith('http') ? '_blank' : '_self'}" rel="noopener">
+            ${escapeHtmlAttr(blog.cta.btnText)} →
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Article body -->
-    <article id="post-body-slot" class="post-body">
-      ${blog.content}
-    </article>
-
-    <!-- CTA -->
-    <div id="post-cta-slot">
-      <div class="cta-block">
-        <h2>${escapeHtmlAttr(blog.cta.heading)}</h2>
-        <p>${escapeHtmlAttr(blog.cta.body)}</p>
-        <a href="${escapeHtmlAttr(blog.cta.btnLink)}" class="cta-btn" target="${blog.cta.btnLink.startsWith('http') ? '_blank' : '_self'}" rel="noopener">
-          ${escapeHtmlAttr(blog.cta.btnText)} →
-        </a>
-      </div>
-    </div>
+    ${stickySidebarTocHtml}
   </div>
 
   <!-- Related Posts -->
@@ -627,6 +752,37 @@ ${JSON.stringify(breadcrumbsSchema, null, 2)}
     });
   }
 
+  // ── Scrollspy & Reading Progress Bar ────────────────────────────────────
+  const progressBar = document.getElementById('reading-progress-bar');
+  const headingElements = document.querySelectorAll('#post-body-slot h2[id]');
+  const tocLinks = document.querySelectorAll('.toc-sidebar-link, .toc-link');
+
+  window.addEventListener('scroll', () => {
+    if (progressBar) {
+      const totalH = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = totalH > 0 ? (window.scrollY / totalH) * 100 : 0;
+      progressBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+    }
+
+    let currentId = '';
+    headingElements.forEach(h => {
+      const top = h.getBoundingClientRect().top;
+      if (top <= 140) {
+        currentId = h.id;
+      }
+    });
+
+    if (currentId) {
+      tocLinks.forEach(link => {
+        if (link.getAttribute('data-target') === currentId || link.getAttribute('href') === '#' + currentId) {
+          link.classList.add('active-toc');
+        } else {
+          link.classList.remove('active-toc');
+        }
+      });
+    }
+  }, { passive: true });
+
   // ── Preloader ─────────────────────────────────────────────────────────────
   let preloaderDismissed = false;
   function dismissPreloader() {
@@ -671,6 +827,15 @@ ${JSON.stringify(breadcrumbsSchema, null, 2)}
   } else {
     window.addEventListener('load', dismissPreloader);
     setTimeout(dismissPreloader, 3000);
+  }
+</script>
+
+<!-- PWA Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(err => console.debug('SW reg failed', err));
+    });
   }
 </script>
 

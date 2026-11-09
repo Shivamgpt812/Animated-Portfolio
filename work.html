@@ -125,11 +125,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="translucent">
     <link rel="mask-icon" href="/head/logo.svg" color="#091434">
     <link rel="icon" type="image/png" href="/head/favion-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/head/favion-16x16.png" sizes="16x16">
-    <link rel="apple-touch-icon" sizes="120x120" href="/head/apple-120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/head/apple-152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/head/apple-180.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="/head/apple-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/head/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
 
     <!-- Using the existing CSS -->
     <link rel="stylesheet" href="/index.css">
@@ -202,10 +199,15 @@
 
         /* Fix for blue screen: Constrain logo background size */
         #header-logo-svg,
-        #logo-click-container,
+        #logo-click-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         #logo-dark-background {
             position: absolute;
-            top: 0 !important;
+            top: 15px !important;
             left: 0;
         }
 
@@ -1391,6 +1393,15 @@
         } else {
             window.addEventListener('load', dismissPreloader);
             setTimeout(dismissPreloader, 3000);
+        }
+    </script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.debug('SW reg failed', err));
+            });
         }
     </script>
 </body>
